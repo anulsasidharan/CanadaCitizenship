@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Canada — Citizenship Test Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1b2a44;
+  --navy-deep:#131f36;
+  --maroon:#8f1f2b;
+  --maroon-bright:#b3283a;
+  --gold:#c69a3e;
+  --gold-soft:#e4c674;
+  --cream:#f6f1e4;
+  --paper:#fbf8ef;
+  --ink:#1c1a16;
+  --muted:#6b6558;
+  --line:#e2d9c2;
+  --good:#2f6b46;
+  --good-bg:#e5f2e8;
+  --bad:#a3283a;
+  --bad-bg:#fbe7e9;
+  --radius:14px;
+  --shadow:0 18px 40px -20px rgba(19,31,54,.35);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(199,154,62,.12), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(143,31,43,.10), transparent 55%),
+    var(--cream);
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+  min-height:100vh;
+  padding:32px 18px 80px;
+}
+.wrap{max-width:920px;margin:0 auto;}
+.wrap.wide{max-width:1180px;}
+
+/* ---------- Header / Masthead ---------- */
+.masthead{
+  background:linear-gradient(160deg,var(--navy) 0%, var(--navy-deep) 100%);
+  border-radius:var(--radius);
+  padding:34px 34px 26px;
+  color:var(--cream);
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.06);
+}
+.masthead::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(600px 300px at 80% 0%, black, transparent);
+  pointer-events:none;
+}
+.masthead .kicker{
+  display:flex; align-items:center; gap:10px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--gold-soft); margin-bottom:14px;
+}
+.kicker .leaf{width:14px;height:14px; display:inline-block;}
+.masthead h1{
+  font-family:'Fraunces',serif; font-weight:600;
+  font-size:clamp(28px,4.6vw,42px); line-height:1.05; margin:0 0 10px;
+  letter-spacing:-.01em;
+}
+.masthead h1 em{font-style:italic; color:var(--gold-soft); font-weight:500;}
+.masthead p{
+  max-width:56ch; color:#d9d4c4; font-size:15px; line-height:1.6; margin:0;
+}
+.masthead .stripe{
+  position:absolute; right:0; top:0; bottom:0; width:10px;
+  background:repeating-linear-gradient(180deg,var(--maroon) 0 22px, var(--gold) 22px 24px, var(--maroon) 24px 46px);
+  opacity:.85;
+}
+.hero-illustration{
+  position:absolute; right:26px; top:18px; width:230px; height:150px;
+  opacity:.9; pointer-events:none;
+  mask-image:linear-gradient(to left, black 55%, transparent 100%);
+}
+@media (max-width:760px){ .hero-illustration{display:none;} }
+
+/* section card icons */
+.sec-icon{
+  width:34px; height:34px; border-radius:9px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--navy); margin-bottom:10px;
+  color:var(--gold-soft);
+}
+.sec-icon svg{width:19px; height:19px;}
+.sec-head{display:flex; align-items:flex-start; justify-content:space-between; gap:8px;}
+
+/* inline mini icon used in quiz header (on navy tag) */
+.mini-icon{width:16px; height:16px; vertical-align:-3px; margin-right:5px; color:var(--gold-soft);}
+/* icon used in results title (on light paper bg) */
+.title-icon{color:var(--maroon);}
+
+/* ---------- Score / Progress bar (persistent) ---------- */
+.statbar{
+  display:flex; gap:14px; margin-top:22px; flex-wrap:wrap;
+}
+.stat{
+  flex:1; min-width:130px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:10px; padding:12px 14px;
+}
+.stat .num{font-family:'Fraunces',serif; font-size:24px; color:var(--gold-soft); line-height:1;}
+.stat .lbl{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:#b9b3a1; margin-top:4px;}
+
+/* ---------- Section nav ---------- */
+.section-nav{
+  margin-top:26px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+}
+.section-btn{
+  text-align:left;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px 14px 12px;
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  position:relative;
+}
+.section-btn:hover{transform:translateY(-2px); box-shadow:0 10px 22px -14px rgba(27,42,68,.35); border-color:var(--gold);}
+.section-btn.active{border-color:var(--maroon); box-shadow:0 0 0 2px var(--maroon) inset;}
+.section-btn .sec-title{font-weight:700; font-size:14.5px; color:var(--navy);}
+.section-btn .sec-count{
+  font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-top:4px;
+}
+.section-btn .sec-progress{
+  margin-top:8px; height:5px; border-radius:4px; background:var(--line); overflow:hidden;
+}
+.section-btn .sec-progress > i{display:block; height:100%; background:var(--gold); width:0%;}
+
+.top-actions{
+  display:flex; gap:10px; margin-top:18px; flex-wrap:wrap;
+}
+.btn{
+  font-family:'Inter',sans-serif; font-weight:600; font-size:13.5px;
+  border:none; border-radius:999px; padding:10px 20px; cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--maroon); color:#fff; box-shadow:0 8px 18px -8px rgba(143,31,43,.6);}
+.btn-primary:hover{background:var(--maroon-bright);}
+.btn-ghost{background:transparent; color:var(--navy); border:1.5px solid var(--navy); }
+.btn-ghost:hover{background:var(--navy); color:#fff;}
+.btn-quiet{background:var(--line); color:var(--navy);}
+.btn-quiet:hover{background:#d8cca5;}
+
+/* ---------- Quiz card ---------- */
+.quiz-panel{margin-top:26px;}
+.hidden{display:none !important;}
+
+.progressline{
+  height:6px; background:var(--line); border-radius:6px; overflow:hidden; margin-bottom:18px;
+}
+.progressline > i{display:block; height:100%; background:linear-gradient(90deg,var(--maroon),var(--gold)); width:0%; transition:width .3s ease;}
+
+.q-meta{
+  display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;
+  font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;
+}
+.q-meta .tag{
+  background:var(--navy); color:var(--gold-soft); padding:3px 10px; border-radius:999px; font-size:10.5px;
+}
+
+.card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 28px 24px;
+  box-shadow:var(--shadow);
+}
+.q-text{
+  font-family:'Fraunces',serif; font-weight:600; font-size:clamp(19px,2.6vw,24px);
+  color:var(--navy); line-height:1.35; margin:0 0 20px;
+}
+.options{display:flex; flex-direction:column; gap:10px;}
+.opt{
+  display:flex; align-items:flex-start; gap:12px;
+  background:#fff; border:1.5px solid var(--line); border-radius:10px;
+  padding:13px 16px; cursor:pointer; text-align:left; font-size:15px; color:var(--ink);
+  font-family:'Inter',sans-serif; transition:border-color .12s ease, background .12s ease;
+}
+.opt:hover{border-color:var(--gold);}
+.opt .letter{
+  font-family:'JetBrains Mono',monospace; font-weight:600; color:var(--muted);
+  width:20px; flex:none;
+}
+.opt.correct{border-color:var(--good); background:var(--good-bg);}
+.opt.correct .letter{color:var(--good);}
+.opt.incorrect{border-color:var(--bad); background:var(--bad-bg);}
+.opt.incorrect .letter{color:var(--bad);}
+.opt.disabled{cursor:default;}
+.opt.dim{opacity:.55;}
+
+.explain{
+  margin-top:18px; padding:16px 18px; border-radius:10px;
+  background:var(--cream); border-left:4px solid var(--gold);
+  font-size:14px; line-height:1.6; color:#3a3529; display:none;
+}
+.explain.show{display:block;}
+.explain b{color:var(--navy);}
+
+.card-actions{
+  display:flex; justify-content:space-between; align-items:center; margin-top:22px; flex-wrap:wrap; gap:10px;
+}
+.feedback-pill{
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:6px 12px; border-radius:999px;
+  display:none; align-items:center; gap:6px;
+}
+.feedback-pill.show{display:inline-flex;}
+.feedback-pill.good{background:var(--good-bg); color:var(--good);}
+.feedback-pill.bad{background:var(--bad-bg); color:var(--bad);}
+
+/* ---------- Question deck ---------- */
+.quiz-layout{display:flex; gap:22px; align-items:flex-start;}
+.quiz-main{flex:1; min-width:0;}
+.quiz-deck{
+  width:236px; flex:none; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  padding:18px 16px; box-shadow:var(--shadow); position:sticky; top:20px;
+}
+.deck-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; gap:8px;}
+.deck-title{font-family:'Fraunces',serif; font-weight:600; color:var(--navy); font-size:15px;}
+.deck-progress{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); white-space:nowrap;}
+.deck-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:14px;}
+.deck-item{
+  aspect-ratio:1; border-radius:8px; border:1.5px solid var(--line); background:#fff;
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:600; color:var(--muted);
+  cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .12s ease, background .12s ease, box-shadow .12s ease;
+  padding:0;
+}
+.deck-item:hover{border-color:var(--gold);}
+.deck-item.current{border-color:var(--navy); box-shadow:0 0 0 2px var(--navy) inset; color:var(--navy);}
+.deck-item.correct{background:var(--good-bg); border-color:var(--good); color:var(--good);}
+.deck-item.incorrect{background:var(--bad-bg); border-color:var(--bad); color:var(--bad);}
+.deck-legend{display:flex; flex-wrap:wrap; gap:7px 12px; font-size:10px; color:var(--muted); font-family:'JetBrains Mono',monospace; margin-bottom:14px;}
+.deck-legend span{display:flex; align-items:center; gap:5px;}
+.deck-legend .dot{width:9px; height:9px; border-radius:3px; display:inline-block; border:1.5px solid var(--line); background:#fff; flex:none;}
+.deck-legend .dot.cur{border-color:var(--navy); box-shadow:0 0 0 1.5px var(--navy) inset;}
+.deck-legend .dot.ok{background:var(--good-bg); border-color:var(--good);}
+.deck-legend .dot.bad{background:var(--bad-bg); border-color:var(--bad);}
+.deck-finish{width:100%; justify-content:center; font-size:13px;}
+
+@media (max-width:900px){
+  .quiz-layout{flex-direction:column;}
+  .quiz-deck{width:100%; position:static; order:2;}
+  .quiz-main{order:1;}
+  .deck-grid{grid-template-columns:repeat(auto-fill,minmax(38px,1fr));}
+}
+
+/* ---------- Results screen ---------- */
+.results{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  padding:36px 30px; text-align:center; box-shadow:var(--shadow);
+}
+.results h2{font-family:'Fraunces',serif; font-size:28px; color:var(--navy); margin:0 0 6px;}
+.results .score-big{
+  font-family:'Fraunces',serif; font-size:64px; color:var(--maroon); line-height:1; margin:14px 0 4px;
+}
+.results .verdict{
+  font-size:14.5px; color:var(--muted); max-width:46ch; margin:8px auto 22px; line-height:1.6;
+}
+.results .badge{
+  display:inline-block; padding:6px 16px; border-radius:999px; font-family:'JetBrains Mono',monospace;
+  font-size:12px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:18px;
+}
+.badge.pass{background:var(--good-bg); color:var(--good);}
+.badge.fail{background:var(--bad-bg); color:var(--bad);}
+.results .actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;}
+.review-list{text-align:left; margin-top:28px; border-top:1px solid var(--line); padding-top:20px;}
+.review-item{padding:12px 0; border-bottom:1px dashed var(--line); font-size:13.5px;}
+.review-item:last-child{border-bottom:none;}
+.review-item .rq{font-weight:600; color:var(--navy); margin-bottom:4px;}
+.review-item .ra{color:var(--muted);}
+.review-item .ra.wrong{color:var(--bad);}
+.review-item .ra.right{color:var(--good);}
+
+footer.note{
+  text-align:center; margin-top:30px; font-size:12px; color:var(--muted); font-family:'JetBrains Mono',monospace;
+}
+footer.note a{color:var(--maroon);}
+
+@media (max-width:600px){
+  .masthead{padding:26px 20px 22px;}
+  .card{padding:22px 18px 20px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap wide">
+
+  <div class="masthead">
+    <div class="stripe"></div>
+    <div class="hero-illustration" aria-hidden="true">
+      <svg viewBox="0 0 260 170" width="100%" height="100%">
+        <!-- sky/backdrop -->
+        <defs>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2a3d63"/>
+            <stop offset="100%" stop-color="#1b2a44"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="260" height="170" fill="url(#skyGrad)" opacity="0"/>
+        <!-- parliament-style silhouette -->
+        <g opacity="0.9" fill="none" stroke="#c69a3e" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+          <rect x="18" y="96" width="210" height="46" fill="#22314f" stroke="none"/>
+          <rect x="30" y="70" width="26" height="26" fill="#22314f" stroke="none"/>
+          <rect x="70" y="60" width="20" height="36" fill="#22314f" stroke="none"/>
+          <polygon points="110,40 128,72 92,72" fill="#22314f" stroke="none"/>
+          <rect x="102" y="72" width="16" height="24" fill="#22314f" stroke="none"/>
+          <rect x="150" y="66" width="18" height="30" fill="#22314f" stroke="none"/>
+          <rect x="190" y="74" width="22" height="22" fill="#22314f" stroke="none"/>
+          <!-- outlines / accents -->
+          <line x1="18" y1="96" x2="228" y2="96"/>
+          <line x1="110" y1="40" x2="110" y2="30"/>
+          <circle cx="110" cy="27" r="3" fill="#e4c674" stroke="none"/>
+        </g>
+        <!-- maple leaf, large, right side -->
+        <g transform="translate(178,18) scale(2.3)">
+          <path d="M12 2c.6 2 1.6 3 2.8 3.6-.2-1.2 0-2 .6-2.8.9 1.6 2.6 2 3.6 1.4-.6 1.6-.3 2.6.6 3.4-1.6.4-2.4 1.2-2.6 2.4 1.2-.2 2.2.1 3 1-1.4.8-2 1.8-1.8 3 1.2-.4 2.2-.2 3 .6-1.6.8-2.2 1.8-2 3-1.2-.6-2.2-.6-3.2 0 .4 1 1.2 1.6 2.4 1.8-1.2.8-2.4.8-3.4.2.4 1.2.2 2.2-.6 3-1-.6-1.8-.6-2.6 0V24h-1.6v-2.4c-.8-.6-1.6-.6-2.6 0-.8-.8-1-1.8-.6-3-1 .6-2.2.6-3.4-.2 1.2-.2 2-.8 2.4-1.8-1-.6-2-.6-3.2 0 .2-1.2-.4-2.2-2-3 .8-.8 1.8-1 3-.6.2-1.2-.4-2.2-1.8-3 .8-.9 1.8-1.2 3-1-.2-1.2-1-2-2.6-2.4.9-.8 1.2-1.8.6-3.4 1 .6 2.7.2 3.6-1.4.6.8.8 1.6.6 2.8C10.4 5 11.4 4 12 2Z" fill="#b3283a" opacity="0.9"/>
+        </g>
+        <!-- flag pole -->
+        <line x1="40" y1="98" x2="40" y2="40" stroke="#e4c674" stroke-width="1.6"/>
+        <rect x="40" y="40" width="30" height="18" fill="#8f1f2b"/>
+        <rect x="49" y="40" width="12" height="18" fill="#fbf8ef"/>
+      </svg>
+    </div>
+    <div class="kicker">
+      <svg class="leaf" viewBox="0 0 24 24" fill="none"><path d="M12 2c.6 2 1.6 3 2.8 3.6-.2-1.2 0-2 .6-2.8.9 1.6 2.6 2 3.6 1.4-.6 1.6-.3 2.6.6 3.4-1.6.4-2.4 1.2-2.6 2.4 1.2-.2 2.2.1 3 1-1.4.8-2 1.8-1.8 3 1.2-.4 2.2-.2 3 .6-1.6.8-2.2 1.8-2 3-1.2-.6-2.2-.6-3.2 0 .4 1 1.2 1.6 2.4 1.8-1.2.8-2.4.8-3.4.2.4 1.2.2 2.2-.6 3-1-.6-1.8-.6-2.6 0V24h-1.6v-2.4c-.8-.6-1.6-.6-2.6 0-.8-.8-1-1.8-.6-3-1 .6-2.2.6-3.4-.2 1.2-.2 2-.8 2.4-1.8-1 -.6-2-.6-3.2 0 .2-1.2-.4-2.2-2-3 .8-.8 1.8-1 3-.6.2-1.2-.4-2.2-1.8-3 .8-.9 1.8-1.2 3-1-.2-1.2-1-2-2.6-2.4.9-.8 1.2-1.8.6-3.4 1 .6 2.7.2 3.6-1.4.6.8.8 1.6.6 2.8C10.4 5 11.4 4 12 2Z" fill="#e4c674"/></svg>
+      Citizenship & Immigration Canada · Study Guide
+    </div>
+    <h1>Discover Canada <em>Practice Quiz</em></h1>
+    <p>Every question below is drawn directly from <em>Discover Canada: The Rights and Responsibilities of Citizenship</em>. Work through a section at a time, or sit the full mixed exam — each answer comes with the explanation you'd need to remember it.</p>
+
+    <div class="statbar">
+      <div class="stat"><div class="num" id="statAnswered">0</div><div class="lbl">Answered</div></div>
+      <div class="stat"><div class="num" id="statCorrect">0</div><div class="lbl">Correct</div></div>
+      <div class="stat"><div class="num" id="statAccuracy">—</div><div class="lbl">Accuracy</div></div>
+      <div class="stat"><div class="num" id="statStreak">0</div><div class="lbl">Best Streak</div></div>
+    </div>
+  </div>
+
+  <div id="sectionNavWrap">
+    <div class="section-nav" id="sectionNav"></div>
+    <p style="font-size:12.5px; color:var(--muted); margin-top:14px; line-height:1.6;">
+      <strong style="color:var(--navy);">Note on the Provincial &amp; Territorial section:</strong> Premiers, Lieutenant Governors, Commissioners, and Opposition leaders change with elections and leadership races. Use that section to practice the <em>format</em> of these questions, then confirm today's actual officeholders for your own province or territory before your test.
+    </p>
+    <div class="top-actions">
+      <button class="btn btn-primary" id="startAllBtn">▶ Start Full Mixed Exam (20 Qs)</button>
+      <button class="btn btn-ghost" id="resetAllBtn">↺ Reset All Progress</button>
+    </div>
+  </div>
+
+  <div class="quiz-panel hidden" id="quizPanel">
+    <div class="quiz-layout" id="quizLayout">
+      <div class="quiz-main">
+        <div class="progressline"><i id="progressFill"></i></div>
+        <div class="q-meta">
+          <span id="qCounter">Question 1 of 10</span>
+          <span class="tag" id="qSectionTag">Section</span>
+        </div>
+        <div class="card">
+          <p class="q-text" id="qText">Loading…</p>
+          <div class="options" id="qOptions"></div>
+          <div class="explain" id="qExplain"></div>
+          <div class="card-actions">
+            <span class="feedback-pill" id="feedbackPill"></span>
+            <div style="display:flex; gap:10px; margin-left:auto; flex-wrap:wrap;">
+              <button class="btn btn-quiet" id="quitBtn">Exit to Menu</button>
+              <button class="btn btn-ghost" id="showAllBtn">👁 Show All Answers</button>
+              <button class="btn btn-quiet" id="prevBtn">← Previous</button>
+              <button class="btn btn-primary" id="nextBtn" disabled>Next Question →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="quiz-deck" id="quizDeck">
+        <div class="deck-head">
+          <span class="deck-title">Questions</span>
+          <span class="deck-progress" id="deckProgress">0 / 0 answered</span>
+        </div>
+        <div class="deck-grid" id="deckGrid"></div>
+        <div class="deck-legend">
+          <span><i class="dot cur"></i>Current</span>
+          <span><i class="dot ok"></i>Correct</span>
+          <span><i class="dot bad"></i>Incorrect</span>
+          <span><i class="dot"></i>Unanswered</span>
+        </div>
+        <button class="btn btn-quiet deck-finish" id="deckFinishBtn">Finish &amp; See Results</button>
+      </aside>
+    </div>
+
+    <div class="hidden" id="sectionAnswerKey">
+      <div class="card" style="margin-bottom:16px;">
+        <div class="sec-head" style="align-items:center; flex-wrap:wrap; gap:16px;">
+          <div>
+            <h2 style="font-family:'Fraunces',serif; color:var(--navy); margin:0 0 6px; font-size:20px;" id="sectionAnswerKeyTitle">Answer Key</h2>
+            <p style="color:var(--muted); font-size:13px; margin:0; max-width:56ch; line-height:1.6;">Every correct answer for this section is highlighted below. Hide this view to keep answering questions, or reset to practice this section again from scratch.</p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn-quiet" id="resetSectionFromKeyBtn">↺ Reset &amp; Practice Again</button>
+            <button class="btn btn-primary" id="hideAllBtn">✕ Hide All Answers</button>
+          </div>
+        </div>
+      </div>
+      <div id="sectionAnswerKeyList"></div>
+    </div>
+  </div>
+
+  <div class="quiz-panel hidden" id="resultsPanel">
+    <div class="results">
+      <span class="badge" id="resultBadge">Result</span>
+      <h2 id="resultTitle">Quiz Complete</h2>
+      <div class="score-big" id="resultScore">0/0</div>
+      <p class="verdict" id="resultVerdict">—</p>
+      <div class="actions">
+        <button class="btn btn-primary" id="retryBtn">↺ Retry This Section</button>
+        <button class="btn btn-ghost" id="menuBtn">Back to Menu</button>
+      </div>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+  </div>
+
+  <footer class="note">Based on the official IRCC guide, Discover Canada (2021 ed.) — for practice purposes only. The only official study guide is available free from Citizenship and Immigration Canada.</footer>
+</div>
+
+<script>
+/* ======================= QUESTION BANK ======================= */
+const QUESTION_BANK = {
+  rights: {
+    title: "Rights & Responsibilities",
+    questions: [
+      {q:"What are three responsibilities of citizenship?", opts:["Being loyal to Canada, recycling newspapers, serving in the navy","Obeying the law, taking responsibility for oneself and one's family, serving on a jury","Learning both official languages, voting in elections, belonging to a union","Buying Canadian products, owning your own business, using less water"], a:1, ex:"Citizenship responsibilities listed in the guide include obeying the law, taking responsibility for oneself and family, serving on a jury, voting in elections, helping others in the community, and protecting the environment and heritage."},
+      {q:"What document, signed in 1215 in England, is the source of Canada's 800-year tradition of ordered liberty?", opts:["The Constitution Act","The Magna Carta","The Bill of Rights","The Treaty of Paris"], a:1, ex:"The Magna Carta (the 'Great Charter of Freedoms'), signed in 1215, secured freedoms such as conscience, thought, assembly, and association that Canada inherited."},
+      {q:"In what year was the Canadian Charter of Rights and Freedoms entrenched in the Constitution?", opts:["1867","1931","1982","1995"], a:2, ex:"The Constitution of Canada was amended in 1982 to entrench the Canadian Charter of Rights and Freedoms."},
+      {q:"What right does 'Habeas corpus' protect, and where does it come from?", opts:["The right to vote; from the Magna Carta","The right to challenge unlawful detention by the state; from English common law","The right to a lawyer; from the Quebec Act","The right to a jury trial; from the Constitution Act"], a:1, ex:"Habeas corpus is the right to challenge unlawful detention by the state, and it comes from English common law."},
+      {q:"Which Charter right allows Canadians to live and work anywhere in Canada, and to enter and leave the country freely?", opts:["Mobility Rights","Official Language Rights","Aboriginal Peoples' Rights","Multiculturalism"], a:0, ex:"Mobility Rights let Canadians live and work anywhere they choose in Canada, enter and leave the country freely, and apply for a passport."},
+      {q:"According to the guide, Canada's openness does NOT extend to which practices?", opts:["Immigration from any country","Barbaric cultural practices such as spousal abuse, honour killings, or forced marriage","Freedom of religion","Bilingualism"], a:1, ex:"The guide states Canada's openness and generosity do not extend to barbaric cultural practices that tolerate spousal abuse, 'honour killings,' female genital mutilation, forced marriage, or other gender-based violence."},
+      {q:"What is one way Canadian citizens can 'defend Canada' according to the guide, given there is no compulsory military service?", opts:["Paying extra taxes","Serving in the Canadian Forces, Coast Guard, or as a volunteer police/firefighter","Only voting in elections","Joining a labour union"], a:1, ex:"There is no compulsory military service in Canada, but citizens can serve in the Canadian Forces (navy, army, air force), Coast Guard, cadets, police, or fire departments."},
+      {q:"Serving on a jury, when called, is described in the guide as:", opts:["Optional community service","A legally required privilege that makes the justice system work","Only for permanent residents","A paid government job"], a:1, ex:"Serving on a jury is a legal requirement when called, and is described as a privilege that makes the justice system work since it depends on impartial juries of citizens."},
+      {q:"Which right ensures French and English have equal status in Parliament and throughout the federal government?", opts:["Mobility Rights","Official Language Rights and Minority Language Educational Rights","Freedom of Association","Multiculturalism"], a:1, ex:"Official Language Rights and Minority Language Educational Rights guarantee that French and English have equal status in Parliament and government."},
+      {q:"Fatima is a new immigrant in Canada. What law allows her to take a job at par with a man?", opts:["Equality of women and men","Equality of all races","Equal pay for equal work","Equal rights"], a:0, ex:"Canadian law guarantees the equality of women and men — they are equal under the law, including in the workplace."},
+      {q:"Give an example of how you can show responsibility by participating in your community.", opts:["Mind your own business","Have a party","Keep your property tidy","Volunteer"], a:3, ex:"Volunteering — helping people in need, assisting at a school, or working with a food bank — is a key way Canadians participate in and support their community."},
+      {q:"Give an example of where English and French have equal status in Canada.", opts:["In schools","In the workplace","In the Parliament of Canada","At City Hall"], a:2, ex:"English and French have equal status in Parliament and throughout federal government institutions."},
+      {q:"Name six responsibilities of citizenship.", opts:["Getting a job, making money, raising a family, paying taxes, mowing your lawn, voting in provincial elections","Voting in municipal elections only, joining a political party, getting a job, obeying the law, driving safely, picking up litter","Caring for the environment, not littering, paying taxes, obeying the law, helping others, respecting others","Obeying the law, taking responsibility for oneself and one's family, helping others in the community, voting in elections, serving on a jury, protecting and enjoying our heritage and environment"], a:3, ex:"The six core responsibilities are: obeying the law; taking responsibility for oneself and family; serving on a jury; voting in elections; helping others in the community; and protecting our heritage and environment."},
+      {q:"Name three additional rights protected by the Canadian Charter of Rights and Freedoms.", opts:["Freedom of speech, Right to own land, and Right to a fair trial","Mobility rights, Multiculturalism, and Aboriginal Peoples' rights","Right to ski anywhere in Canada, Moving rights, and Right to public assembly","Right to vote, Right to speak publicly, and Security rights"], a:1, ex:"Beyond the fundamental freedoms, the Charter also sets out Mobility Rights, Aboriginal Peoples' Rights, Official Language Rights, and Multiculturalism."},
+      {q:"Name two fundamental freedoms protected by the Canadian Charter of Rights and Freedoms.", opts:["Freedom of conscience and religion, and Freedom of association","Equality rights, and to care for Canada's heritage","Basic freedoms, and obeying laws","Aboriginal peoples' rights, and to volunteer"], a:0, ex:"Fundamental freedoms include freedom of conscience and religion; thought, belief, opinion, and expression; peaceful assembly; and association."},
+      {q:"Name two key documents that contain our rights and freedoms.", opts:["The Canadian Constitution and English common law","Civil code of France and the Canadian Constitution","Canadian Charter of Rights and Freedoms and Magna Carta (the Great Charter of Freedoms)","Laws passed by Parliament and English common law"], a:2, ex:"The Canadian Charter of Rights and Freedoms and the Magna Carta (Great Charter of Freedoms) are the two key documents underpinning Canadians' rights."},
+      {q:"What are some examples of taking responsibility for yourself and your family?", opts:["Buying a house and a TV","Getting a job, taking care of one's family and working hard in keeping with one's abilities","Doing laundry and keeping the house clean","Study hard so you can earn enough money to take a vacation"], a:1, ex:"Taking responsibility means getting a job, caring for one's family, and working hard in keeping with one's abilities — work contributes to personal dignity and Canada's prosperity."},
+      {q:"What is meant by the equality of women and men?", opts:["Men and women are equal under the law","Men and women must both do housework","Women may now go to school and enter the professional workforce","A woman may now become Prime Minister"], a:0, ex:"In Canada, men and women are equal under the law — a core Canadian value."},
+      {q:"What part of the Constitution legally protects the basic rights and freedoms of all Canadians?", opts:["The British Charter of Rights and Freedoms","The Canadian Charter of Rights","The Canadian Charter of Freedoms","The Canadian Charter of Rights and Freedoms"], a:3, ex:"The Canadian Charter of Rights and Freedoms, entrenched in the Constitution in 1982, legally protects the basic rights and freedoms of all Canadians."},
+      {q:"What will you promise when you take the Oath of Citizenship?", opts:["Pledge allegiance to the Sovereign, observe the laws of Canada and fulfil the duties of a Canadian","Pledge to be faithful to the King only","Promise to observe the laws of Canada only","Fulfil duties as a Canadian citizen only"], a:0, ex:"The Oath of Citizenship combines all three promises: allegiance to the Sovereign, observing Canada's laws, and fulfilling the duties of a Canadian citizen."},
+      {q:"When did the Canadian Charter of Rights and Freedoms become part of the Canadian Constitution?", opts:["1867","1905","1982","1878"], a:2, ex:"The Charter of Rights and Freedoms was entrenched in the Constitution in 1982."}
+    ]
+  },
+  whoweare: {
+    title: "Who We Are",
+    questions: [
+      {q:"What are Canada's three founding peoples?", opts:["English, French, American","Aboriginal, French, British","Aboriginal, Métis, Inuit","French, British, Chinese"], a:1, ex:"To understand what it means to be Canadian, the guide highlights three founding peoples: Aboriginal, French, and British."},
+      {q:"The term 'Aboriginal peoples' refers to which three distinct groups?", opts:["Indian (First Nations), Inuit, and Métis","Cree, Huron, and Iroquois","Loyalists, Acadians, and Métis","Anglophones, Francophones, and Métis"], a:0, ex:"Today, 'Aboriginal peoples' refers to three distinct groups: Indian (also called First Nations), Inuit, and Métis."},
+      {q:"Roughly what percentage of Aboriginal people are First Nations, according to the guide?", opts:["About 30%","About 50%","About 65%","About 90%"], a:2, ex:"The guide states about 65% of Aboriginal people are First Nations, while 30% are Métis and 4% are Inuit."},
+      {q:"Who are the Métis?", opts:["Descendants of French colonists in the Maritimes","A distinct people of mixed Aboriginal and European ancestry, many living in the Prairie provinces","Inuit living in the Arctic","English-speaking settlers from the 1600s"], a:1, ex:"The Métis are a distinct people of mixed Aboriginal and European ancestry, the majority living in the Prairie provinces, who speak their own dialect, Michif."},
+      {q:"What does the word 'Inuit' mean?", opts:["'The people' in the Inuktitut language","'Village' in the Iroquoian language","'Free people' in French","'Northern dwellers' in English"], a:0, ex:"'Inuit' means 'the people' in the Inuktitut language. Inuit live in small, scattered communities across the Arctic."},
+      {q:"From the 1800s until the 1980s, the federal government placed many Aboriginal children in what kind of institutions?", opts:["Public schools","Residential schools, to educate and assimilate them","Military academies","Trade schools"], a:1, ex:"The federal government placed many Aboriginal children in residential schools; the schools were poorly funded, inflicted hardship, and Ottawa formally apologized to former students in 2008."},
+      {q:"Who are the Acadians?", opts:["Métis from Manitoba","Descendants of French colonists who settled in the Maritime provinces from 1604, many deported during the 'Great Upheaval'","English Loyalists from the American Revolution","Immigrants who arrived after 1970"], a:1, ex:"Acadians are descendants of French colonists who began settling in the Maritimes in 1604. Between 1755-1763 more than two-thirds were deported in the 'Great Upheaval,' yet Acadian culture survived."},
+      {q:"Roughly how many Anglophones (English as first language) and Francophones (French as first language) live in Canada?", opts:["18 million Anglophones and 7 million Francophones","10 million Anglophones and 10 million Francophones","30 million Anglophones and 2 million Francophones","5 million Anglophones and 15 million Francophones"], a:0, ex:"The guide states there are 18 million Anglophones and 7 million Francophones in Canada."},
+      {q:"Which province is the only officially bilingual province?", opts:["Ontario","Quebec","New Brunswick","Manitoba"], a:2, ex:"New Brunswick is the only officially bilingual province, though Francophone communities also exist in Ontario, Manitoba, and elsewhere."},
+      {q:"Since the 1970s, most immigrants to Canada have come from which region?", opts:["Europe","Asian countries","South America","Africa"], a:1, ex:"The guide notes that since the 1970s, most immigrants to Canada have come from Asian countries."},
+      {q:"What are the three main groups of Aboriginal peoples?", opts:["First Nations, Métis and Inuit","Acadians, Métis and Inuit","United Empire Loyalists, Métis and Inuit","Inuit, Métis and Acadians"], a:0, ex:"The three main groups of Aboriginal peoples are First Nations (Indian), Métis, and Inuit."},
+      {q:"What are the two official languages of Canada?", opts:["English and Métis","Inuktitut and French","English and French","English and Inuktitut"], a:2, ex:"Canada's two official languages are English and French."},
+      {q:"What does the word 'Inuit' mean?", opts:["Eskimo in Inuktitut","House in English","The people in Inuktitut","Arctic land in Inuktitut"], a:2, ex:"'Inuit' means 'the people' in the Inuktitut language."},
+      {q:"What is a Francophone?", opts:["A person who speaks English as their first language","A smartphone designed by the Canadian company RIM","A person who speaks French as their first language","The first phone in Canada, invented by Alexander Graham Bell"], a:2, ex:"A Francophone is a person who speaks French as their first language; an Anglophone speaks English as their first language."},
+      {q:"What is the largest religious affiliation in Canada?", opts:["Catholic","Muslim","Jewish","Hindu"], a:0, ex:"Catholic is the largest religious affiliation among Canadians, followed by various Protestant churches."},
+      {q:"Where do most French-speaking Canadians live?", opts:["Ontario","Nova Scotia","Quebec","Prince Edward Island"], a:2, ex:"The vast majority of Francophones live in Quebec, though sizable French-speaking communities also exist in Ontario and New Brunswick."},
+      {q:"Which province is the only officially bilingual province, where about one-third of the population lives and works in French?", opts:["New Brunswick","Quebec","Ontario","Prince Edward Island"], a:0, ex:"New Brunswick is Canada's only officially bilingual province."},
+      {q:"Who are the Aboriginal peoples of Canada?", opts:["The first European settlers to arrive in Canada","The descendants of the first Australian immigrants to Canada","The first people to live in Canada","The first settlers of Newfoundland"], a:2, ex:"Aboriginal peoples were the first people to live in Canada, well established long before European explorers arrived."},
+      {q:"Who are the Acadians?", opts:["Aboriginal people of the arctic","French-speaking Catholics living in Ontario","The descendants of French colonists who began settling in what are now the Maritime provinces in 1604","English speaking refugees who settled in Louisiana"], a:2, ex:"Acadians are descendants of French colonists who settled in the Maritimes starting in 1604."},
+      {q:"Who are the founding peoples of Canada?", opts:["Métis, French and British","Aboriginal, Métis and British","Inuit, Aboriginal and British","Aboriginal, French and British"], a:3, ex:"Canada's three founding peoples are Aboriginal, French, and British."},
+      {q:"Who are the Métis, specifically?", opts:["The distinct aboriginal people of Atlantic Canada","A people of mixed Inuit/First Nations ancestry most of whom live on the Prairies","First Nations people speaking the Michif dialect","A distinct people of mixed Aboriginal and European ancestry"], a:3, ex:"The Métis are a distinct people of mixed Aboriginal and European ancestry, most living in the Prairie provinces and speaking their own dialect, Michif."},
+      {q:"Who are the Quebecers?", opts:["European settlers in the 1600s","Descendants of the French colonists only","Descendants of the Anglophones","People of Quebec"], a:3, ex:"'Quebecers' refers broadly to the people of Quebec, the vast majority of whom are French-speaking."}
+    ]
+  },
+  history: {
+    title: "Canada's History",
+    questions: [
+      {q:"Who was the first European to map Canada's Atlantic shore, in 1497?", opts:["Jacques Cartier","John Cabot","Samuel de Champlain","Henry Hudson"], a:1, ex:"John Cabot, an Italian immigrant to England, was the first to map Canada's Atlantic shore, setting foot on Newfoundland or Cape Breton Island in 1497."},
+      {q:"The name 'Canada' comes from the Iroquoian word 'kanata,' heard by Jacques Cartier, meaning:", opts:["'Great river'","'Village'","'Land of the north'","'Meeting place'"], a:1, ex:"Cartier heard two captured guides speak the Iroquoian word kanata, meaning 'village.' By the 1550s the name Canada began appearing on maps."},
+      {q:"In 1608, Samuel de Champlain built a fortress at what is now which city?", opts:["Montreal","Québec City","Halifax","Toronto"], a:1, ex:"In 1608 Champlain built a fortress at what is now Québec City, part of the first European settlement north of Florida established in 1604."},
+      {q:"What was the outcome of the 1759 Battle of the Plains of Abraham?", opts:["France defeated Britain and expanded New France","Britain defeated the French, marking the end of France's empire in America","A peace treaty ended all fighting permanently","Quebec became independent"], a:1, ex:"In 1759, the British defeated the French in the Battle of the Plains of Abraham at Québec City, marking the end of France's empire in America. Both commanders, Wolfe and Montcalm, were killed."},
+      {q:"Who were the 'Loyalists' who fled to Nova Scotia and Quebec in 1776?", opts:["French soldiers","People loyal to the British Crown who fled the American Revolution","Aboriginal traders","Spanish colonists"], a:1, ex:"In 1776, more than 40,000 people loyal to the Crown, called 'Loyalists,' fled the American Revolution to settle in Nova Scotia and Quebec."},
+      {q:"Which act divided the Province of Quebec into Upper Canada and Lower Canada in 1791?", opts:["The Quebec Act","The Constitutional Act","The British North America Act","The Confederation Act"], a:1, ex:"The Constitutional Act of 1791 divided the Province of Quebec into Upper Canada (later Ontario) and Lower Canada (later Quebec), and granted elected legislative assemblies."},
+      {q:"Which province became the first in the British Empire to move toward abolishing slavery, in 1793?", opts:["Lower Canada","Nova Scotia","Upper Canada","New Brunswick"], a:2, ex:"In 1793, Upper Canada, led by Lieutenant Governor John Graves Simcoe, became the first province in the Empire to move toward abolishing slavery. Britain abolished slavery throughout the Empire in 1833."},
+      {q:"What triggered the War of 1812?", opts:["A Canadian invasion of the United States","American resentment at British interference with shipping, leading to a U.S. invasion of Canada","A dispute over the Oregon border","A French declaration of war"], a:1, ex:"American resentment at British interference with shipping led the United States to launch an invasion of Canada in June 1812; the invasion ultimately failed by 1814."},
+      {q:"Who made a dangerous 30-mile journey on foot in 1813 to warn of a planned American attack, contributing to victory at the Battle of Beaver Dams?", opts:["Laura Secord","Mary Ann Shadd Cary","Agnes Macphail","Emily Stowe"], a:0, ex:"Laura Secord, a pioneer wife and mother, made the 30-km journey to warn Lieutenant James FitzGibbon, and is recognized as a heroine to this day."},
+      {q:"What system of government, achieved by Nova Scotia in 1847-48, means the government must resign if it loses a confidence vote?", opts:["Federalism","Responsible government","Constitutional monarchy","Parliamentary supremacy"], a:1, ex:"Responsible government means the ministers of the Crown must have the support of a majority of elected representatives to govern. Nova Scotia was the first British North American colony to attain it, in 1847-48."},
+      {q:"On what date was the Dominion of Canada officially born through the British North America Act?", opts:["July 1, 1867","January 1, 1867","July 4, 1867","November 11, 1867"], a:0, ex:"The British Parliament passed the British North America Act in 1867, and the Dominion of Canada was officially born on July 1, 1867 — now celebrated as Canada Day."},
+      {q:"Which four provinces formed Canada at Confederation in 1867?", opts:["Ontario, Quebec, Nova Scotia, New Brunswick","Ontario, Quebec, British Columbia, Manitoba","Nova Scotia, New Brunswick, PEI, Newfoundland","Quebec, Manitoba, Alberta, Saskatchewan"], a:0, ex:"The old Province of Canada was split into Ontario and Quebec, which together with New Brunswick and Nova Scotia formed the Dominion of Canada in 1867."},
+      {q:"Who was Canada's first Prime Minister?", opts:["Sir Wilfrid Laurier","Sir George-Étienne Cartier","Sir John Alexander Macdonald","Sir Louis-Hippolyte La Fontaine"], a:2, ex:"Sir John Alexander Macdonald, a Father of Confederation, became Canada's first Prime Minister in 1867. His portrait is on the $10 bill."},
+      {q:"Who led the Métis in the Red River uprising and the 1885 rebellion, and is seen as a defender of Métis rights and the father of Manitoba?", opts:["Gabriel Dumont","Louis Riel","Sir Sam Steele","Joseph Brant"], a:1, ex:"Louis Riel led an armed uprising in 1869-70 and a second rebellion in 1885; he was tried and executed for high treason but is regarded by many as a hero and the father of Manitoba."},
+      {q:"Which police force did Prime Minister Macdonald establish in 1873, later becoming the Royal Canadian Mounted Police (RCMP)?", opts:["The North West Mounted Police","The Canadian Rangers","The Dominion Police","The Provincial Constabulary"], a:0, ex:"Macdonald established the North West Mounted Police (NWMP) in 1873 to pacify the West; it evolved into the RCMP, one of Canada's best-known symbols."},
+      {q:"On November 7, 1885, what event symbolically completed the transcontinental railway?", opts:["The opening of the Rideau Canal","The driving of the 'last spike' of the Canadian Pacific Railway","The founding of the North West Mounted Police","The Confederation Conference"], a:1, ex:"Donald Smith (Lord Strathcona) drove the last spike of the Canadian Pacific Railway (CPR) on November 7, 1885, a powerful symbol of national unity."},
+      {q:"What discriminatory policy did the Government of Canada apologize for in 2006, related to Chinese railway labourers?", opts:["The Underground Railroad ban","The Head Tax, a race-based entry fee","Residential schools","The Japanese internment"], a:1, ex:"After the CPR was built with Chinese labour, the Chinese were subject to discrimination including the Head Tax; the Government of Canada apologized for this in 2006."},
+      {q:"Who became Canada's first French-Canadian Prime Minister since Confederation, and encouraged immigration to the West?", opts:["Sir Wilfrid Laurier","Sir George-Étienne Cartier","Louis St. Laurent","Pierre Trudeau"], a:0, ex:"Sir Wilfrid Laurier became the first French-Canadian prime minister since Confederation; his portrait appears on the $5 bill."},
+      {q:"What poem did Canadian medical officer Lieutenant-Colonel John McCrae compose in 1915, often recited on Remembrance Day?", opts:["'O Canada'","'In Flanders Fields'","'The Maple Leaf Forever'","'A Crown of Maples'"], a:1, ex:"John McCrae composed 'In Flanders Fields' in 1915; it is closely associated with Remembrance Day and the red poppy."},
+      {q:"The Canadian Corps captured which ridge in April 1917, a battle often called the 'birth of a nation'?", opts:["Vimy Ridge","Beaumont-Hamel","Passchendaele Ridge","Juno Ridge"], a:0, ex:"The Canadian Corps captured Vimy Ridge in April 1917, with 10,000 killed or wounded, securing Canada's reputation as elite 'shock troops.' April 9 is celebrated as Vimy Day."},
+      {q:"In 1921, who became the first woman Member of Parliament in Canada?", opts:["Agnes Macphail","Thérèse Casgrain","Emily Stowe","Mary Ann Shadd Cary"], a:0, ex:"Agnes Macphail, a farmer and teacher, became the first woman MP in 1921, the same year most Canadian women aged 21+ gained the federal vote."},
+      {q:"On what date, known as D-Day, did Canadians storm and capture Juno Beach in the invasion of Normandy?", opts:["November 11, 1944","June 6, 1944","August 14, 1945","May 8, 1945"], a:1, ex:"On June 6, 1944 (D-Day), 15,000 Canadian troops stormed and captured Juno Beach as part of the Allied invasion of Nazi-occupied Europe."},
+      {q:"What happened to many Canadians of Japanese origin in British Columbia during the Second World War?", opts:["They were given leadership roles in government","They were forcibly relocated and had their property sold without compensation","They were exempted from wartime rationing","They were granted immediate citizenship"], a:1, ex:"The federal government forcibly relocated Canadians of Japanese origin and sold their property without compensation, even though the military said they posed little danger. Canada apologized in 1988."},
+      {q:"Approximately how many Canadians served in the First World War?", opts:["7,000","8 million","About 60,000","More than 600,000"], a:3, ex:"More than 600,000 Canadians served in the Canadian Expeditionary Force during the First World War, out of a population of about eight million; roughly 60,000 were killed."},
+      {q:"From where does the name 'Canada' come from?", opts:["From the Inuit word meaning country","From the French word meaning joining","From the Métis word meaning rivers","From 'Kanata', the Huron-Iroquois word for village"], a:3, ex:"Jacques Cartier heard the Iroquoian word kanata, meaning 'village'; by the 1550s 'Canada' was appearing on maps."},
+      {q:"What did the Canadian Pacific Railway symbolize?", opts:["Easy access to the West Coast","What can be achieved by working together","Unity","Ribbons of steel"], a:2, ex:"The completion of the CPR in 1885 was a powerful symbol of national unity, connecting the country from sea to sea."},
+      {q:"What did the Fathers of Confederation do?", opts:["They worked together to establish a new country, the Dominion of Canada","They were explorers who formed an expedition to survey Northern Canada","They formed a republic state in Canada","They were a group of politicians that tried to unite Canada to the United States"], a:0, ex:"From 1864-1867, the Fathers of Confederation worked together, with British support, to establish the Dominion of Canada."},
+      {q:"What does Confederation mean?", opts:["The United States Confederate soldiers came to Canada","Joining of communities to become a province","Joining of suburbs to form a large city","Joining of provinces to make a new country"], a:3, ex:"Confederation refers to the joining of Ontario, Quebec, Nova Scotia, and New Brunswick to create the new Dominion of Canada in 1867."},
+      {q:"What does the term 'responsible government' mean?", opts:["Each person in each electoral district is responsible for voting","The Governor General is responsible for the actions of the Prime Minister","The ministers of the Crown must have the support of a majority of the elected representatives in order to govern","All Canadians are responsible for each other"], a:2, ex:"Responsible government means the Crown's ministers must retain the confidence (support) of a majority in the elected assembly, or resign."},
+      {q:"What happened at the Battle of the Plains of Abraham?", opts:["The Voyageurs battled with the British for fur trading rights","Americans fought the United Empire Loyalists during the American Revolution","The British defeated the French, marking the end of France's empire in America","The French defeated the British in a battle for Quebec"], a:2, ex:"In 1759, the British defeated the French at the Battle of the Plains of Abraham in Québec City, ending France's empire in North America."},
+      {q:"What is the 'head tax'?", opts:["Race-based entry fee charged for Chinese entering Canada","Fee charged for anyone entering Canada after 1900","A tax imposed on beer beginning in 1867","Fee charged for moving westward in the early 1900s"], a:0, ex:"The Head Tax was a race-based entry fee charged to Chinese immigrants after the Canadian Pacific Railway was completed. Canada apologized for this policy in 2006."},
+      {q:"What was the 'Underground Railroad'?", opts:["An anti-slavery network that helped thousands of slaves escape the United States and settle in Canada","A railroad through the Rockies that was mainly through mountain tunnels","A network fur traders used to transport beaver pelts to the United States","The first underground subway tunnel in Toronto"], a:0, ex:"The Underground Railroad was a Christian anti-slavery network that helped thousands of enslaved people escape the U.S. and settle in Canada."},
+      {q:"What was the significance of the June 6, 1944 invasion of Normandy?", opts:["It led to the establishment of the Juno Awards","It liberated North Africa from Nazi occupation","Canadians made a significant contribution to the defeat of Nazism and Fascism in Europe during the Second World War","It resulted in the forcible relocation of Canadians of Japanese origin"], a:2, ex:"On D-Day, June 6, 1944, Canadian troops stormed and captured Juno Beach, a major contribution to defeating Nazism and Fascism in Europe."},
+      {q:"What was the Women's Suffrage Movement?", opts:["The effort by women to achieve the right to vote","The effort by women to participate in military service","An unsuccessful movement to get husbands to do housework","The effort by women to be in Parliament"], a:0, ex:"The Women's Suffrage Movement was the effort by women to achieve the right to vote, won federally in stages between 1916 and 1918."},
+      {q:"What year did Newfoundland and Labrador join Canada?", opts:["1867","1955","1949","1880"], a:2, ex:"Newfoundland and Labrador joined Confederation in 1949, the last province to do so."},
+      {q:"What year was Confederation?", opts:["1867","1871","1898","1864"], a:0, ex:"Confederation, when the Dominion of Canada was officially born, took place in 1867."},
+      {q:"When did the British North America Act come into effect?", opts:["1871","1898","1867","1905"], a:2, ex:"The British North America Act came into effect in 1867, creating the Dominion of Canada."},
+      {q:"Which Act granted, for the first time in Canada, legislative assemblies elected by the people?", opts:["The Constitutional Act of 1867","The Constitutional Act of 1791","The Constitutional Act of 1982","The Constitutional Act of 2010"], a:1, ex:"The Constitutional Act of 1791 divided Quebec into Upper and Lower Canada and granted, for the first time, elected legislative assemblies."},
+      {q:"Which of the following sentences best describes the War of 1812?", opts:["Napoleon's fleet was defeated by the Royal Navy in the war","The USA became independent from the British Empire after the war","The USA invaded Canada and was defeated, which ensured that Canada would remain independent of the United States","Canada joined the United States after the war"], a:2, ex:"In the War of 1812, the United States invaded Canada but was defeated by 1814 — an outcome that helped ensure Canada's continued independence from the U.S."},
+      {q:"Which of the following statements about residential schools is NOT true?", opts:["The federal government placed many Aboriginal children in residential schools to educate and assimilate them into mainstream Canadian culture","The schools were poorly funded and inflicted hardship on the students","The schools were welcomed by the Aboriginal people","Aboriginal language and cultural practices were mostly prohibited"], a:2, ex:"Residential schools were not welcomed — they were poorly funded, inflicted hardship, and Aboriginal languages and cultural practices were mostly prohibited. Ottawa formally apologized in 2008."},
+      {q:"Which province was split into two at Confederation?", opts:["Lower Canada","Newfoundland","Upper Canada","The Province of Canada"], a:3, ex:"The old Province of Canada was split into Ontario and Quebec at Confederation in 1867."},
+      {q:"Which province was the first to grant voting rights to women?", opts:["Quebec","Ontario","Nova Scotia","Manitoba"], a:3, ex:"Manitoba became the first province to grant women the right to vote, in 1916."},
+      {q:"Which was the last province to join Canada?", opts:["Newfoundland","Alberta","Saskatchewan","British Columbia"], a:0, ex:"Newfoundland (now Newfoundland and Labrador) was the last province to join Confederation, in 1949."},
+      {q:"Who had played an important part in building the Canadian Pacific Railway (CPR)?", opts:["American railroad engineers","Acadian railroad workers","Chinese railroad workers","African American slaves"], a:2, ex:"The CPR was built with both European and Chinese labour; Chinese workers were later subjected to discriminatory policies including the Head Tax."},
+      {q:"Who is considered the father of Manitoba?", opts:["John A. Macdonald","Sam Steele","Alfred Boyd","Louis Riel"], a:3, ex:"Louis Riel, who led the Red River uprising, is seen by many as the father of Manitoba."},
+      {q:"Who is General Sir Arthur Currie?", opts:["A military leader of the Métis in the 19th century","A great frontier hero","An explorer of western Canada","Canada's greatest soldier in the First World War"], a:3, ex:"General Sir Arthur Currie commanded the Canadian Corps in the last hundred days of the First World War and is regarded as Canada's greatest soldier."},
+      {q:"Who led an armed uprising and seized Fort Garry?", opts:["John A. Macdonald","Louis Riel","Sam Steele","George-Étienne Cartier"], a:1, ex:"Louis Riel led the Métis in seizing Fort Garry during the 1869-70 Red River uprising."},
+      {q:"Who led Quebec into Confederation?", opts:["Sir Louis-Hippolyte La Fontaine","Sir George-Étienne Cartier","Sir Wilfrid Laurier","Sir John A. Macdonald"], a:1, ex:"Sir George-Étienne Cartier, a railway lawyer and close ally of Macdonald, was the key architect who led Quebec into Confederation."},
+      {q:"Who was Sir Louis-Hippolyte La Fontaine?", opts:["A champion of democracy and Aboriginal rights","A champion of democracy and French language rights and the first leader of a responsible government in the Canadas","The first Head of State","The first French speaking Prime Minister"], a:1, ex:"Sir Louis-Hippolyte La Fontaine championed democracy and French-language rights, becoming the first leader of a responsible government in the Canadas in 1849."},
+      {q:"Who was Sir Sam Steele?", opts:["A great frontier hero, Mounted Policeman and soldier","A military leader of the Métis in the 19th century","The first Prime Minister of Canada","The Father of Manitoba"], a:0, ex:"Sir Sam Steele was a colourful frontier hero of the North West Mounted Police."},
+      {q:"Who was the first leader of a responsible government in the Canadas, in 1849?", opts:["Sir John A. Macdonald","Robert Baldwin","Louis Riel","Sir Louis-Hippolyte La Fontaine"], a:3, ex:"Sir Louis-Hippolyte La Fontaine became the first leader of a responsible government in the Canadas in 1849."},
+      {q:"Who was the first Prime Minister of Canada?", opts:["Louis Riel","Sir John A. Macdonald","Lester B. Pearson","Abraham Lincoln"], a:1, ex:"Sir John A. Macdonald became Canada's first Prime Minister in 1867."},
+      {q:"Who were the United Empire Loyalists?", opts:["Settlers who came to Canada from the United States during the American Revolution","Aboriginal peoples","Métis","Inuit"], a:0, ex:"United Empire Loyalists were people loyal to the British Crown who fled the American Revolution and settled in Nova Scotia and Quebec."},
+      {q:"Who were the Voyageurs?", opts:["Montreal-based traders who travelled by canoe","Immigrants to Canada in the 18th century","Explorers searching for the North-West Passage","Geographers who first charted the coastline of British Columbia"], a:0, ex:"Voyageurs were skilled, courageous Montreal-based traders who travelled by canoe and formed alliances with First Nations in the fur trade."},
+      {q:"Why is the Battle of Vimy Ridge important?", opts:["It was a key position of the German line in Northern Spain","Canadian Corps secured its reputation for valour and bravery","It was the 'hinge' of the German line as it protected the newly constructed Hindenburg line","Once Canadians fought at Vimy they knew they would be heading home"], a:1, ex:"At Vimy Ridge in April 1917, the Canadian Corps captured the ridge together for the first time, securing Canada's reputation for valour — often called the birth of a nation."}
+    ]
+  },
+  modern: {
+    title: "Modern Canada",
+    questions: [
+      {q:"Which 1969 federal law guarantees French and English services throughout the federal government?", opts:["The Constitution Act","The Official Languages Act","The Multiculturalism Act","The Quebec Act"], a:1, ex:"The Official Languages Act (1969) followed the Royal Commission on Bilingualism and Biculturalism and guarantees French and English services across Canada."},
+      {q:"Quebec's movement for sovereignty was defeated in referendums held in which two years?", opts:["1970 and 1982","1980 and 1995","1963 and 1969","1967 and 1976"], a:1, ex:"Quebec sovereignty referendums were held and defeated in 1980 and again in 1995; Quebec's autonomy within Canada remains a lively topic."},
+      {q:"Which era of rapid change in Quebec during the 1960s saw many Quebecers seek to separate from Canada?", opts:["The Great Upheaval","The Quiet Revolution","Responsible Government era","The Roaring Twenties"], a:1, ex:"Quebec experienced the 'Quiet Revolution' in the 1960s, a period of rapid social and political change."},
+      {q:"Canada helped found which international association of French-speaking countries in 1970?", opts:["NATO","La Francophonie","NORAD","The Commonwealth"], a:1, ex:"In 1970, Canada helped found La Francophonie, an international association of French-speaking countries."},
+      {q:"In which conflict did Canada participate as part of a UN operation defending South Korea (1950-53)?", opts:["The Korean War","The Vietnam War","The Gulf War","The Suez Crisis"], a:0, ex:"Canada participated in the UN operation defending South Korea in the Korean War (1950-53), with 500 dead and 1,000 wounded."},
+      {q:"Which military alliance did Canada join with the United States for continental air defence?", opts:["NATO","NORAD (North American Aerospace Defence Command)","The UN Security Council","SEATO"], a:1, ex:"Canada joined with the United States in NORAD, the North American Aerospace Defence Command, alongside NATO membership."},
+      {q:"Terry Fox, a British Columbian who lost his leg to cancer, is remembered for:", opts:["Winning Olympic gold in track","Circling the globe in a wheelchair","The 'Marathon of Hope,' a cross-country run to raise money for cancer research","Inventing basketball"], a:2, ex:"In 1980, at age 18, Terry Fox began the 'Marathon of Hope' cross-country run to raise cancer research funds. He became a national hero despite not finishing and losing his battle with cancer."},
+      {q:"Which Canadian sport was invented by James Naismith in 1891?", opts:["Ice hockey","Lacrosse","Basketball","Curling"], a:2, ex:"Basketball was invented by Canadian James Naismith in 1891."},
+      {q:"Which robotic arm, designed and built in Canada, has been used in space exploration since 1989?", opts:["The Canadarm","The Snowbird","The Avro Arrow","The RCMP Arm"], a:0, ex:"Since 1989, the Canadian Space Agency and Canadian astronauts have used the Canadian-designed and built Canadarm in space exploration."},
+      {q:"Who discovered insulin, a hormone that has saved 16 million lives worldwide?", opts:["Dr. Wilder Penfield","Sir Frederick Banting and Charles Best","John Polanyi","Dr. John A. Hopps"], a:1, ex:"Sir Frederick Banting of Toronto and Charles Best discovered insulin, used to treat diabetes."},
+      {q:"Which Canadian invention, developed by Research in Motion (RIM), became famous worldwide for wireless communication?", opts:["The telephone","The BlackBerry","The pacemaker","Standard time zones"], a:1, ex:"Mike Lazaridis and Jim Balsillie of Research in Motion (RIM) created the BlackBerry, a well-known wireless communications device."},
+      {q:"Sir Sandford Fleming is credited with inventing what globally used system?", opts:["The electric light bulb","The worldwide system of standard time zones","Radio broadcasting","The snowmobile"], a:1, ex:"Sir Sandford Fleming invented the worldwide system of standard time zones."},
+      {q:"In the 1960s, Quebec experienced an era of rapid change. What is this called?", opts:["The West Movement","The Revolution","The Quiet Revolution","La Francophonie"], a:2, ex:"The 'Quiet Revolution' was the era of rapid social and political change in 1960s Quebec."},
+      {q:"What is the significance of the discovery of insulin by Sir Frederick Banting and Charles Best?", opts:["Insulin is a hormone that permits you to eat anything you wish","Insulin has saved 16 million lives worldwide","Discovering insulin opened the doors to more discoveries","Discovering insulin made Drs. Banting and Best famous"], a:1, ex:"Insulin, discovered by Banting and Best, is a hormone used to treat diabetes and has saved 16 million lives worldwide."}
+    ]
+  },
+  government: {
+    title: "Government & Elections",
+    questions: [
+      {q:"What are the three key facts about Canada's system of government?", opts:["A republic, a monarchy, and a democracy","A federal state, a parliamentary democracy, and a constitutional monarchy","A dictatorship, a federation, and a republic","A confederation, a theocracy, and a monarchy"], a:1, ex:"Canada's system of government rests on three pillars: it is a federal state, a parliamentary democracy, and a constitutional monarchy."},
+      {q:"What are the three parts of Parliament?", opts:["The Sovereign, the Senate, and the House of Commons","The Prime Minister, the Cabinet, and the Governor General","The Supreme Court, Parliament, and the Cabinet","The House of Commons, the Provinces, and the Territories"], a:0, ex:"Parliament has three parts: the Sovereign (Queen or King), the Senate, and the House of Commons."},
+      {q:"Who selects the Cabinet ministers and directs government policy?", opts:["The Governor General","The Prime Minister","The Chief Justice","The Speaker of the House"], a:1, ex:"The Prime Minister selects the Cabinet ministers and is responsible for the operations and policy of the government."},
+      {q:"Until what age do Senators serve, once appointed by the Governor General on the Prime Minister's advice?", opts:["Age 65","Age 70","Age 75","Life term"], a:2, ex:"Senators are appointed by the Governor General on the advice of the Prime Minister and serve until age 75."},
+      {q:"What must happen before a bill can become law in Canada?", opts:["It must be approved by the provinces only","It must pass both chambers of Parliament and receive royal assent","It must be approved by the Supreme Court","It must win a national referendum"], a:1, ex:"No bill can become law until it has passed both the House of Commons and the Senate, and received royal assent granted by the Governor General on behalf of the Sovereign."},
+      {q:"Who represents the Sovereign (Queen or King) in Canada at the federal level?", opts:["The Prime Minister","The Chief Justice","The Governor General","The Lieutenant Governor"], a:2, ex:"The Sovereign is represented in Canada by the Governor General, appointed on the advice of the Prime Minister, usually for five years."},
+      {q:"Who represents the Sovereign at the provincial level?", opts:["The Premier","The Lieutenant Governor","The Commissioner","The Mayor"], a:1, ex:"In each of the ten provinces, the Sovereign is represented by the Lieutenant Governor, appointed by the Governor General on the Prime Minister's advice."},
+      {q:"In the three northern territories, who represents the federal government?", opts:["The Lieutenant Governor","The Premier","The Commissioner","The Governor General"], a:2, ex:"In the three territories, the Commissioner represents the federal government and plays a largely ceremonial role."},
+      {q:"Which areas fall under federal government responsibility?", opts:["Education and health care","Defence, foreign policy, currency, criminal law, and citizenship","Highways and natural resources","Municipal government only"], a:1, ex:"The federal government handles matters of national and international concern: defence, foreign policy, interprovincial trade, currency, navigation, criminal law, and citizenship."},
+      {q:"Which areas are provincial responsibilities?", opts:["Foreign policy and national defence","Education, health, natural resources, property and civil rights, and highways","Currency and criminal law","Citizenship and immigration only"], a:1, ex:"Provinces are responsible for municipal government, education, health, natural resources, property and civil rights, and highways."},
+      {q:"Under current legislation, federal elections must be held on what schedule?", opts:["Every 2 years on a fixed date","The third Monday in October every four years","Whenever the Governor General decides","Every 5 years, decided by the Senate"], a:1, ex:"Federal elections must be held on the third Monday in October every four years following the most recent general election, though the PM may ask for an earlier election."},
+      {q:"What is an 'electoral district' also known as?", opts:["A province","A riding or constituency","A ward","A precinct"], a:1, ex:"An electoral district, also called a riding or constituency, is a geographical area represented by one Member of Parliament (MP)."},
+      {q:"Who is eligible to vote in a federal election?", opts:["Any resident of Canada over 16","A Canadian citizen, at least 18 on voting day, and on the voters' list","Only property owners","Anyone with a valid passport"], a:1, ex:"To vote in a federal election you must be a Canadian citizen, at least 18 years old on voting day, and on the voters' list."},
+      {q:"What happens to a candidate who receives the most votes in an electoral district?", opts:["They become a Senator","They become the MP for that electoral district","They become Prime Minister automatically","They join the Cabinet"], a:1, ex:"The candidate who receives the most votes in their electoral district becomes the MP representing that district."},
+      {q:"Is voting in Canada by secret ballot?", opts:["No, votes are public record","Yes — no one can watch you vote or has the right to insist you reveal your vote","Only in provincial elections","Only for first-time voters"], a:1, ex:"Canadian law secures the right to a secret ballot; you may choose to discuss your vote, but no one has the right to insist you reveal it."},
+      {q:"After an election, who is invited to form the government?", opts:["The party with the most Senate seats","The leader of the party with the most seats in the House of Commons","The Chief Justice's chosen candidate","Whoever the Governor General personally prefers"], a:1, ex:"Ordinarily, the leader of the party with the most seats in the House of Commons is invited by the Governor General to form the government and becomes Prime Minister."},
+      {q:"What is a 'majority government'?", opts:["When the governing party holds at least half the seats in the House of Commons","When a party wins the popular vote but not the most seats","When the Senate approves every bill","When more than 3 parties form a coalition"], a:0, ex:"If the party in power holds at least half of the seats in the House of Commons, it is called a majority government; less than half is a minority government."},
+      {q:"What is the opposition party with the most House of Commons seats called?", opts:["The Minority Party","The Official Opposition or Her Majesty's Loyal Opposition","The Shadow Cabinet","The Ruling Coalition"], a:1, ex:"The opposition party with the most seats is known as the Official Opposition, or Her Majesty's Loyal Opposition."},
+      {q:"What level of government is responsible for services like snow removal, firefighting, and local police forces?", opts:["Federal","Provincial","Municipal (local)","Territorial only"], a:2, ex:"Municipal (local) governments are typically responsible for streets, sanitation, snow removal, firefighting, ambulance and emergency services, recreation, and often policing."},
+      {q:"A Member of Parliament from Montreal announces that she will spend her weekend in her electoral district. This means she would be:", opts:["In her office on Parliament Hill","Visiting the province of Quebec","In the part of Montreal where she was elected","Going on a vacation"], a:2, ex:"An electoral district (riding) is the specific area an MP represents and was elected in — for this MP, that's a part of Montreal, not the whole province."},
+      {q:"After a federal election, which party forms the new government?", opts:["The party with the most elected representatives is invited by the Governor General to become the party in power","The King himself picks any party to run the government","The Governor General proposes a law for elected officials to become the governing body","The Premiers of each province pick a party to run the government"], a:0, ex:"The Governor General invites the leader of the party with the most seats in the House of Commons to form government; that leader becomes Prime Minister."},
+      {q:"How are Members of Parliament chosen?", opts:["Appointed by the Prime Minister","Elected by Canadian citizens","Appointed by the King","Elected by the Provincial Ministers"], a:1, ex:"MPs are elected by Canadian citizens in their local electoral district (riding)."},
+      {q:"How are Senators chosen?", opts:["By the Governor General of Canada, acting alone","By the Premiers of all provinces","Appointed by the King, acting alone","Senators are appointed by the Governor General on the advice of the Prime Minister"], a:3, ex:"Senators are appointed by the Governor General, acting on the advice of the Prime Minister, and serve until age 75."},
+      {q:"How does a bill become a law?", opts:["The Lieutenant Governor must approve the bill","Approval by a majority in the House of Commons and Senate, and finally the Governor General","The King must personally sign the bill","Approval by the Members of the Legislative Assembly"], a:1, ex:"A bill must pass both the House of Commons and the Senate, then receive royal assent granted by the Governor General on behalf of the Sovereign."},
+      {q:"How is a Cabinet Minister chosen?", opts:["By the King","By the voters directly","By other Cabinet Ministers","By the Prime Minister"], a:3, ex:"The Prime Minister selects the Cabinet ministers."},
+      {q:"How is the government formed after a federal election?", opts:["The party with the most elected representatives becomes the party in power; the King chooses the Prime Minister from this party","Ordinarily, the party with the most elected representatives becomes the party in power; the leader of this party becomes the Prime Minister","The Governor General picks a party and a Prime Minister to run the government","Each province elects one representative to form the government, and the King then chooses the Prime Minister"], a:1, ex:"Ordinarily, the party with the most seats forms government, and its leader becomes Prime Minister after being asked by the Governor General."},
+      {q:"How is the Prime Minister chosen?", opts:["The King appoints the Prime Minister directly","The Governor General, with the Senate, appoint the Prime Minister","The leader of the party with the most elected representatives becomes the Prime Minister","The MPs vote on the Prime Minister"], a:2, ex:"The leader of the party that wins the most seats in the House of Commons ordinarily becomes Prime Minister."},
+      {q:"Name all the federal political parties in the House of Commons and their leaders.", opts:["Conservative (Andrew Scheer – interim leader), NDP (Don Davies – interim leader), Liberal (Mark Carney), Bloc Québécois (Blanchet), Green Party (May)","Conservative (Poilievre), Green (May), Liberal (Trudeau), Bloc Québécois (Duceppe)","NDP (Mulcair), Green (May), Liberal (Rae), Bloc Québécois (Paillé)","Liberal (Ignatieff), Conservative (Ambrose), NDP (Turmel), Green (May)"], a:0, ex:"Party leadership changes often — this reflects one snapshot in time. Always confirm the current leaders of each federal party before your test."},
+      {q:"Name two responsibilities of the federal government.", opts:["National defence and firefighting","National defence and foreign policy","Citizenship and highways","Recycling and education"], a:1, ex:"The federal government is responsible for matters of national and international concern, including national defence and foreign policy."},
+      {q:"Name two responsibilities of the provincial and territorial government.", opts:["Citizenship and Foreign Policy","Health and Education","Defense and Currency","Criminal Law and Interprovincial Trade"], a:1, ex:"Provinces and territories are responsible for health and education, along with natural resources, property and civil rights, and highways."},
+      {q:"What do you call a law before it is passed?", opts:["A new law","A proposed law","A bill","A new proposal"], a:2, ex:"A proposal for a new law is called a bill until it passes both chambers of Parliament and receives royal assent."},
+      {q:"What do you call the Sovereign's representative in the provinces?", opts:["Premier","Member of the Legislative Assembly","Lieutenant-Governor","Senator"], a:2, ex:"The Lieutenant Governor represents the Sovereign in each province."},
+      {q:"What do you mark on a federal election ballot?", opts:["The candidate's name","The number for the candidate","An X","The voter's name"], a:2, ex:"You mark an 'X' in the circle beside the name of the candidate of your choice."},
+      {q:"What does it mean to say Canada is a constitutional monarchy?", opts:["The Sovereign (Queen or King) is the law maker of Canada","Canada's Head of State is a hereditary Sovereign (Queen or King) who reigns in accordance with the Constitution","The Sovereign (Queen or King) represents Canadians in Parliament","The Sovereign (Queen or King) approves bills before becoming law"], a:1, ex:"A constitutional monarchy means Canada's Head of State is a hereditary Sovereign who reigns according to the rule of law set out in the Constitution."},
+      {q:"What does the 'right to a secret ballot' mean?", opts:["No one should tell you where to vote","A secret vote used by politicians when they are voting on sensitive topics","No one can watch your vote and no one should look at how you voted","Your right to vote in secret on who to appoint to the Senate"], a:2, ex:"The secret ballot means no one can watch you vote, and no one has the right to insist you reveal how you voted."},
+      {q:"What is a majority government?", opts:["When the party in power holds about one third of the seats in the House of Commons","When the party in power holds about one quarter of the seats in the House of Commons","When the party in power holds at least half of the seats in the Senate","When the party in power holds at least half of the seats in the House of Commons"], a:3, ex:"A majority government occurs when the governing party holds at least half of the seats in the House of Commons."},
+      {q:"What is a voter information card?", opts:["Tells you who the candidates are in your electoral district","Tells you what province to vote in","A form that tells you when and where to vote","A form that lets you know your voting time only"], a:2, ex:"The voter information card, mailed by Elections Canada, tells you when and where to vote."},
+      {q:"What is Canada's system of government called?", opts:["Dictatorship","Parliamentary government","Military rule","Communism"], a:1, ex:"Canada has a parliamentary system of government, and is also a federal state and a constitutional monarchy."},
+      {q:"What is the difference between the role of the Sovereign and that of the Prime Minister?", opts:["The Sovereign is Head of State, the Prime Minister oversees provincial policies","The Sovereign is the guardian of constitutional freedoms, the Prime Minister selects the Cabinet ministers and is responsible for operations and policy of government","The Sovereign links Canada to 52 other nations and the Prime Minister is the guardian of constitutional freedoms","The Sovereign is the symbol of Canadian sovereignty and the Prime Minister is her aide"], a:1, ex:"The Sovereign is Head of State and guardian of constitutional freedoms; the Prime Minister is Head of Government, selecting Cabinet ministers and directing policy."},
+      {q:"What is the government of all of Canada called?", opts:["National assembly","Legislature","Federal","Council"], a:2, ex:"The government of all of Canada is called the federal government."},
+      {q:"What is the name of the Governor General?", opts:["David Johnston","Louise Arbour","Richard Wagner","Julie Payette"], a:1, ex:"The Governor General is appointed for roughly five years and the role changes hands periodically — confirm the current officeholder before your test."},
+      {q:"What is the name of the Prime Minister of Canada and his/her party?", opts:["Mark Carney (Liberal Party)","Pierre Poilievre (Conservative Party)","Jagmeet Singh (New Democratic Party)","Pierre Trudeau (Liberal Party)"], a:0, ex:"The Prime Minister and governing party change with each election — confirm the current Prime Minister before your test."},
+      {q:"What is the role of the Opposition parties?", opts:["To assist the Prime Minister","To sign bills","To oppose or try to improve government proposals","To put forward bills to be passed"], a:2, ex:"Opposition parties peacefully oppose or try to improve government proposals, holding the governing party accountable."},
+      {q:"What should you do if you do not receive a voter information card telling you when and where to vote?", opts:["Go to the police station","Call your Member of Parliament","Assume you cannot vote","Call Elections Canada or visit their website"], a:3, ex:"If you don't receive a voter information card, contact Elections Canada by phone or online to confirm you're on the voters' list."},
+      {q:"When asked, who must you tell how you voted in a federal election?", opts:["Your employer","No one","A police officer","An Elections Canada official"], a:1, ex:"Voting is by secret ballot — you are not obligated to tell anyone, including your employer, how you voted."},
+      {q:"When must federal elections be held?", opts:["About every 4 years, on no fixed date","On the third Monday in October every four years following the most recent general election","Whenever the Prime Minister calls the election, with no rule","When the MPs want a new Prime Minister"], a:1, ex:"Under legislation, federal elections must be held on the third Monday in October every four years, though the PM may call one earlier."},
+      {q:"When you vote on election day, what do you do?", opts:["Go to the voting station, tell them who you are and mark your X, then give the ballot back to the attendant","Go to the voting station, remove one ballot and after marking your X deposit it in the ballot box","Go to the voting station, take your voter's card with proof of identity, highlight your choice on the ballot and deposit it in the box","Go to the voting station with your voter's card and ID, mark an X next to your chosen candidate, fold the ballot and present it to the poll officials, who will tear off the ballot number and give you the ballot to deposit in the box"], a:3, ex:"You bring your voter card and ID, mark an X beside your chosen candidate, fold the ballot, and hand it to poll officials, who tear off the ballot number before you deposit it in the ballot box."},
+      {q:"Which federal political party is in power?", opts:["Green Party","New Democratic Party","Liberal Party","Conservative Party"], a:2, ex:"The governing federal party changes with each election — confirm which party currently holds power before your test."},
+      {q:"Which of the following is NOT a feature of Canada's system of government?", opts:["A federal state","Parliamentary democracy","Constitutional monarchy","Dictatorship"], a:3, ex:"Canada's government rests on three features: a federal state, a parliamentary democracy, and a constitutional monarchy — not a dictatorship."},
+      {q:"Which party becomes the Official Opposition?", opts:["The party with the second most MPs","The party receiving the least votes","Any independent candidate","The party the Prime Minister selects"], a:0, ex:"The Official Opposition (Her Majesty's Loyal Opposition) is the party with the second-most seats — the most among parties not in power."},
+      {q:"Which party is the Official Opposition at the federal level?", opts:["The New Democratic Party","The Liberal Party","The Independent Party","The Conservative Party"], a:3, ex:"The Official Opposition changes with each election — confirm the current Official Opposition party before your test."},
+      {q:"Who do Canadians vote for in a federal election?", opts:["The best speaker running in the election","A candidate they want to represent them in Parliament","Someone to become the Premier","All of the candidates in their electoral district"], a:1, ex:"Canadians vote for the candidate they want to represent their electoral district in the House of Commons."},
+      {q:"Who do Members of Parliament represent?", opts:["All of the Canadians living in the north","Only Canadians living in Central Canada","Everyone who lives in his or her electoral district","Canadians living in the province in which he/she was elected"], a:2, ex:"An MP represents everyone who lives in their specific electoral district (riding), not the whole province."},
+      {q:"Who has the right to run as a candidate in federal elections?", opts:["Anyone, regardless of citizenship","A Canadian citizen who is 16 years old","Any man who is at least 18 years old","Any Canadian citizen who is at least 18 years old"], a:3, ex:"Any Canadian citizen who is at least 18 years old may run as a candidate in a federal election."},
+      {q:"Who has the right to vote in federal elections?", opts:["A Canadian citizen, 18 years or older, and on the voters' list","A Canadian citizen, 18 years or older, who must work for the federal government","A landed immigrant, 18 years old, and a member of the Canadian Forces","A Canadian citizen, over 25 years, and a member of the Canadian Forces"], a:0, ex:"To vote federally you must be a Canadian citizen, at least 18 years old on voting day, and on the voters' list."},
+      {q:"Who have major responsibilities on First Nations reserves?", opts:["Band chiefs and councillors","Municipal governments","Provincial and territorial governments","Federal government alone"], a:0, ex:"Band chiefs and councillors have major responsibilities on First Nations reserves, including housing, schools, and other services."},
+      {q:"Who is Canada's Head of State?", opts:["Governor General of Canada","The reigning Sovereign (currently King Charles III)","Prime Minister","Lieutenant Governor"], a:1, ex:"The reigning Sovereign is Canada's Head of State; the Governor General is the Sovereign's representative in Canada."},
+      {q:"Who is the Head of Government?", opts:["The President","The King","The Governor General","The Prime Minister"], a:3, ex:"The Prime Minister is the Head of Government, directing government operations and policy; the Sovereign is Head of State."},
+      {q:"Who is the King's representative in Canada?", opts:["Prime Minister of Canada","Premier","Lieutenant-Governor","Governor General of Canada"], a:3, ex:"The Governor General represents the Sovereign at the federal level in Canada."},
+      {q:"Who is the leader of the Federal Official Opposition Party?", opts:["Thomas Mulcair","Andrew Scheer","Pierre Poilievre","Elizabeth May"], a:2, ex:"Opposition leadership changes with leadership races and elections — confirm the current leader before your test."}
+    ]
+  },
+  justice: {
+    title: "The Justice System",
+    questions: [
+      {q:"What core principle is Canada's judicial system founded on in criminal matters?", opts:["Guilty until proven innocent","The presumption of innocence — everyone is innocent until proven guilty","Trial by jury only for capital cases","Mandatory legal representation"], a:1, ex:"Canada's judicial system is founded on the presumption of innocence: everyone is innocent until proven guilty."},
+      {q:"What is Canada's highest court?", opts:["The Federal Court of Canada","The Supreme Court of Canada","The Court of Queen's Bench","The Provincial Court of Appeal"], a:1, ex:"The Supreme Court of Canada is the country's highest court."},
+      {q:"Which police force enforces federal laws throughout Canada and serves as the provincial police in most provinces?", opts:["Ontario Provincial Police","The Royal Canadian Mounted Police (RCMP)","Municipal police only","The Canadian Rangers"], a:1, ex:"The RCMP enforce federal laws throughout Canada and serve as the provincial police in all provinces and territories except Ontario and Quebec."},
+      {q:"Which two provinces have their own provincial police forces (rather than relying on the RCMP)?", opts:["Alberta and British Columbia","Ontario and Quebec","Manitoba and Saskatchewan","Nova Scotia and New Brunswick"], a:1, ex:"Ontario and Quebec have their own provincial police forces; the RCMP serves this role in all other provinces and territories."},
+      {q:"If you cannot pay for a lawyer, what is available in most communities?", opts:["Nothing — you must represent yourself","Legal aid services, free or at low cost","A government-appointed advocate only for serious crimes","Mediation services only"], a:1, ex:"Lawyers can help with legal problems and represent you in court; if you cannot pay, most communities offer legal aid services free of charge or at low cost."},
+      {q:"What does the phrase 'due process' mean in the Canadian justice system?", opts:["A quick trial guarantee","The principle that government must respect all legal rights a person is entitled to under the law","The right to appeal any decision","Automatic release after 24 hours"], a:1, ex:"Due process is the principle that the government must respect all the legal rights a person is entitled to under the law."},
+      {q:"Can you question the police about their service or conduct?", opts:["No, this is not permitted","Yes — almost all police forces have a process to bring concerns to them and seek action","Only through a lawyer","Only if you are a citizen"], a:1, ex:"You can question the police about their service or conduct; almost all police forces have a process by which you can bring your concerns to them."},
+      {q:"In Canada's justice system what does 'presumption of innocence' mean?", opts:["Everyone is guilty until proven innocent","Guilt is decided by public opinion","Innocence is decided by public opinion","Everyone is innocent until proven guilty"], a:3, ex:"The presumption of innocence means everyone is considered innocent until proven guilty in a court of law."},
+      {q:"What is the role of the courts in Canada?", opts:["To enforce the law","To guide people in our society","To settle disputes","To express values and beliefs of Canadians"], a:2, ex:"The courts settle disputes; the police enforce the laws that elected representatives make."}
+    ]
+  },
+  symbols: {
+    title: "Canadian Symbols",
+    questions: [
+      {q:"When was the current Canadian maple leaf flag first raised?", opts:["1867","1921","1965","1982"], a:2, ex:"A new Canadian flag (the red-white-red maple leaf design) was raised for the first time in 1965."},
+      {q:"What is Canada's national motto, and what does it mean?", opts:["'E pluribus unum' — 'out of many, one'","'A mari usque ad mare' — 'from sea to sea'","'Dieu et mon droit' — 'God and my right'","'Fide et amore' — 'faith and love'"], a:1, ex:"Canada's official motto, A mari usque ad mare, is Latin for 'from sea to sea,' adopted with the coat of arms after the First World War."},
+      {q:"O Canada was proclaimed the national anthem in which year, though first sung much earlier?", opts:["1867","1927","1980","1965"], a:2, ex:"O Canada was proclaimed the national anthem in 1980; it was first sung in Québec City in 1880."},
+      {q:"What is Canada's Royal Anthem, played to honour the Sovereign?", opts:["'O Canada'","'God Save the Queen (or King)'","'The Maple Leaf Forever'","'Ô Canada, mon pays'"], a:1, ex:"'God Save the Queen (or King)' is the Royal Anthem of Canada, played or sung on occasions honouring the Sovereign."},
+      {q:"When was Canada's own honours system, the Order of Canada, started?", opts:["1867, at Confederation","1967, the centennial of Confederation","1982, with the Charter","2000, the millennium"], a:1, ex:"After using British honours for years, Canada started the Order of Canada in 1967, the centennial of Confederation."},
+      {q:"What is the highest honour available to Canadians, awarded for the most conspicuous bravery?", opts:["The Order of Canada","The Victoria Cross (V.C.)","The Meritorious Service Medal","The Order of Merit"], a:1, ex:"The Victoria Cross (V.C.) is the highest honour available to Canadians, awarded for conspicuous bravery, valour, self-sacrifice, or extreme devotion to duty."},
+      {q:"Which Canadian animal became a symbol through the Hudson's Bay Company and appears on the five-cent coin?", opts:["The moose","The beaver","The loon","The Canada goose"], a:1, ex:"The beaver was adopted as a symbol of the Hudson's Bay Company, later the St. Jean Baptiste Society, and appears on the five-cent coin and several coats of arms."},
+      {q:"What is considered Canada's official winter sport, and its most popular spectator sport?", opts:["Curling","Ice hockey","Lacrosse","Skiing"], a:1, ex:"Hockey is Canada's most popular spectator sport and is considered the national winter sport, developed in Canada in the 1800s."},
+      {q:"Which sport is Canada's official summer sport, first played by Aboriginal peoples?", opts:["Baseball","Soccer","Lacrosse","Rowing"], a:2, ex:"Lacrosse, an ancient sport first played by Aboriginals, is the official summer sport of Canada."},
+      {q:"On which national public holiday do Canadians wear a red poppy and observe a moment of silence?", opts:["Canada Day, July 1","Victoria Day","Remembrance Day, November 11","Thanksgiving Day"], a:2, ex:"Remembrance Day, November 11, honours the sacrifices of Canada's veterans and fallen; Canadians wear red poppies and observe silence at the 11th hour."},
+      {q:"What date is celebrated as Canada Day, marking the birth of the Dominion in 1867?", opts:["June 24","July 1","November 11","January 1"], a:1, ex:"July 1 is Canada Day, marking the birth of the Dominion of Canada in 1867; it was known as 'Dominion Day' until 1982."},
+      {q:"Sir John A. Macdonald Day and Sir Wilfrid Laurier Day are national dates honouring which historical figures?", opts:["Canada's first and a later French-Canadian Prime Minister","Two Governors General","Two Fathers of Confederation from Quebec","Two Supreme Court Chief Justices"], a:0, ex:"January 11 (Sir John A. Macdonald Day) and November 20 (Sir Wilfrid Laurier Day) honour Canada's first Prime Minister and its first French-Canadian Prime Minister."},
+      {q:"Give the first line of Canada's national anthem.", opts:["O Canada! Our home and native land!","O Canada! Our province and native land!","O Canada! From far and wide, O Canada,","O Canada! We stand on guard for thee."], a:0, ex:"'O Canada! Our home and native land!' is the opening line of the English lyrics, proclaimed the national anthem in 1980."},
+      {q:"The Canadian Coat of Arms and motto is 'A Mari Usque Ad Mare.' This means:", opts:["From the ocean to the sea","From sea to sea","From the sea to the ends of the earth","From the water to the earth"], a:1, ex:"A mari usque ad mare is Latin for 'from sea to sea,' Canada's national motto."},
+      {q:"What does the Canadian flag look like?", opts:["Red and white with provincial emblems","Red and white with a beaver","White with a red border on each end and a red maple leaf in the centre","Red with a white maple leaf"], a:2, ex:"The Canadian flag has a white square in the centre flanked by red borders, with a red 11-point maple leaf in the middle."},
+      {q:"What is Canada's national winter sport?", opts:["Golf","Nordic skiing","Lacrosse","Hockey"], a:3, ex:"Hockey is considered Canada's national winter sport, and is also the most popular spectator sport."},
+      {q:"What is the highest military honour a Canadian can receive?", opts:["Purple Cross","Badge of Courage","Order of Merit","Victoria Cross"], a:3, ex:"The Victoria Cross (V.C.) is the highest honour available to Canadians, for the most conspicuous bravery."},
+      {q:"What is the meaning of the Remembrance Day poppy?", opts:["To remember our Sovereign","To celebrate Confederation","To honour Prime Ministers who have died","To remember the sacrifice of Canadians who have served or died in wars up to the present day"], a:3, ex:"The red poppy, worn on Remembrance Day, honours the sacrifice of Canadians who have served or died in wars up to the present day."},
+      {q:"What is the name of the Royal Anthem of Canada?", opts:["O Canada","God Save the Queen (or King)","La Marseillaise","The Star-Spangled Banner"], a:1, ex:"'God Save the Queen (or King)' is Canada's Royal Anthem, played to honour the Sovereign; 'O Canada' is the national anthem."},
+      {q:"What song is Canada's national anthem?", opts:["God Save the King","O Canada","Star Spangled Banner","Amazing Grace"], a:1, ex:"'O Canada' is Canada's national anthem, proclaimed in 1980."},
+      {q:"When is Canada Day and what does it celebrate?", opts:["June 15 of each year, to celebrate the anniversary of Confederation","August 8th of each year, to celebrate the joining of British Columbia to Confederation","The anniversary of Confederation, celebrated July 1st of each year","May 21st of each year, to remember Queen Victoria"], a:2, ex:"Canada Day, celebrated July 1, marks the anniversary of Confederation in 1867."},
+      {q:"When is Remembrance Day celebrated?", opts:["July 1st","October 1st","November 11th","December 25th"], a:2, ex:"Remembrance Day is observed on November 11 each year."},
+      {q:"Which animal is an official symbol of Canada?", opts:["The moose","The hawk","The beaver","The deer"], a:2, ex:"The beaver is an official symbol of Canada, tied historically to the fur trade and the Hudson's Bay Company."},
+      {q:"Which provincial flag features the fleur-de-lys?", opts:["Quebec","New Brunswick","Manitoba","Ontario"], a:0, ex:"Quebec's flag, adopted in 1948, is based on the Cross and the fleur-de-lys."}
+    ]
+  },
+  economy: {
+    title: "Canada's Economy",
+    questions: [
+      {q:"What are the three main types of industries in Canada's economy?", opts:["Service, manufacturing, and natural resources industries","Agricultural, mining, and tourism industries","Public, private, and non-profit sectors","Import, export, and domestic industries"], a:0, ex:"Canada's economy includes three main types of industries: service industries, manufacturing industries, and natural resources industries."},
+      {q:"More than what percentage of working Canadians have jobs in service industries?", opts:["25%","50%","75%","95%"], a:2, ex:"More than 75% of working Canadians now have jobs in service industries such as health care, education, banking, and tourism."},
+      {q:"What free trade agreement did Canada, the United States, and Mexico establish in 1994?", opts:["GATT","The North American Free Trade Agreement (NAFTA)","The World Trade Organization","The Commonwealth Trade Pact"], a:1, ex:"Mexico joined Canada and the U.S. in the broader North American Free Trade Agreement (NAFTA) in 1994, after Canada-U.S. free trade began in 1988."},
+      {q:"Which country is Canada's largest trading partner, receiving over three-quarters of Canadian exports?", opts:["China","The United Kingdom","The United States","Mexico"], a:2, ex:"The United States is Canada's largest trading partner; over three-quarters of Canadian exports are destined for the U.S.A."},
+      {q:"Which group of leading industrialized nations does Canada belong to, alongside the U.S., Germany, UK, Italy, France, Japan, and Russia?", opts:["The G8","The G20","NATO","OPEC"], a:0, ex:"Canada is part of the G8 group of leading industrialized countries."},
+      {q:"What symbolic landmark at Blaine, Washington, represents close Canada-U.S. ties?", opts:["The Ambassador Bridge","The Peace Arch","The Confederation Bridge","Niagara Falls"], a:1, ex:"The Peace Arch at Blaine, inscribed 'children of a common mother,' symbolizes the close ties along 'the world's longest undefended border.'"},
+      {q:"In what industry do most Canadians work?", opts:["Natural resources","Tourism","Service","Manufacturing"], a:2, ex:"More than 75% of working Canadians have jobs in service industries."},
+      {q:"What are the three main types of industry in Canada?", opts:["Natural resources, tourism and service industries","Tourism, services and manufacturing","Natural resources, tourism and manufacturing","Natural resources, manufacturing and services"], a:3, ex:"Canada's economy rests on three main industry types: natural resources, manufacturing, and services."},
+      {q:"What country is Canada's largest trading partner?", opts:["Mexico","United States of America","China","Japan"], a:1, ex:"The United States is Canada's largest trading partner by far."},
+      {q:"Which port is the largest and busiest in Canada?", opts:["The Port of Halifax","The Port of Montreal","The Port of Vancouver","The Port of Victoria"], a:2, ex:"The Port of Vancouver is Canada's largest and busiest port, handling billions of dollars in trade with the Asia-Pacific."},
+      {q:"Which province is the main producer of pulp and paper and hydro-electricity?", opts:["Quebec","Ontario","British Columbia","Manitoba"], a:0, ex:"Quebec is Canada's main producer of pulp and paper and, thanks to abundant fresh water, its largest producer of hydro-electricity."},
+      {q:"Which three countries are signatories to NAFTA?", opts:["Canada, the United Kingdom and the United States","Canada, the United States and Japan","Canada, Mexico and the United States","Canada, Denmark and Andorra"], a:2, ex:"NAFTA (the North American Free Trade Agreement) was signed by Canada, Mexico, and the United States."},
+      {q:"Why is trade with other countries important to Canada?", opts:["It enhances our standard of living only","It makes it easier for us to travel to foreign countries","It enhances our economy and raises our standard of living","It brings in cheaper goods only"], a:2, ex:"Trade with other nations enhances Canada's economy and raises Canadians' standard of living, which could not be maintained without it."}
+    ]
+  },
+  regions: {
+    title: "Canada's Regions",
+    questions: [
+      {q:"How many provinces and territories does Canada have?", opts:["8 provinces, 2 territories","10 provinces, 3 territories","12 provinces, 1 territory","9 provinces, 4 territories"], a:1, ex:"Canada has ten provinces and three territories, each with its own capital city."},
+      {q:"What is the capital of Canada?", opts:["Toronto","Montreal","Ottawa","Vancouver"], a:2, ex:"Ottawa, on the Ottawa River, was chosen as the capital in 1857 by Queen Victoria."},
+      {q:"Which is the smallest Canadian province, known for its red soil and potatoes?", opts:["Nova Scotia","Prince Edward Island","New Brunswick","Newfoundland and Labrador"], a:1, ex:"Prince Edward Island (P.E.I.) is the smallest province, known for beaches, red soil, and potato farming; it's the birthplace of Confederation."},
+      {q:"Which province is Canada's most populous, home to Toronto?", opts:["Quebec","British Columbia","Ontario","Alberta"], a:2, ex:"Ontario, with more than 12 million people, makes up more than one-third of Canadians and includes Toronto, Canada's largest city and financial centre."},
+      {q:"Which three provinces make up 'The Prairie Provinces'?", opts:["Manitoba, Saskatchewan, Alberta","Ontario, Quebec, Manitoba","Alberta, British Columbia, Yukon","Saskatchewan, Alberta, British Columbia"], a:0, ex:"Manitoba, Saskatchewan, and Alberta are the Prairie Provinces, rich in energy resources and fertile farmland."},
+      {q:"Which province is known as the 'breadbasket of the world' and produces the most grains and oilseeds?", opts:["Manitoba","Alberta","Saskatchewan","British Columbia"], a:2, ex:"Saskatchewan, once called the 'breadbasket of the world,' has 40% of Canada's arable land and is the largest producer of grains and oilseeds."},
+      {q:"Which province is Canada's westernmost, known as the gateway to the Asia-Pacific?", opts:["Alberta","British Columbia","Yukon","Manitoba"], a:1, ex:"British Columbia, on the Pacific coast, is Canada's westernmost province; the Port of Vancouver is the gateway to Asia-Pacific trade."},
+      {q:"Which three territories make up Canada's North?", opts:["Yukon, Northwest Territories, Nunavut","Yukon, Nunavut, Labrador","Northwest Territories, Nunavik, Yukon","Nunavut, Nunavik, Yukon"], a:0, ex:"The Yukon, Northwest Territories, and Nunavut make up Canada's Northern Territories, containing one-third of Canada's land mass."},
+      {q:"In what year was Nunavut established as a territory?", opts:["1949","1970","1999","2008"], a:2, ex:"Nunavut, meaning 'our land' in Inuktitut, was established in 1999 from the eastern part of the Northwest Territories."},
+      {q:"What are Canada's five distinct geographic regions?", opts:["North, South, East, West, Central","The Atlantic Provinces, Central Canada, the Prairie Provinces, the West Coast, the Northern Territories","Coastal, Mountain, Plains, Arctic, Urban","Maritime, Central, Western, Northern, Pacific"], a:1, ex:"Canada's five regions are: the Atlantic Provinces, Central Canada, the Prairie Provinces, the West Coast, and the Northern Territories."},
+      {q:"Approximately what is Canada's total population, according to the guide?", opts:["About 15 million","About 34 million","About 50 million","About 100 million"], a:1, ex:"The guide states Canada's population is about 34 million people, with most living in cities."},
+      {q:"Which three oceans line Canada's frontiers?", opts:["Pacific, Atlantic, Indian","Pacific, Atlantic, Arctic","Atlantic, Arctic, Southern","Pacific, Arctic, Indian"], a:1, ex:"Three oceans line Canada's frontiers: the Pacific Ocean in the west, the Atlantic Ocean in the east, and the Arctic Ocean to the north."},
+      {q:"Canada has three territories and how many provinces?", opts:["13","10","3","5"], a:1, ex:"Canada has ten provinces and three territories."},
+      {q:"In which region do more than half the people in Canada live?", opts:["Central Canada","Prairies","Atlantic Canada","Northern Canada"], a:0, ex:"More than half of Canadians live in Central Canada (Ontario and Quebec), near the Great Lakes and St. Lawrence River."},
+      {q:"Name the five regions of Canada.", opts:["Midwest, North, South, East, Central","Maritimes, Ontario, Quebec, Prairies, and British Columbia","Atlantic, Central, Prairie, West Coast, and North","West, Central, East, Prairies, and Territories"], a:2, ex:"Canada's five regions are the Atlantic Provinces, Central Canada, the Prairie Provinces, the West Coast, and the Northern Territories."},
+      {q:"On what date did Nunavut become a territory?", opts:["July 1st, 1867","April 1st, 1999","June 24th, 1995","March 31st, 1949"], a:1, ex:"Nunavut was established on April 1, 1999, from the eastern part of the Northwest Territories."},
+      {q:"One third of all Canadians live in which province?", opts:["Quebec","Ontario","Northwest Territories","Manitoba"], a:1, ex:"Ontario, with more than 12 million people, makes up more than one-third of all Canadians."},
+      {q:"What are the Prairie provinces and their capital cities?", opts:["Alberta (Edmonton) and Saskatchewan (Regina)","Alberta (Edmonton), Saskatchewan (Regina) and Manitoba (Winnipeg)","Saskatchewan (Regina) and Manitoba (Winnipeg)","Saskatchewan (Regina), Manitoba (Winnipeg) and Ontario (Toronto)"], a:1, ex:"The three Prairie Provinces are Alberta (capital Edmonton), Saskatchewan (capital Regina), and Manitoba (capital Winnipeg)."},
+      {q:"What are the provinces of Central Canada and their capital cities?", opts:["Manitoba (Winnipeg) and Ontario (Toronto)","Quebec (Quebec City) and Prince Edward Island (Charlottetown)","Ontario (Toronto) and Quebec (Quebec City)","Saskatchewan (Regina) and Manitoba (Winnipeg)"], a:2, ex:"Central Canada consists of Ontario (capital Toronto) and Quebec (capital Québec City)."},
+      {q:"What are the provinces of the Atlantic region and their capital cities?", opts:["Nova Scotia (Halifax), New Brunswick (Fredericton), Prince Edward Island (Charlottetown) and Quebec (Quebec City)","Newfoundland and Labrador (St. John's), Nova Scotia (Halifax), New Brunswick (Fredericton) and Prince Edward Island (Charlottetown)","Newfoundland and Labrador (St. John's), Nova Scotia (Halifax), New Brunswick (Fredericton) and Quebec (Quebec City)","Nova Scotia (Halifax), New Brunswick (Fredericton), Quebec (Quebec City) and Ontario (Toronto)"], a:1, ex:"The four Atlantic provinces are Newfoundland and Labrador (St. John's), Nova Scotia (Halifax), New Brunswick (Fredericton), and Prince Edward Island (Charlottetown)."},
+      {q:"What are the territories of Northern Canada and their capital cities?", opts:["Alaska (Juneau) and Yukon Territory (Whitehorse)","Northwest Territories (Yellowknife) and Alaska (Juneau)","Northwest Territories (Yellowknife) only","Yukon Territory (Whitehorse), Northwest Territories (Yellowknife), and Nunavut (Iqaluit)"], a:3, ex:"Canada's three northern territories are Yukon (Whitehorse), Northwest Territories (Yellowknife), and Nunavut (Iqaluit). Alaska belongs to the United States, not Canada."},
+      {q:"What is a major river in Quebec?", opts:["Fraser River","St. Lawrence River","Niagara River","Hudson's Bay"], a:1, ex:"The St. Lawrence River flows through Quebec and was central to the province's settlement and history."},
+      {q:"What three oceans border Canada?", opts:["Atlantic, Arctic and Bering","Atlantic, Arctic and Pacific","Pacific, Indian and Atlantic","Hudson, Pacific and Atlantic"], a:1, ex:"Canada is bordered by the Atlantic, Arctic, and Pacific Oceans."},
+      {q:"Where are the Great Lakes?", opts:["Between Ontario and the United States","In Manitoba","In Northern Quebec","In Atlantic Canada"], a:0, ex:"The five Great Lakes lie between Ontario and the United States: Ontario, Erie, Huron, Michigan (in the U.S.), and Superior."},
+      {q:"Where are the Parliament Buildings located?", opts:["Ottawa","Quebec City","Hull","Toronto"], a:0, ex:"The Parliament Buildings are located in Ottawa, Canada's capital."},
+      {q:"Where does Canada rank among the world's largest countries?", opts:["First","Second","Third","Fourth"], a:1, ex:"Canada is the second-largest country on earth by area, after Russia."},
+      {q:"Which country borders Canada on the south?", opts:["United States of America","Central America","Mexico","Washington State"], a:0, ex:"The United States borders Canada along its entire southern edge."},
+      {q:"Which province has its own time zone?", opts:["British Columbia","Newfoundland and Labrador","Nunavut","Nova Scotia"], a:1, ex:"Newfoundland and Labrador is the most easterly point in North America and has its own time zone (Newfoundland Time)."},
+      {q:"Which province in Canada is the smallest in land size?", opts:["Nova Scotia","Prince Edward Island","Yukon Territory","Newfoundland and Labrador"], a:1, ex:"Prince Edward Island is Canada's smallest province by land area."},
+      {q:"Which region covers more than one-third of Canada?", opts:["Central Canada","Prairies","Atlantic Canada","Northern Territories"], a:3, ex:"The Northern Territories (Yukon, NWT, Nunavut) contain one-third of Canada's land mass, though only about 100,000 people."},
+      {q:"Which region is known as the industrial and manufacturing heartland of Canada?", opts:["Atlantic provinces","Prairie provinces","Central Canada","West Coast"], a:2, ex:"Central Canada (Ontario and Quebec) is Canada's industrial and manufacturing heartland, producing more than three-quarters of manufactured goods."},
+      {q:"Which region of Canada is known for both its fertile agricultural land and valuable energy resources?", opts:["British Columbia","Prairie provinces","Ontario","Manitoba"], a:1, ex:"The Prairie Provinces (Manitoba, Saskatchewan, Alberta) are known for both fertile farmland and rich energy resources like oil and gas."}
+    ]
+  },
+  provincial: {
+    title: "Provincial & Territorial Leadership",
+    questions: [
+      {q:"What is the capital city of Alberta?", opts:["Medicine Hat","Red Deer","Calgary","Edmonton"], a:3, ex:"Edmonton is the capital of Alberta."},
+      {q:"Which three natural resources are important to Alberta's economy today?", opts:["Oil, agriculture, and forestry","Oil, tourism, and fishing","Oil, coal, and hydroelectricity","Oil, coal, and forestry"], a:0, ex:"Oil, agriculture, and forestry are important natural resources to Alberta's economy."},
+      {q:"What is the name of the leader of the Opposition in Alberta?", opts:["Rachel Notley","Naheed K. Nenshi","Heather Forsyth","Jim Prentice"], a:1, ex:"Provincial opposition leaders change often with leadership races — confirm the current leader before your test."},
+      {q:"What is the name of the Lieutenant-Governor of Alberta?", opts:["Donald S. Ethell","Salma Lakhani","Adrienne Clarkson","Lois Mitchell"], a:1, ex:"Lieutenant Governors are appointed for a term of about five years — confirm the current officeholder before your test."},
+      {q:"What is the name of the Premier of Alberta?", opts:["Premier Rachel Notley","Premier Jason Kenney","Premier Danielle Smith","Premier Stephen Harper"], a:2, ex:"Premiers change with provincial elections — confirm the current Premier before your test."},
+      {q:"Which political party is in power in Alberta?", opts:["New Democratic Party","Liberal Party","Green Party","United Conservative Party"], a:3, ex:"The governing provincial party can change with each election — confirm the current party in power before your test."},
+      {q:"What is the capital city of British Columbia?", opts:["Vancouver","Prince George","Victoria","New Westminster"], a:2, ex:"Victoria, on Vancouver Island, is the capital of British Columbia (not Vancouver, the largest city)."},
+      {q:"Which three natural resources are important to British Columbia's economy today?", opts:["Forests, water and grain crops","Forests, fish and water","Fish, oil and water","Coal, water and shipbuilding"], a:1, ex:"Forestry, fisheries, and water resources are central to British Columbia's economy."},
+      {q:"Why is British Columbia known as Canada's Pacific Gateway?", opts:["Most new immigrants arrive at Vancouver International Airport","British Columbia is the closest province to the Far East","Billions of dollars in trade goods are handled through the Port of Vancouver","British Columbia borders the Pacific Ocean only"], a:2, ex:"The Port of Vancouver handles billions of dollars in Asia-Pacific trade, making B.C. Canada's Pacific Gateway."},
+      {q:"What is the name of the leader of the Opposition in British Columbia?", opts:["Adam Olsen","Trevor Halford (interim)","Kevin Falcon","Andrew Wilkinson"], a:1, ex:"Provincial opposition leadership changes frequently — confirm the current leader before your test."},
+      {q:"What is the name of the Lieutenant-Governor of British Columbia?", opts:["David Lam","Wendy Cocchia","Adrienne Clarkson","Judith Guichon"], a:1, ex:"Lieutenant Governors serve roughly five-year terms — confirm the current officeholder before your test."},
+      {q:"What is the name of the Premier of British Columbia?", opts:["Premier Adrian Dix","Premier David Eby","Premier John Horgan","Premier Christy Clark"], a:1, ex:"Confirm the current Premier of British Columbia before your test, as this changes with elections."},
+      {q:"Which political party is in power in British Columbia?", opts:["New Democratic Party","Liberal Party","Social Credit Party","Green Party"], a:0, ex:"Confirm the current governing party of British Columbia before your test."},
+      {q:"Name the federal electoral districts in Richmond, British Columbia.", opts:["Richmond North and Richmond South","Richmond East and Richmond West","Richmond and Richmond South","Richmond Centre and Steveston-Richmond East"], a:3, ex:"Richmond, B.C. is divided into two federal ridings: Richmond Centre and Steveston-Richmond East."},
+      {q:"Name the Members of Parliament for Richmond, British Columbia (Richmond Centre and Steveston-Richmond East, respectively).", opts:["Alice Wong (Conservative), Kenny Chiu (Conservative)","Joe Peschisolido (Liberal), Kerry-Lynne Findlay (Conservative)","Chak Au (Conservative), Parm Bains (Liberal)","Greg Halsey-Brandt (Liberal), Geoff Plant (Liberal)"], a:2, ex:"Local MPs change with each election — confirm the current representatives for your riding before your test."},
+      {q:"Name the Members of the Legislative Assembly for Richmond, British Columbia (Richmond North Centre, Richmond South Centre, Richmond-Steveston, and Richmond-Queensborough, respectively).", opts:["Rob Howard (Liberal), Linda Reid (Liberal), John Cummins (Conservative), and John Yap (Liberal)","Teresa Wat (BC United), Linda Reid (Liberal), John Yap (Liberal), and Jas Johal (Liberal)","Olga Ilich (Liberal), Henry Yao (NDP), Jas Johal (Liberal), and John Yap (Liberal)","Teresa Wat (Conservative Party of BC), Hon Chan (Conservative Party of BC), Kelly Greene (NDP), and Steve Kooner (Conservative Party of BC)"], a:3, ex:"Provincial MLAs change with each election — confirm the current representatives for your riding before your test."},
+      {q:"Name three city councillors for Richmond, British Columbia.", opts:["Malcolm Brodie, Derek Dang and Ernie Novakowski","Lyn Greenhill, Kiichi Kumagai and Lily von Hendron","Michael Wolfe, Chak Au and Carol Day","Ken Johnston, Bill McNulty and Harold Steves"], a:2, ex:"Municipal councillors change with local elections — confirm the current council for your municipality before your test."},
+      {q:"What is the name of the Mayor of Richmond, British Columbia?", opts:["Mayor Richard Lee","Mayor Bill McNulty","Mayor Linda McPhail","Mayor Malcolm Brodie"], a:3, ex:"Municipal mayors change with local elections — confirm the current mayor of your municipality before your test."},
+      {q:"What is the capital city of Manitoba?", opts:["Winnipeg","Grand Rapids","Portage la Prairie","Brandon"], a:0, ex:"Winnipeg is the capital of Manitoba."},
+      {q:"What three industries are important to Manitoba's economy today?", opts:["Farming, mining and fishing","Agriculture, mining and hydro-electric power generation","Fishing, tourism and mining","Forestry, fishing and energy"], a:1, ex:"Manitoba's economy is based on agriculture, mining, and hydro-electric power generation."},
+      {q:"What is the name of the leader of the Opposition in Manitoba?", opts:["Obby Khan","Heather Stefanson","Wab Kinew","Brian Pallister"], a:0, ex:"Confirm the current Opposition leader for Manitoba before your test, as this changes with leadership races."},
+      {q:"What is the name of the Lieutenant-Governor of Manitoba?", opts:["Honourable Anita Neville","Honourable Peter Liba","Honourable Philip Lee","Honourable Janice Filmon"], a:0, ex:"Confirm the current Lieutenant-Governor of Manitoba before your test."},
+      {q:"What is the name of the Premier of Manitoba?", opts:["Premier Heather Stefanson","Premier Wab Kinew","Premier Brian Pallister","Premier Sterling Lyon"], a:1, ex:"Confirm the current Premier of Manitoba before your test, as this changes with elections."},
+      {q:"Which political party is in power in Manitoba?", opts:["Manitoba Party","Liberals","Progressive Conservative","New Democratic Party"], a:3, ex:"Confirm the current governing party of Manitoba before your test."},
+      {q:"What is the capital city of New Brunswick?", opts:["Victoria","Winnipeg","Fredericton","Montreal"], a:2, ex:"Fredericton is the capital of New Brunswick."},
+      {q:"What three industries are important to New Brunswick's economy today?", opts:["Forestry, hydro-electric power generation, oil","Fisheries, oil, tourism","Atlantic trade, fishing and oil","Forestry, agriculture and mining"], a:3, ex:"Forestry, agriculture, and mining are key industries in New Brunswick's economy."},
+      {q:"What is the name of the leader of the Opposition in New Brunswick?", opts:["Victor Boudreau","Denis Landry","Glen Savoie","David Alward"], a:2, ex:"Confirm the current Opposition leader for New Brunswick before your test."},
+      {q:"What is the name of the Lieutenant-Governor of New Brunswick?", opts:["Honourable Louise Imbeault","Honourable Gilbert Finn","Honourable Marilyn Trenholme Counsell","Honourable Graydon Nicholas"], a:0, ex:"Confirm the current Lieutenant-Governor of New Brunswick before your test."},
+      {q:"What is the name of the Premier of New Brunswick?", opts:["Premier Bernard Lord","Premier Susan Holt","Premier David Alward","Premier Brian Gallant"], a:1, ex:"Confirm the current Premier of New Brunswick before your test."},
+      {q:"Which political party is in power in New Brunswick?", opts:["Liberal Party of New Brunswick","New Brunswick Party","New Democrats","Progressive Conservative"], a:0, ex:"Confirm the current governing party of New Brunswick before your test."},
+      {q:"What is the capital city of Newfoundland and Labrador?", opts:["Charlottetown","Chimney Tickle","St. John's","St. Pierre et Miquelon"], a:2, ex:"St. John's is the capital of Newfoundland and Labrador."},
+      {q:"What three industries are important to Newfoundland and Labrador's economy today?", opts:["Fisheries, oil and gas extraction","Fisheries, tourism, forestry","Shipbuilding, fisheries and mining","Tourism, mining and forestry"], a:0, ex:"Fisheries and offshore oil and gas extraction are central to Newfoundland and Labrador's economy."},
+      {q:"What is the name of the leader of the Opposition in Newfoundland and Labrador?", opts:["David Brazil","John Hogan","Paul Davis","Dwight Ball"], a:1, ex:"Confirm the current Opposition leader for Newfoundland and Labrador before your test."},
+      {q:"What is the name of the Lieutenant-Governor of Newfoundland and Labrador?", opts:["Honourable Frank F. Fagan","Honourable Edward Roberts","Honourable Joan Marie Aylward","Honourable Judy May Foote"], a:2, ex:"Confirm the current Lieutenant-Governor of Newfoundland and Labrador before your test."},
+      {q:"What is the name of the Premier of Newfoundland and Labrador?", opts:["Premier Tony Wakeham","Premier Dwight Ball","Premier Kathy Dunderdale","Premier Tom Marshall"], a:0, ex:"Confirm the current Premier of Newfoundland and Labrador before your test."},
+      {q:"Which political party is in power in Newfoundland and Labrador?", opts:["NFL Party","New Democrats","Liberal Party","Progressive Conservative"], a:3, ex:"Confirm the current governing party of Newfoundland and Labrador before your test."},
+      {q:"What is the capital city of Nova Scotia?", opts:["Shearwater","Halifax","Dartmouth","Devon"], a:1, ex:"Halifax is the capital of Nova Scotia."},
+      {q:"What three industries are important to Nova Scotia's economy today?", opts:["Fisheries, shipbuilding and forestry","Forestry, mining and tourism","Coal mining, forestry and agriculture","Tourism, movies and shipbuilding"], a:2, ex:"Nova Scotia has a long history of coal mining, forestry, and agriculture, alongside offshore oil and gas exploration."},
+      {q:"What is the name of the leader of the Opposition in Nova Scotia?", opts:["Darrell Dexter","John MacDonell","Claudia Chender","Jamie Baillie"], a:2, ex:"Confirm the current Opposition leader for Nova Scotia before your test."},
+      {q:"What is the name of the Lieutenant-Governor of Nova Scotia?", opts:["Honourable John James Grant","Honourable Myra Freeman","Honourable Mayann Francis","Honourable Mike Savage"], a:3, ex:"Confirm the current Lieutenant-Governor of Nova Scotia before your test."},
+      {q:"What is the name of the Premier of Nova Scotia?", opts:["Premier Darrel Dexter","Premier Stephen McNeil","Premier Tim Houston","Premier Rodney MacDonald"], a:2, ex:"Confirm the current Premier of Nova Scotia before your test."},
+      {q:"Which political party is in power in Nova Scotia?", opts:["New Democrats","Progressive Conservative","Liberal","Nova Scotia Party"], a:1, ex:"Confirm the current governing party of Nova Scotia before your test."},
+      {q:"What is the capital city of the Northwest Territories?", opts:["Fort Simpson","Hay River","Fort Providence","Yellowknife"], a:3, ex:"Yellowknife, known as the 'diamond capital of North America,' is the capital of the Northwest Territories."},
+      {q:"What is the name of the Commissioner of the Northwest Territories?", opts:["Honourable Margaret Thom","Honourable Gerry Kisoun","Honourable Daniel L. Norris","Honourable Glenna Hansen"], a:1, ex:"Confirm the current Commissioner of the Northwest Territories before your test."},
+      {q:"What is the name of the leader of the Opposition in the Northwest Territories?", opts:["None","George Braden","Don Morin","Nellie Cournoyea"], a:0, ex:"The Northwest Territories is governed by consensus government rather than a party system, so there is no formal Opposition leader."},
+      {q:"What is the name of the Premier of the Northwest Territories?", opts:["Premier Bob McLeod","Premier Caroline Cochrane","Premier R.J. Simpson","Premier Jim Antoine"], a:2, ex:"Confirm the current Premier of the Northwest Territories before your test."},
+      {q:"Which political party is in power in the Northwest Territories?", opts:["Yukon Party","Liberals","Governed by consensus","New Democrats"], a:2, ex:"The Northwest Territories does not have party politics — it operates under consensus government."},
+      {q:"What is the capital city of Nunavut?", opts:["Sinaa","Iqaluit","Nipisa","Mivvik"], a:1, ex:"Iqaluit is the capital of Nunavut."},
+      {q:"What is the name of the Commissioner of Nunavut?", opts:["Honourable Peter Irniq","Honourable Ann Meekitjuk Hanson","Honourable Eva Aariak","Honourable Nellie Taptaqut Kusugak"], a:2, ex:"Confirm the current Commissioner of Nunavut before your test."},
+      {q:"What is the name of the leader of the Opposition in Nunavut?", opts:["Don Morin","Joe Handley","None","Eva Aariak"], a:2, ex:"Like the NWT, Nunavut is governed by consensus government, so there is no formal Opposition leader."},
+      {q:"What is the name of the Premier of Nunavut?", opts:["Premier Paul Okalik","Premier Floyd Roland","Premier Joe Savikataaq","Premier John Main"], a:3, ex:"Confirm the current Premier of Nunavut before your test."},
+      {q:"Which political party is in power in Nunavut?", opts:["Progressive Conservative","Liberal","Nunavut Party","Governed by consensus"], a:3, ex:"Nunavut, like the NWT, is governed by consensus government rather than political parties."},
+      {q:"What is the capital city of Ontario?", opts:["Kingston","Ottawa","Toronto","London"], a:2, ex:"Toronto is the capital of Ontario (not to be confused with Ottawa, Canada's national capital)."},
+      {q:"What three industries are important to Ontario's economy today?", opts:["Mining, fishing, automobile manufacturing","Mining, tourism, automobile manufacturing","Farming, tourism, fishing","Automobile manufacturing, tourism, fishing"], a:1, ex:"Mining, tourism, and automobile manufacturing are all significant to Ontario's economy."},
+      {q:"What is the name of the leader of the Opposition in Ontario?", opts:["Andrea Horwath","Marit Stiles","Peter Tabuns","Dalton McGuinty"], a:1, ex:"Confirm the current Opposition leader for Ontario before your test."},
+      {q:"What is the name of the Lieutenant-Governor of Ontario?", opts:["James Bartleman","Elizabeth Dowdeswell","David C. Onley","Edith Dumont"], a:3, ex:"Confirm the current Lieutenant-Governor of Ontario before your test."},
+      {q:"What is the name of the Premier of Ontario?", opts:["Premier Doug Ford","Premier Jack Layton","Premier Kathleen Wynne","Premier Mike Harris"], a:0, ex:"Confirm the current Premier of Ontario before your test."},
+      {q:"Which political party is in power in Ontario?", opts:["Green Party","Liberal Party","Progressive Conservative Party","New Democratic Party"], a:2, ex:"Confirm the current governing party of Ontario before your test."},
+      {q:"What is the capital city of Prince Edward Island?", opts:["Cornwall","Stratford","Charlottetown","Georgetown"], a:2, ex:"Charlottetown, the birthplace of Confederation, is the capital of Prince Edward Island."},
+      {q:"What is the name of the leader of the Opposition in Prince Edward Island?", opts:["Hal Perry","Jamie Fox","Steven Meyers","Peter Bevan-Baker"], a:0, ex:"Confirm the current Opposition leader for Prince Edward Island before your test."},
+      {q:"What is the name of the Lieutenant-Governor of Prince Edward Island?", opts:["Honourable Dr. Wassim Salamoun","Honourable H. Frank Lewis","Honourable Barbara Oliver Hagerman","Honourable Léonce Barnard"], a:0, ex:"Confirm the current Lieutenant-Governor of Prince Edward Island before your test."},
+      {q:"What is the name of the Premier of Prince Edward Island?", opts:["Premier Wade MacLauchlan","Premier Bloyce Thompson","Premier Pat Binns","Premier Joe Ghiz"], a:1, ex:"Confirm the current Premier of Prince Edward Island before your test."},
+      {q:"Which political party is in power in Prince Edward Island?", opts:["Progressive Conservative","New Democrats","Liberals","Union Nationale"], a:0, ex:"Confirm the current governing party of Prince Edward Island before your test."},
+      {q:"What is the capital city of Quebec?", opts:["Beauport","Quebec City","Montreal","Chicoutimi"], a:1, ex:"Québec City is the capital of Quebec (Montreal is the largest city, but not the capital)."},
+      {q:"What three industries are important to Quebec's economy today?", opts:["Tourism, mining and forestry","Pulp and paper, forestry and hydro-electric power","Films, fishing and mining","Forestry, shipping and tourism"], a:1, ex:"Pulp and paper, forestry, and hydro-electric power are major pillars of Quebec's economy."},
+      {q:"Which political party is in power in Quebec?", opts:["Coalition Avenir Québec","Parti libéral","Parti Québécois","Union Nationale"], a:0, ex:"Confirm the current governing party of Quebec before your test."},
+      {q:"What is the capital city of Saskatchewan?", opts:["Regina","Avonlea","Glenavon","Fort Qu'Appelle"], a:0, ex:"Regina is the capital of Saskatchewan."},
+      {q:"What is the name of the leader of the Opposition in Saskatchewan?", opts:["Ryan Meili","Carla Beck","John Nilson","Cam Broten"], a:1, ex:"Confirm the current Opposition leader for Saskatchewan before your test."},
+      {q:"What is the name of the Lieutenant-Governor of Saskatchewan?", opts:["Honourable Dr. Gordon L. Barnhart","Honourable Vaughn Solomon Schofield","Honourable M. Bernadette McIntyre","Honourable Lynda Maureen Haverstock"], a:2, ex:"Confirm the current Lieutenant-Governor of Saskatchewan before your test."},
+      {q:"What is the name of the Premier of Saskatchewan?", opts:["Premier Lorne Calvert","Premier Brad Wall","Premier Scott Moe","Premier Len Taylor"], a:2, ex:"Confirm the current Premier of Saskatchewan before your test."},
+      {q:"What three industries are important to Saskatchewan's economy today?", opts:["Forestry, films and tourism","Fishing, mining and agriculture","Mining, oil production and forestry","Farming, mining and natural gas"], a:3, ex:"Farming, mining, and natural gas production are central to Saskatchewan's economy."},
+      {q:"Which political party is in power in Saskatchewan?", opts:["NDP","Saskatchewan Party","Progressive Conservative","Social Credit"], a:1, ex:"Confirm the current governing party of Saskatchewan before your test."},
+      {q:"What is the capital city of Yukon Territory?", opts:["MacRae","Crestview","Whitehorse","Riverdale"], a:2, ex:"Whitehorse is the capital of Yukon."},
+      {q:"What is the name of the Commissioner of Yukon Territory?", opts:["Honourable Doug Phillips","Honourable Angélique Bernard","Honourable Adeline Webber","Honourable Douglas Bell"], a:2, ex:"Confirm the current Commissioner of Yukon before your test."},
+      {q:"What is the name of the leader of the Opposition in Yukon Territory?", opts:["Trevor Harding","Kate White","Stacey Hassard","Arthur Mitchell"], a:1, ex:"Confirm the current Opposition leader for Yukon before your test."},
+      {q:"What is the name of the Premier of Yukon Territory?", opts:["Premier Dennis Fentie","Premier Bob McLeod","Premier Ranj Pillai","Premier Sandy Silver"], a:2, ex:"Confirm the current Premier of Yukon before your test."},
+      {q:"Which political party is in power in Yukon Territory?", opts:["Progressive Conservatives","New Democrats","Yukon Liberal Party","Yukon Party"], a:3, ex:"Confirm the current governing party of Yukon before your test."}
+    ]
+  }
+};
+
+/* ======================= SECTION SPLITTER =======================
+   Any section with more than 25 questions is divided into equal
+   parts of roughly 15-25 questions each, e.g. "Canada's History - 1",
+   "Canada's History - 2", etc. Sections with 25 or fewer questions
+   are left as a single section. The original QUESTION_BANK data is
+   left untouched; SECTIONS is what the UI actually renders/quizzes from. */
+function buildSections(bank){
+  const MAX_PER_SECTION = 25;
+  const out = {};
+  Object.keys(bank).forEach(key=>{
+    const sec = bank[key];
+    const qs = sec.questions;
+    const total = qs.length;
+    if(total <= MAX_PER_SECTION){
+      out[key] = { title: sec.title, questions: qs, baseKey: key };
+    } else {
+      const parts = Math.ceil(total / MAX_PER_SECTION);
+      const base = Math.floor(total / parts);
+      const rem = total % parts;
+      let start = 0;
+      for(let p = 0; p < parts; p++){
+        const size = base + (p < rem ? 1 : 0);
+        const slice = qs.slice(start, start + size);
+        start += size;
+        out[`${key}__${p+1}`] = { title: `${sec.title} - ${p+1}`, questions: slice, baseKey: key };
+      }
+    }
+  });
+  return out;
+}
+const SECTIONS = buildSections(QUESTION_BANK);
+
+/* ======================= ICONS ======================= */
+const ICON_STROKE = `stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"`;
+const SECTION_ICONS = {
+  rights: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><path d="M12 3v18M6 6l3 6-3 1a3 3 0 0 0 6 0l-3-1 3-6M18 6l3 6-3 1a3 3 0 0 0 6 0l-3-1 3-6"/><path d="M4 6h16"/></svg>`,
+  whoweare: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><circle cx="8" cy="8" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M2.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6M14 20c0-2.6 1.8-4.7 4-5"/></svg>`,
+  history: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><path d="M3 10l9-6 9 6"/><path d="M5 10v9h14v-9M9 19v-6h6v6"/></svg>`,
+  modern: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.4 4 5.4 4 8.5s-1.5 6.1-4 8.5c-2.5-2.4-4-5.4-4-8.5s1.5-6.1 4-8.5Z"/></svg>`,
+  government: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><path d="M12 2 3 8h18L12 2Z"/><path d="M4 8v11M8 8v11M12 8v11M16 8v11M20 8v11"/><path d="M2.5 21.5h19"/></svg>`,
+  justice: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><path d="M12 3v18M4 7h16"/><path d="M4 7 1.5 12a2.7 2.7 0 0 0 5 0L4 7ZM20 7l-2.5 5a2.7 2.7 0 0 0 5 0L20 7Z"/><path d="M8 21h8"/></svg>`,
+  symbols: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><path d="M5 2v20"/><path d="M5 3h11l-3 4 3 4H5"/></svg>`,
+  economy: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg>`,
+  regions: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><path d="M3 20l6-14 5 9 3-5 4 10H3Z"/><circle cx="9" cy="6" r="2"/></svg>`,
+  provincial: `<svg viewBox="0 0 24 24" ${ICON_STROKE}><rect x="4" y="10" width="16" height="10"/><path d="M4 10 12 3l8 7"/><path d="M9 20v-5h6v5"/></svg>`
+};
+
+/* ======================= STATE ======================= */
+let state = {
+  currentSet: [],
+  currentIndex: 0,
+  score: 0,
+  answers: [],       // indexed by question position: null, or {chosenIdx, qtext, chosenText, correctText, wasCorrect}
+  sectionKey: null,
+  streak: 0,
+};
+let globalStats = { answered:0, correct:0, bestStreak:0, currentStreak:0 };
+let sectionProgress = {}; // key -> {answered, correct, total}
+
+/* init section progress trackers */
+Object.keys(SECTIONS).forEach(k=>{
+  sectionProgress[k] = {answered:0, correct:0, total: SECTIONS[k].questions.length};
+});
+
+/* ======================= DOM refs ======================= */
+const sectionNav = document.getElementById('sectionNav');
+const quizPanel = document.getElementById('quizPanel');
+const resultsPanel = document.getElementById('resultsPanel');
+const sectionNavWrap = document.getElementById('sectionNavWrap');
+const quizLayout = document.getElementById('quizLayout');
+const sectionAnswerKey = document.getElementById('sectionAnswerKey');
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+/* ======================= RENDER SECTION MENU ======================= */
+function renderSectionNav(){
+  sectionNav.innerHTML = '';
+  Object.keys(SECTIONS).forEach(key=>{
+    const sec = SECTIONS[key];
+    const prog = sectionProgress[key];
+    const pct = prog.total ? Math.round((prog.answered/prog.total)*100) : 0;
+    const btn = document.createElement('button');
+    btn.className = 'section-btn';
+    btn.innerHTML = `
+      <div class="sec-head">
+        <div class="sec-icon">${SECTION_ICONS[sec.baseKey || key] || ''}</div>
+      </div>
+      <div class="sec-title">${sec.title}</div>
+      <div class="sec-count">${sec.questions.length} questions</div>
+      <div class="sec-progress"><i style="width:${pct}%"></i></div>
+    `;
+    btn.addEventListener('click', ()=> startQuiz(key));
+    sectionNav.appendChild(btn);
+  });
+}
+
+function updateStatbar(){
+  document.getElementById('statAnswered').textContent = globalStats.answered;
+  document.getElementById('statCorrect').textContent = globalStats.correct;
+  document.getElementById('statAccuracy').textContent = globalStats.answered ? Math.round((globalStats.correct/globalStats.answered)*100)+'%' : '—';
+  document.getElementById('statStreak').textContent = globalStats.bestStreak;
+}
+
+/* ======================= START QUIZ ======================= */
+function startQuiz(key){
+  let pool = [];
+  if(key === 'ALL'){
+    Object.keys(QUESTION_BANK).forEach(k=>{
+      QUESTION_BANK[k].questions.forEach(q=> pool.push(Object.assign({sec:k, iconKey:k, secTitle:QUESTION_BANK[k].title}, q)));
+    });
+    pool = shuffle(pool).slice(0, 20);
+  } else {
+    const sec = SECTIONS[key];
+    pool = sec.questions.map(q=> Object.assign({sec:key, iconKey: sec.baseKey || key, secTitle: sec.title}, q));
+    pool = shuffle(pool);
+  }
+  state = {
+    currentSet: pool,
+    currentIndex: 0,
+    score: 0,
+    answers: new Array(pool.length).fill(null),
+    sectionKey: key,
+    streak: 0,
+  };
+  sectionNavWrap.classList.add('hidden');
+  resultsPanel.classList.add('hidden');
+  sectionAnswerKey.classList.add('hidden');
+  quizLayout.classList.remove('hidden');
+  quizPanel.classList.remove('hidden');
+  renderQuestion();
+}
+
+/* ======================= RENDER QUESTION ======================= */
+function renderQuestion(){
+  const total = state.currentSet.length;
+  const idx = state.currentIndex;
+  const q = state.currentSet[idx];
+  const existing = state.answers[idx];
+
+  document.getElementById('qCounter').textContent = `Question ${idx+1} of ${total}`;
+  document.getElementById('qSectionTag').innerHTML = `${(SECTION_ICONS[q.iconKey||q.sec]||'').replace('viewBox','class="mini-icon" viewBox')}${q.secTitle}`;
+  const answeredCount = state.answers.filter(a=>a).length;
+  document.getElementById('progressFill').style.width = (answeredCount/total*100)+'%';
+  document.getElementById('qText').textContent = q.q;
+
+  const optWrap = document.getElementById('qOptions');
+  optWrap.innerHTML = '';
+  const letters = ['A','B','C','D','E','F'];
+
+  q.opts.forEach((optText, i)=>{
+    const div = document.createElement('button');
+    div.className = 'opt';
+    div.innerHTML = `<span class="letter">${letters[i]}</span><span>${optText}</span>`;
+    if(existing){
+      div.classList.add('disabled');
+      if(i === q.a) div.classList.add('correct');
+      if(i === existing.chosenIdx && existing.chosenIdx !== q.a) div.classList.add('incorrect');
+      if(i !== existing.chosenIdx && i !== q.a) div.classList.add('dim');
+    } else {
+      div.addEventListener('click', ()=> selectAnswer(i));
+    }
+    optWrap.appendChild(div);
+  });
+
+  const explain = document.getElementById('qExplain');
+  const pill = document.getElementById('feedbackPill');
+  if(existing){
+    explain.innerHTML = `<b>Why: </b>${q.ex}`;
+    explain.classList.add('show');
+    pill.classList.add('show', existing.wasCorrect ? 'good' : 'bad');
+    pill.textContent = existing.wasCorrect ? '✓ Correct' : '✗ Not quite';
+  } else {
+    explain.classList.remove('show');
+    explain.innerHTML = '';
+    pill.classList.remove('show','good','bad');
+  }
+
+  document.getElementById('prevBtn').disabled = (idx === 0);
+  document.getElementById('nextBtn').disabled = !existing;
+  document.getElementById('nextBtn').textContent = (idx === total-1) ? 'See Results →' : 'Next Question →';
+
+  renderDeck();
+}
+
+function selectAnswer(chosenIdx){
+  const idx = state.currentIndex;
+  if(state.answers[idx]) return; // already answered, locked
+  const q = state.currentSet[idx];
+  const correctIdx = q.a;
+  const wasCorrect = chosenIdx === correctIdx;
+
+  if(wasCorrect){
+    state.score++;
+    state.streak++;
+    globalStats.correct++;
+    globalStats.currentStreak++;
+    if(globalStats.currentStreak > globalStats.bestStreak) globalStats.bestStreak = globalStats.currentStreak;
+  } else {
+    state.streak = 0;
+    globalStats.currentStreak = 0;
+  }
+  globalStats.answered++;
+
+  const secKey = q.iconKey || q.sec;
+  if(sectionProgress[secKey]){
+    sectionProgress[secKey].answered = Math.min(sectionProgress[secKey].total, sectionProgress[secKey].answered+1);
+    if(wasCorrect) sectionProgress[secKey].correct++;
+  }
+
+  state.answers[idx] = {
+    chosenIdx: chosenIdx,
+    qtext: q.q,
+    chosenText: q.opts[chosenIdx],
+    correctText: q.opts[correctIdx],
+    wasCorrect: wasCorrect
+  };
+
+  renderQuestion();
+  updateStatbar();
+}
+
+/* ======================= QUESTION DECK (side nav) ======================= */
+function renderDeck(){
+  const deckGrid = document.getElementById('deckGrid');
+  if(!deckGrid) return;
+  deckGrid.innerHTML = '';
+  state.currentSet.forEach((q, i)=>{
+    const existing = state.answers[i];
+    const b = document.createElement('button');
+    let cls = 'deck-item';
+    if(i === state.currentIndex) cls += ' current';
+    else if(existing) cls += existing.wasCorrect ? ' correct' : ' incorrect';
+    b.className = cls;
+    b.textContent = (i+1);
+    b.title = `Go to question ${i+1}`;
+    b.addEventListener('click', ()=> goToQuestion(i));
+    deckGrid.appendChild(b);
+  });
+  const answeredCount = state.answers.filter(a=>a).length;
+  document.getElementById('deckProgress').textContent = `${answeredCount} / ${state.currentSet.length} answered`;
+}
+
+function goToQuestion(i){
+  if(i < 0 || i >= state.currentSet.length) return;
+  state.currentIndex = i;
+  renderQuestion();
+}
+
+/* ======================= ANSWER KEY (show/hide all answers for the current section) ======================= */
+function renderSectionAnswerKey(){
+  const titleEl = document.getElementById('sectionAnswerKeyTitle');
+  const wrap = document.getElementById('sectionAnswerKeyList');
+  wrap.innerHTML = '';
+  const letters = ['A','B','C','D','E','F'];
+
+  const secTitle = state.sectionKey === 'ALL'
+    ? 'Full Mixed Exam'
+    : (SECTIONS[state.sectionKey] ? SECTIONS[state.sectionKey].title : 'This Section');
+  titleEl.textContent = `Answer Key — ${secTitle}`;
+
+  state.currentSet.forEach((q, i)=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.marginBottom = '14px';
+    const optsHtml = q.opts.map((optText, oi)=>{
+      const cls = oi === q.a ? 'opt correct disabled' : 'opt disabled dim';
+      return `<div class="${cls}"><span class="letter">${letters[oi]}</span><span>${optText}</span></div>`;
+    }).join('');
+    card.innerHTML = `
+      <p class="q-text" style="font-size:16px;">${i+1}. ${q.q}</p>
+      <div class="options">${optsHtml}</div>
+      <div class="explain show"><b>Why: </b>${q.ex}</div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+
+function showSectionAnswerKey(){
+  quizLayout.classList.add('hidden');
+  renderSectionAnswerKey();
+  sectionAnswerKey.classList.remove('hidden');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function hideSectionAnswerKey(){
+  sectionAnswerKey.classList.add('hidden');
+  quizLayout.classList.remove('hidden');
+}
+
+function resetAllProgress(){
+  globalStats = { answered:0, correct:0, bestStreak:0, currentStreak:0 };
+  Object.keys(SECTIONS).forEach(k=>{
+    sectionProgress[k] = {answered:0, correct:0, total: SECTIONS[k].questions.length};
+  });
+  updateStatbar();
+  renderSectionNav();
+  quizPanel.classList.add('hidden');
+  resultsPanel.classList.add('hidden');
+  sectionNavWrap.classList.remove('hidden');
+}
+
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  if(!state.answers[state.currentIndex]) return;
+  if(state.currentIndex < state.currentSet.length-1){
+    goToQuestion(state.currentIndex+1);
+  } else {
+    showResults();
+  }
+});
+
+document.getElementById('prevBtn').addEventListener('click', ()=>{
+  goToQuestion(state.currentIndex-1);
+});
+
+document.getElementById('deckFinishBtn').addEventListener('click', ()=>{
+  showResults();
+});
+
+document.getElementById('quitBtn').addEventListener('click', ()=>{
+  quizPanel.classList.add('hidden');
+  resultsPanel.classList.add('hidden');
+  sectionNavWrap.classList.remove('hidden');
+  renderSectionNav();
+});
+
+/* ======================= RESULTS ======================= */
+function showResults(){
+  document.getElementById('progressFill').style.width = '100%';
+  quizPanel.classList.add('hidden');
+  resultsPanel.classList.remove('hidden');
+
+  const total = state.currentSet.length;
+  const pct = Math.round((state.score/total)*100);
+  const pass = pct >= 60;
+
+  document.getElementById('resultBadge').textContent = pass ? 'Well done' : 'Keep practicing';
+  document.getElementById('resultBadge').className = 'badge ' + (pass ? 'pass' : 'fail');
+  const resultTitleEl = document.getElementById('resultTitle');
+  if(state.sectionKey === 'ALL'){
+    resultTitleEl.textContent = 'Full Mixed Exam Complete';
+  } else {
+    const sec = SECTIONS[state.sectionKey];
+    const iconMk = (SECTION_ICONS[sec.baseKey || state.sectionKey]||'').replace('viewBox','class="title-icon" style="width:22px;height:22px;vertical-align:-4px;margin-right:6px;" viewBox');
+    resultTitleEl.innerHTML = `${iconMk}${sec.title} — Complete`;
+  }
+  document.getElementById('resultScore').textContent = `${state.score}/${total}`;
+
+  let verdict;
+  if(pct === 100) verdict = "Perfect score! You clearly know this material inside and out.";
+  else if(pct >= 80) verdict = "Strong performance — you're well prepared for the real citizenship test.";
+  else if(pct >= 60) verdict = "Solid effort. Review the missed questions below and try again to lock it in.";
+  else verdict = "Worth another pass. Read the explanations below closely, then retry this section.";
+  document.getElementById('resultVerdict').textContent = `You scored ${pct}%. ${verdict}`;
+
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = '<div style="font-weight:700;color:var(--navy);margin-bottom:8px;font-family:\'Fraunces\',serif;font-size:16px;">Review</div>';
+  state.currentSet.forEach((q, i)=>{
+    const ans = state.answers[i];
+    const item = document.createElement('div');
+    item.className = 'review-item';
+    if(ans){
+      item.innerHTML = `
+        <div class="rq">${i+1}. ${ans.qtext}</div>
+        <div class="ra ${ans.wasCorrect ? 'right':'wrong'}">${ans.wasCorrect ? '✓ You answered: '+ans.chosenText : '✗ You answered: '+ans.chosenText+' — Correct answer: '+ans.correctText}</div>
+      `;
+    } else {
+      item.innerHTML = `
+        <div class="rq">${i+1}. ${q.q}</div>
+        <div class="ra">— Not answered — Correct answer: ${q.opts[q.a]}</div>
+      `;
+    }
+    reviewList.appendChild(item);
+  });
+
+  updateStatbar();
+  renderSectionNav();
+}
+
+document.getElementById('retryBtn').addEventListener('click', ()=>{
+  startQuiz(state.sectionKey);
+});
+document.getElementById('menuBtn').addEventListener('click', ()=>{
+  resultsPanel.classList.add('hidden');
+  sectionNavWrap.classList.remove('hidden');
+  renderSectionNav();
+});
+
+document.getElementById('startAllBtn').addEventListener('click', ()=> startQuiz('ALL'));
+
+document.getElementById('resetAllBtn').addEventListener('click', ()=>{
+  if(!confirm('Reset all quiz progress and statistics? This cannot be undone.')) return;
+  resetAllProgress();
+});
+
+document.getElementById('showAllBtn').addEventListener('click', showSectionAnswerKey);
+document.getElementById('hideAllBtn').addEventListener('click', hideSectionAnswerKey);
+document.getElementById('resetSectionFromKeyBtn').addEventListener('click', ()=>{
+  startQuiz(state.sectionKey);
+});
+
+/* ======================= INIT ======================= */
+renderSectionNav();
+updateStatbar();
+</script>
+</body>
+</html>
