@@ -120,7 +120,7 @@ body{
 
 /* ---------- Section nav ---------- */
 .section-nav{
-  margin-top:26px;
+  margin-top:8px;
   display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:10px;
 }
@@ -145,6 +145,8 @@ body{
   margin-top:8px; height:5px; border-radius:4px; background:var(--line); overflow:hidden;
 }
 .section-btn .sec-progress > i{display:block; height:100%; background:var(--gold); width:0%;}
+.section-btn.guide-sec{border-color:var(--maroon);}
+.section-btn.guide-sec .sec-count{color:var(--maroon);}
 
 .top-actions{
   display:flex; gap:10px; margin-top:18px; flex-wrap:wrap;
@@ -300,6 +302,133 @@ footer.note a{color:var(--maroon);}
   .masthead{padding:26px 20px 22px;}
   .card{padding:22px 18px 20px;}
 }
+
+/* ---------- Home view tabs ---------- */
+.view-tabs{
+  display:flex; gap:8px; margin-top:26px; margin-bottom:18px; flex-wrap:wrap;
+}
+.view-tab{
+  font-family:'Inter',sans-serif; font-weight:700; font-size:13.5px;
+  border:1.5px solid var(--line); background:var(--paper); color:var(--navy);
+  border-radius:999px; padding:10px 18px; cursor:pointer;
+  transition:border-color .12s ease, background .12s ease, color .12s ease, transform .12s ease;
+}
+.view-tab:hover{border-color:var(--gold); transform:translateY(-1px);}
+.view-tab.active{
+  background:var(--navy); color:var(--cream); border-color:var(--navy);
+}
+
+/* ---------- Provincial & Territorial Governance Guide ---------- */
+.guide-panel{margin-top:4px;}
+.guide-card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 28px 22px;
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
+.guide-title{
+  font-family:'Fraunces',serif; font-weight:600; color:var(--navy);
+  font-size:clamp(22px,3.2vw,32px); margin:0 0 8px; text-align:center; line-height:1.25;
+}
+.guide-kicker{
+  text-align:center; color:var(--muted); font-size:13px; margin:0 0 4px; line-height:1.6;
+}
+.guide-h2{
+  font-family:'Fraunces',serif; color:var(--navy); font-size:22px;
+  margin:0 0 14px;
+}
+.guide-h3{
+  font-family:'Fraunces',serif; color:var(--navy); font-size:16.5px; margin:16px 0 8px;
+}
+.guide-hierarchy{
+  background:var(--navy); color:var(--gold-soft);
+  font-family:'JetBrains Mono',monospace; font-size:13.5px; line-height:1.75;
+  padding:20px 22px; border-radius:12px; overflow:auto; margin:0 0 14px;
+  white-space:pre;
+}
+.guide-note{font-size:14.5px; color:#3a3529; line-height:1.65; margin:0;}
+.guide-toc{display:flex; flex-wrap:wrap; gap:8px;}
+.guide-toc a{
+  text-decoration:none; font-size:12.5px; font-weight:600;
+  background:#fff; border:1px solid var(--line); color:var(--navy);
+  padding:6px 10px; border-radius:999px;
+}
+.guide-toc a:hover{border-color:var(--gold); color:var(--maroon);}
+.prov-card{
+  background:var(--paper); border:1px solid var(--line);
+  border-radius:var(--radius); padding:22px 22px 18px;
+  box-shadow:var(--shadow); margin-bottom:14px;
+  border-top:5px solid var(--gold);
+  scroll-margin-top:18px;
+}
+.prov-card h2{
+  font-family:'Fraunces',serif; color:var(--navy); font-size:20px; margin:0 0 14px;
+}
+.prov-ab{border-top-color:#F5C518;}
+.prov-bc{border-top-color:#4A90E2;}
+.prov-mb{border-top-color:#7B68EE;}
+.prov-nb{border-top-color:#E84A3D;}
+.prov-nl{border-top-color:#FF8C42;}
+.prov-ns{border-top-color:#1D9BB3;}
+.prov-nt{border-top-color:#7B68EE;}
+.prov-nu{border-top-color:#7B68EE;}
+.prov-on{border-top-color:#1b2a44;}
+.prov-pe{border-top-color:#E4C674;}
+.prov-qc{border-top-color:#0066cc;}
+.prov-sk{border-top-color:#2E7D32;}
+.prov-yt{border-top-color:#2E7D32;}
+.guide-table{width:100%; border-collapse:collapse; font-size:14.5px;}
+.guide-table th, .guide-table td{
+  text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:middle;
+}
+.guide-table th{
+  background:var(--navy); color:var(--gold-soft); font-weight:600; font-size:12px;
+  letter-spacing:.04em; text-transform:uppercase;
+}
+.guide-table tr:last-child td{border-bottom:none;}
+.guide-table td:first-child{width:38%; color:var(--navy); font-weight:600; background:var(--cream);}
+.guide-table.compact td:first-child{width:auto; background:transparent; font-weight:500;}
+.guide-table.compact td{white-space:nowrap;}
+.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+.party-badge{
+  display:inline-block; color:#fff; padding:2px 8px; border-radius:3px; font-weight:700; font-size:13px;
+}
+.party-badge.sm{padding:2px 6px; border-radius:2px; font-size:12px;}
+.party-badge.tight{padding:2px 4px; border-radius:2px; font-size:13px;}
+.badge-ucp{background:#FF6B6B;}
+.badge-ndp{background:#FF8C42;}
+.badge-liberal{background:#E84A3D;}
+.badge-pc{background:#4A90E2;}
+.badge-caq{background:#0066cc;}
+.badge-sask{background:#2E7D32;}
+.badge-consensus{background:#7B68EE;}
+.name-premier{color:#0066cc; font-weight:700;}
+.name-lg{color:#6A0DAD;}
+.name-opp-ndp{color:#FF8C42;}
+.name-opp-pc{color:#4A90E2;}
+.name-opp-liberal{color:#E84A3D;}
+.name-mp-cons{color:#0066cc;}
+.name-mp-liberal{color:#E84A3D;}
+.guide-resources{font-size:15px; color:var(--ink); margin:8px 0 0; line-height:1.85;}
+.guide-list{margin:8px 0 0; padding-left:20px; line-height:1.85; font-size:14.5px;}
+.guide-list li{margin:5px 0;}
+.fun-fact{
+  margin-top:12px; padding:12px 14px; background:var(--cream);
+  border-left:4px solid var(--gold); border-radius:8px; font-size:14px; line-height:1.55;
+}
+.guide-points{margin:0; padding-left:20px; line-height:1.75; font-size:14.5px;}
+.guide-points li{margin:6px 0;}
+.legend-dot{display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:6px;}
+.guide-updated{
+  text-align:center; color:var(--muted); font-size:13px; margin:10px 0 0; font-weight:600;
+}
+@media (max-width:600px){
+  .guide-card, .prov-card{padding:18px 14px;}
+  .guide-table td:first-child{width:46%;}
+  .guide-hierarchy{font-size:12px; padding:16px 14px;}
+}
 </style>
 </head>
 <body>
@@ -357,13 +486,399 @@ footer.note a{color:var(--maroon);}
   </div>
 
   <div id="sectionNavWrap">
-    <div class="section-nav" id="sectionNav"></div>
-    <p style="font-size:12.5px; color:var(--muted); margin-top:14px; line-height:1.6;">
-      <strong style="color:var(--navy);">Note on the Provincial &amp; Territorial section:</strong> Premiers, Lieutenant Governors, Commissioners, and Opposition leaders change with elections and leadership races. Use that section to practice the <em>format</em> of these questions, then confirm today's actual officeholders for your own province or territory before your test.
-    </p>
-    <div class="top-actions">
-      <button class="btn btn-primary" id="startAllBtn">▶ Start Full Mixed Exam (20 Qs)</button>
-      <button class="btn btn-ghost" id="resetAllBtn">↺ Reset All Progress</button>
+    <div class="view-tabs" role="tablist" aria-label="Study views">
+      <button class="view-tab active" id="tabQuizzes" role="tab" aria-selected="true" aria-controls="quizHome">Practice Quizzes</button>
+      <button class="view-tab" id="tabGuide" role="tab" aria-selected="false" aria-controls="guidePanel">Canadian Provincial &amp; Territorial Governance Guide</button>
+    </div>
+
+    <div id="quizHome">
+      <div class="section-nav" id="sectionNav"></div>
+      <p style="font-size:12.5px; color:var(--muted); margin-top:14px; line-height:1.6;">
+        <strong style="color:var(--navy);">Note on the Provincial &amp; Territorial section:</strong> Premiers, Lieutenant Governors, Commissioners, and Opposition leaders change with elections and leadership races. Use that section to practice the <em>format</em> of these questions, then confirm today's actual officeholders for your own province or territory before your test.
+      </p>
+      <div class="top-actions">
+        <button class="btn btn-primary" id="startAllBtn">▶ Start Full Mixed Exam (20 Qs)</button>
+        <button class="btn btn-ghost" id="resetAllBtn">↺ Reset All Progress</button>
+      </div>
+    </div>
+
+    <div class="guide-panel hidden" id="guidePanel" role="tabpanel">
+      <div class="guide-card">
+        <h1 class="guide-title">🍁 Canadian Provincial &amp; Territorial Governance Guide 🍁</h1>
+        <p class="guide-kicker">A colour-coded study sheet for capitals, premiers, parties, Crown representatives, and key industries.</p>
+      </div>
+
+      <div class="guide-card">
+        <h2 class="guide-h2">📊 Political Hierarchy: The Chain of Command</h2>
+        <pre class="guide-hierarchy">👑 Canadian Monarch (King/Queen)
+         ↓
+🏛️  Governor General of Canada
+         ↓
+⚜️  Lieutenant-Governors (Provinces) / Commissioners (Territories)
+         ↓
+🏘️  Premiers (Provincial/Territorial Heads of Government)
+         ↓
+🗳️  Provincial/Territorial Legislatures &amp; Assemblies</pre>
+        <p class="guide-note"><strong>Remember:</strong> This hierarchy flows from the Crown at the top down through all levels of government!</p>
+      </div>
+
+      <div class="guide-card">
+        <h2 class="guide-h2">🗺️ Provinces &amp; Territories Guide</h2>
+        <nav class="guide-toc" aria-label="Jump to a region">
+          <a href="#guide-alberta">Alberta</a>
+          <a href="#guide-bc">British Columbia</a>
+          <a href="#guide-manitoba">Manitoba</a>
+          <a href="#guide-nb">New Brunswick</a>
+          <a href="#guide-nl">Newfoundland and Labrador</a>
+          <a href="#guide-ns">Nova Scotia</a>
+          <a href="#guide-nwt">Northwest Territories</a>
+          <a href="#guide-nunavut">Nunavut</a>
+          <a href="#guide-ontario">Ontario</a>
+          <a href="#guide-pei">Prince Edward Island</a>
+          <a href="#guide-quebec">Quebec</a>
+          <a href="#guide-saskatchewan">Saskatchewan</a>
+          <a href="#guide-yukon">Yukon</a>
+          <a href="#guide-quick-ref">Quick Reference</a>
+          <a href="#guide-learning">Key Learning Points</a>
+        </nav>
+      </div>
+
+      <article class="prov-card prov-ab" id="guide-alberta">
+        <h2>🟡 Alberta</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Edmonton</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Danielle Smith</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-ucp">United Conservative Party (UCP)</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-liberal">Alberta NDP</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-liberal">Naheed K. Nenshi</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Salma Lakhani</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💰 Natural Resources</h3>
+        <p class="guide-resources">🛢️ <strong>Oil</strong> &nbsp;|&nbsp; 🌾 <strong>Agriculture</strong> &nbsp;|&nbsp; 🌲 <strong>Forestry</strong></p>
+      </article>
+
+      <article class="prov-card prov-bc" id="guide-bc">
+        <h2>🔵 British Columbia</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Victoria</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">David Eby</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-ndp">New Democratic Party (NDP)</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-pc">BC United/Conservative</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-pc">Heather Maahs</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Wendy Cocchia</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💰 Natural Resources</h3>
+        <p class="guide-resources">🌲 <strong>Forests</strong> &nbsp;|&nbsp; 🐟 <strong>Fish</strong> &nbsp;|&nbsp; 💧 <strong>Water</strong></p>
+        <h3 class="guide-h3">🌐 Gateway Status</h3>
+        <p class="guide-resources">✈️ <strong>Canada's Pacific Gateway</strong> — Billions in trade through Port of Vancouver</p>
+        <h3 class="guide-h3">🏛️ Federal Electoral Districts (Richmond Area)</h3>
+        <ul class="guide-list">
+          <li><strong>Richmond Centre</strong> → 🗳️ <span class="name-mp-cons">Chak Au (Conservative)</span></li>
+          <li><strong>Steveston-Richmond East</strong> → 🗳️ <span class="name-mp-liberal">Parm Bains (Liberal)</span></li>
+        </ul>
+        <h3 class="guide-h3">🏢 Provincial Legislative Assembly (Richmond Region)</h3>
+        <ul class="guide-list">
+          <li><strong>Richmond North Centre</strong> → <span class="party-badge tight badge-pc">Teresa Wat (Conservative)</span></li>
+          <li><strong>Richmond South Centre</strong> → <span class="party-badge tight badge-pc">Hon Chan (Conservative)</span></li>
+          <li><strong>Richmond-Steveston</strong> → <span class="party-badge tight badge-ndp">Kelly Greene (NDP)</span></li>
+          <li><strong>Richmond-Queensborough</strong> → <span class="party-badge tight badge-pc">Steve Kooner (Conservative)</span></li>
+        </ul>
+        <h3 class="guide-h3">🏛️ Municipal Government (Richmond)</h3>
+        <ul class="guide-list">
+          <li>🔨 <strong>Mayor:</strong> Malcolm Brodie</li>
+          <li>👥 <strong>City Councillors:</strong> Alexa Loo, Carol Day, Michael Wolfe</li>
+        </ul>
+      </article>
+
+      <article class="prov-card prov-mb" id="guide-manitoba">
+        <h2>🟣 Manitoba</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Winnipeg</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Wab Kinew</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-ndp">New Democratic Party (NDP)</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-pc">Progressive Conservative</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-pc">Obby Khan</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Honourable Anita Neville</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💼 Key Industries</h3>
+        <p class="guide-resources">🌾 <strong>Agriculture</strong> &nbsp;|&nbsp; ⛏️ <strong>Mining</strong> &nbsp;|&nbsp; ⚡ <strong>Hydro-electric Power</strong></p>
+      </article>
+
+      <article class="prov-card prov-nb" id="guide-nb">
+        <h2>🔴 New Brunswick</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Fredericton</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Susan Holt</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-liberal">Liberal Party</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-pc">Progressive Conservative</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-pc">Glen Savoie</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Honourable Louise Imbeault</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💼 Key Industries</h3>
+        <p class="guide-resources">🌲 <strong>Forestry</strong> &nbsp;|&nbsp; 🌾 <strong>Agriculture</strong> &nbsp;|&nbsp; ⛏️ <strong>Mining</strong></p>
+      </article>
+
+      <article class="prov-card prov-nl" id="guide-nl">
+        <h2>🟠 Newfoundland and Labrador</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>St. John's</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Tony Wakeham</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-pc">Progressive Conservative</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-ndp">NDP</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-ndp">John Hogan</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Honourable Joan Marie Aylward</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💼 Key Industries</h3>
+        <p class="guide-resources">🐟 <strong>Fisheries</strong> &nbsp;|&nbsp; 🛢️ <strong>Oil &amp; Gas Extraction</strong></p>
+      </article>
+
+      <article class="prov-card prov-ns" id="guide-ns">
+        <h2>🌊 Nova Scotia</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Halifax</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Tim Houston</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-pc">Progressive Conservative</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-ndp">NDP</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-ndp">Claudia Chender</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Honourable Mike Savage</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💼 Key Industries</h3>
+        <p class="guide-resources">⛏️ <strong>Coal Mining</strong> &nbsp;|&nbsp; 🌲 <strong>Forestry</strong> &nbsp;|&nbsp; 🌾 <strong>Agriculture</strong></p>
+      </article>
+
+      <article class="prov-card prov-nt" id="guide-nwt">
+        <h2>🏔️ Northwest Territories</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Yellowknife</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">R.J. Simpson</span></td></tr>
+              <tr><td>🎯 Governance</td><td><span class="party-badge badge-consensus">Consensus-Based (No Opposition)</span></td></tr>
+              <tr><td>⚜️ Commissioner</td><td><span class="name-lg">Honourable Gerry Kisoun</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fun-fact">💡 <strong>Special Note:</strong> Territories use a consensus model rather than traditional party politics!</p>
+      </article>
+
+      <article class="prov-card prov-nu" id="guide-nunavut">
+        <h2>🏔️ Nunavut</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Iqaluit</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">John Main</span></td></tr>
+              <tr><td>🎯 Governance</td><td><span class="party-badge badge-consensus">Consensus-Based (No Opposition)</span></td></tr>
+              <tr><td>⚜️ Commissioner</td><td><span class="name-lg">Honourable Eva Aariak</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fun-fact">💡 <strong>Special Note:</strong> Canada's newest and largest territory by area!</p>
+      </article>
+
+      <article class="prov-card prov-on" id="guide-ontario">
+        <h2>🏛️ Ontario</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Toronto</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Doug Ford</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-pc">Progressive Conservative Party</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-ndp">NDP</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-ndp">Marit Stiles</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Edith Dumont</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💼 Key Industries</h3>
+        <p class="guide-resources">⛏️ <strong>Mining</strong> &nbsp;|&nbsp; 🎭 <strong>Tourism</strong> &nbsp;|&nbsp; 🚗 <strong>Automobile Manufacturing</strong></p>
+        <p class="fun-fact">💡 <strong>Fun Fact:</strong> Most populous province in Canada!</p>
+      </article>
+
+      <article class="prov-card prov-pe" id="guide-pei">
+        <h2>🏖️ Prince Edward Island</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Charlottetown</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Rob Lantz</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-pc">Progressive Conservative</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-ndp">NDP</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-ndp">Hal Perry</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Honourable Dr. Wassim Salamoun</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fun-fact">💡 <strong>Fun Fact:</strong> Canada's smallest province!</p>
+      </article>
+
+      <article class="prov-card prov-qc" id="guide-quebec">
+        <h2>🇫🇷 Quebec</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Quebec City</td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-caq">Coalition Avenir Québec (CAQ)</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💼 Key Industries</h3>
+        <p class="guide-resources">📄 <strong>Pulp &amp; Paper</strong> &nbsp;|&nbsp; 🌲 <strong>Forestry</strong> &nbsp;|&nbsp; ⚡ <strong>Hydro-electric Power</strong></p>
+        <p class="fun-fact">💡 <strong>Fun Fact:</strong> Second most populous province, unique French-speaking culture!</p>
+      </article>
+
+      <article class="prov-card prov-sk" id="guide-saskatchewan">
+        <h2>🌾 Saskatchewan</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Regina</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Scott Moe</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-sask">Saskatchewan Party</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-ndp">NDP</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-ndp">Carla Beck</span></td></tr>
+              <tr><td>⚜️ Lieutenant-Governor</td><td><span class="name-lg">Honourable M. Bernadette McIntyre</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="guide-h3">💼 Key Industries</h3>
+        <p class="guide-resources">🌾 <strong>Farming</strong> &nbsp;|&nbsp; ⛏️ <strong>Mining</strong> &nbsp;|&nbsp; 🛢️ <strong>Natural Gas</strong></p>
+      </article>
+
+      <article class="prov-card prov-yt" id="guide-yukon">
+        <h2>🏔️ Yukon Territory</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Category</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>📍 Capital</td><td>Whitehorse</td></tr>
+              <tr><td>👑 Premier</td><td><span class="name-premier">Currie Dixon</span></td></tr>
+              <tr><td>🎯 Ruling Party</td><td><span class="party-badge badge-sask">Yukon Party</span></td></tr>
+              <tr><td>⚖️ Opposition Party</td><td><span class="party-badge badge-ndp">NDP</span></td></tr>
+              <tr><td>🗣️ Opposition Leader</td><td><span class="name-opp-ndp">Kate White</span></td></tr>
+              <tr><td>⚜️ Commissioner</td><td><span class="name-lg">Honourable Adeline Webber</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <div class="guide-card" id="guide-quick-ref" style="scroll-margin-top:18px;">
+        <h2 class="guide-h2">📚 Quick Reference Table</h2>
+        <div class="table-scroll">
+          <table class="guide-table compact">
+            <thead>
+              <tr>
+                <th>🗺️ Region</th>
+                <th>📍 Capital</th>
+                <th>🎯 Ruling Party</th>
+                <th>👑 Premier</th>
+                <th>🏘️ Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Alberta</td><td>Edmonton</td><td><span class="party-badge sm badge-ucp">UCP</span></td><td>Danielle Smith</td><td>Province</td></tr>
+              <tr><td>British Columbia</td><td>Victoria</td><td><span class="party-badge sm badge-ndp">NDP</span></td><td>David Eby</td><td>Province</td></tr>
+              <tr><td>Manitoba</td><td>Winnipeg</td><td><span class="party-badge sm badge-ndp">NDP</span></td><td>Wab Kinew</td><td>Province</td></tr>
+              <tr><td>New Brunswick</td><td>Fredericton</td><td><span class="party-badge sm badge-liberal">Liberal</span></td><td>Susan Holt</td><td>Province</td></tr>
+              <tr><td>Newfoundland &amp; Labrador</td><td>St. John's</td><td><span class="party-badge sm badge-pc">PC</span></td><td>Tony Wakeham</td><td>Province</td></tr>
+              <tr><td>Nova Scotia</td><td>Halifax</td><td><span class="party-badge sm badge-pc">PC</span></td><td>Tim Houston</td><td>Province</td></tr>
+              <tr><td>Northwest Territories</td><td>Yellowknife</td><td><span class="party-badge sm badge-consensus">Consensus</span></td><td>R.J. Simpson</td><td>Territory</td></tr>
+              <tr><td>Nunavut</td><td>Iqaluit</td><td><span class="party-badge sm badge-consensus">Consensus</span></td><td>John Main</td><td>Territory</td></tr>
+              <tr><td>Ontario</td><td>Toronto</td><td><span class="party-badge sm badge-pc">PC</span></td><td>Doug Ford</td><td>Province</td></tr>
+              <tr><td>Prince Edward Island</td><td>Charlottetown</td><td><span class="party-badge sm badge-pc">PC</span></td><td>Rob Lantz</td><td>Province</td></tr>
+              <tr><td>Quebec</td><td>Quebec City</td><td><span class="party-badge sm badge-caq">CAQ</span></td><td>—</td><td>Province</td></tr>
+              <tr><td>Saskatchewan</td><td>Regina</td><td><span class="party-badge sm badge-sask">Sask Party</span></td><td>Scott Moe</td><td>Province</td></tr>
+              <tr><td>Yukon</td><td>Whitehorse</td><td><span class="party-badge sm badge-sask">Yukon Party</span></td><td>Currie Dixon</td><td>Territory</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="guide-card" id="guide-learning" style="scroll-margin-top:18px;">
+        <h2 class="guide-h2">🎓 Key Learning Points</h2>
+        <h3 class="guide-h3">🏛️ Provinces vs. Territories</h3>
+        <ul class="guide-points">
+          <li><strong>Provinces (10):</strong> Have more legislative power, use Lieutenant-Governors</li>
+          <li><strong>Territories (3):</strong> Use Commissioners, governed by consensus-based model</li>
+        </ul>
+        <h3 class="guide-h3">🎯 Major Political Parties (Colour Coded)</h3>
+        <ul class="guide-points">
+          <li><span class="party-badge sm badge-ucp">Conservative/UCP</span> — Red</li>
+          <li><span class="party-badge sm badge-ndp">NDP</span> — Orange</li>
+          <li><span class="party-badge sm badge-liberal">Liberal</span> — Red</li>
+          <li><span class="party-badge sm badge-pc">Progressive Conservative</span> — Blue</li>
+          <li><span class="party-badge sm badge-caq">Coalition Avenir Québec</span> — Blue</li>
+          <li><span class="party-badge sm badge-sask">Saskatchewan/Yukon Party</span> — Green</li>
+        </ul>
+        <h3 class="guide-h3">🌟 Crown Representatives</h3>
+        <ul class="guide-points">
+          <li>All are appointed by the Crown (King/Queen)</li>
+          <li>Lieutenant-Governors in provinces wear formal purple attire</li>
+          <li>Commissioners in territories have similar ceremonial roles</li>
+        </ul>
+        <h3 class="guide-h3">📍 Natural Resources Pattern</h3>
+        <ul class="guide-points">
+          <li><strong>Atlantic Provinces:</strong> Focus on fishing, forestry, mining</li>
+          <li><strong>Prairies:</strong> Agriculture, natural gas, mining</li>
+          <li><strong>Western:</strong> Oil, forestry, water</li>
+          <li><strong>Central:</strong> Manufacturing, mining, tourism</li>
+          <li><strong>Northern:</strong> Varied resources, smaller populations</li>
+        </ul>
+      </div>
+
+      <div class="guide-card" id="guide-legend">
+        <h2 class="guide-h2">🎨 Colour Legend</h2>
+        <div class="table-scroll">
+          <table class="guide-table">
+            <thead><tr><th>Colour</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td>🔵 Blue</td><td>Progressive Conservative / Most Common Conservative</td></tr>
+              <tr><td>🔴 Red</td><td>UCP / Liberal</td></tr>
+              <tr><td>🟠 Orange</td><td>NDP</td></tr>
+              <tr><td>🟣 Purple</td><td>Appointed Crown Representatives</td></tr>
+              <tr><td>🟢 Green</td><td>Regional Parties (Sask/Yukon)</td></tr>
+              <tr><td>🟣 Violet</td><td>Consensus-Based Territories</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="guide-updated">Last Updated: 2026 &nbsp;|&nbsp; Made for Learning &amp; Quick Reference 📖✨</p>
+      </div>
     </div>
   </div>
 
@@ -906,6 +1421,18 @@ function shuffle(arr){
 /* ======================= RENDER SECTION MENU ======================= */
 function renderSectionNav(){
   sectionNav.innerHTML = '';
+  const guideBtn = document.createElement('button');
+  guideBtn.className = 'section-btn guide-sec';
+  guideBtn.innerHTML = `
+      <div class="sec-head">
+        <div class="sec-icon">${SECTION_ICONS.government}</div>
+      </div>
+      <div class="sec-title">Canadian Provincial &amp; Territorial Governance Guide</div>
+      <div class="sec-count">Study sheet · colour-coded</div>
+      <div class="sec-progress"><i style="width:100%;background:var(--maroon);"></i></div>
+    `;
+  guideBtn.addEventListener('click', showGuideView);
+  sectionNav.appendChild(guideBtn);
   Object.keys(SECTIONS).forEach(key=>{
     const sec = SECTIONS[key];
     const prog = sectionProgress[key];
@@ -1227,6 +1754,43 @@ document.getElementById('showAllBtn').addEventListener('click', showSectionAnswe
 document.getElementById('hideAllBtn').addEventListener('click', hideSectionAnswerKey);
 document.getElementById('resetSectionFromKeyBtn').addEventListener('click', ()=>{
   startQuiz(state.sectionKey);
+});
+
+/* ======================= HOME TABS (Quizzes / Governance Guide) ======================= */
+const tabQuizzes = document.getElementById('tabQuizzes');
+const tabGuide = document.getElementById('tabGuide');
+const quizHome = document.getElementById('quizHome');
+const guidePanel = document.getElementById('guidePanel');
+
+function showQuizzesView(){
+  tabQuizzes.classList.add('active');
+  tabGuide.classList.remove('active');
+  tabQuizzes.setAttribute('aria-selected', 'true');
+  tabGuide.setAttribute('aria-selected', 'false');
+  quizHome.classList.remove('hidden');
+  guidePanel.classList.add('hidden');
+}
+
+function showGuideView(){
+  tabGuide.classList.add('active');
+  tabQuizzes.classList.remove('active');
+  tabGuide.setAttribute('aria-selected', 'true');
+  tabQuizzes.setAttribute('aria-selected', 'false');
+  quizHome.classList.add('hidden');
+  guidePanel.classList.remove('hidden');
+  sectionNavWrap.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+tabQuizzes.addEventListener('click', showQuizzesView);
+tabGuide.addEventListener('click', showGuideView);
+
+guidePanel.addEventListener('click', (e)=>{
+  const link = e.target.closest('a[href^="#guide-"]');
+  if(!link) return;
+  const target = document.getElementById(link.getAttribute('href').slice(1));
+  if(!target) return;
+  e.preventDefault();
+  target.scrollIntoView({behavior:'smooth', block:'start'});
 });
 
 /* ======================= INIT ======================= */
