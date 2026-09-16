@@ -374,6 +374,20 @@ footer.note a{color:var(--maroon);}
 @media (max-width:800px){
   .levels-grid{grid-template-columns:1fr;}
 }
+.guide-table.timeline td:first-child{
+  width:22%; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px;
+  white-space:nowrap; background:var(--cream); color:var(--navy);
+}
+.guide-table.timeline td:nth-child(2){
+  width:28%; font-weight:700; color:var(--navy); background:transparent;
+}
+.guide-table.timeline td{white-space:normal; vertical-align:top;}
+.guide-table.timeline .tl-era td{
+  background:var(--navy); color:var(--gold-soft); font-family:'Fraunces',serif;
+  font-size:12.5px; letter-spacing:.05em; text-transform:uppercase; padding:10px 12px;
+  scroll-margin-top:18px;
+}
+.guide-table.timeline .tl-era td:first-child{background:var(--navy); color:var(--gold-soft); width:auto;}
 .guide-toc{display:flex; flex-wrap:wrap; gap:8px;}
 .guide-toc a{
   text-decoration:none; font-size:12.5px; font-weight:600;
@@ -514,6 +528,7 @@ footer.note a{color:var(--maroon);}
     <div class="view-tabs" role="tablist" aria-label="Study views">
       <button class="view-tab active" id="tabQuizzes" role="tab" aria-selected="true" aria-controls="quizHome">Practice Quizzes</button>
       <button class="view-tab" id="tabGuide" role="tab" aria-selected="false" aria-controls="guidePanel">Canadian Provincial &amp; Territorial Governance Guide</button>
+      <button class="view-tab" id="tabTimeline" role="tab" aria-selected="false" aria-controls="timelinePanel">Important Events and Timelines</button>
     </div>
 
     <div id="quizHome">
@@ -958,6 +973,125 @@ footer.note a{color:var(--maroon);}
           </table>
         </div>
         <p class="guide-updated">Last Updated: 2026 &nbsp;|&nbsp; Made for Learning &amp; Quick Reference 📖✨</p>
+      </div>
+    </div>
+
+    <div class="guide-panel hidden" id="timelinePanel" role="tabpanel">
+      <div class="guide-card">
+        <h1 class="guide-title">📅 Important Events and Timelines</h1>
+        <p class="guide-kicker">Dated facts drawn from the Discover Canada practice questions, listed in chronological order. Month and day are included when the guide gives them.</p>
+        <nav class="guide-toc" aria-label="Jump in the timeline" style="margin-top:14px;">
+          <a href="#tl-foundations">Foundations</a>
+          <a href="#tl-colonies">Colonies &amp; wars</a>
+          <a href="#tl-confederation">Confederation</a>
+          <a href="#tl-wars">World wars</a>
+          <a href="#tl-modern">Modern Canada</a>
+          <a href="#tl-annual">Annual dates</a>
+        </nav>
+      </div>
+
+      <div class="guide-card">
+        <h2 class="guide-h2">📜 Historical Timeline</h2>
+        <div class="table-scroll">
+          <table class="guide-table timeline">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Event</th>
+                <th>What happened</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="tl-era" id="tl-foundations"><td colspan="3">Foundations</td></tr>
+              <tr><td>1215</td><td>Magna Carta</td><td>The Great Charter of Freedoms is signed in England — the source of Canada's tradition of ordered liberty (conscience, thought, assembly, and association).</td></tr>
+              <tr><td>1497</td><td>John Cabot maps the Atlantic shore</td><td>John Cabot, an Italian immigrant to England, is the first European to map Canada's Atlantic shore, landing on Newfoundland or Cape Breton Island.</td></tr>
+              <tr><td>1550s</td><td>The name “Canada” appears on maps</td><td>Jacques Cartier hears the Iroquoian word <em>kanata</em> (“village”); by the 1550s the name Canada begins appearing on maps.</td></tr>
+              <tr><td>1604</td><td>Acadian / first European settlement</td><td>French colonists begin settling the Maritimes (the Acadians). This is part of the first European settlement north of Florida.</td></tr>
+              <tr><td>1608</td><td>Champlain founds Québec</td><td>Samuel de Champlain builds a fortress at what is now Québec City.</td></tr>
+
+              <tr class="tl-era" id="tl-colonies"><td colspan="3">Colonies, upheaval &amp; responsible government</td></tr>
+              <tr><td>1755–1763</td><td>The Great Upheaval</td><td>More than two-thirds of the Acadians are deported from the Maritimes; Acadian culture survives.</td></tr>
+              <tr><td>1759</td><td>Battle of the Plains of Abraham</td><td>The British defeat the French at Québec City, marking the end of France's empire in America. Both commanders, Wolfe and Montcalm, are killed.</td></tr>
+              <tr><td>1776</td><td>United Empire Loyalists arrive</td><td>More than 40,000 people loyal to the British Crown flee the American Revolution and settle in Nova Scotia and Quebec.</td></tr>
+              <tr><td>1791</td><td>Constitutional Act</td><td>The Province of Quebec is divided into Upper Canada (later Ontario) and Lower Canada (later Quebec). Elected legislative assemblies are granted for the first time.</td></tr>
+              <tr><td>1793</td><td>Upper Canada moves to abolish slavery</td><td>Led by Lieutenant Governor John Graves Simcoe, Upper Canada becomes the first province in the British Empire to move toward abolishing slavery.</td></tr>
+              <tr><td>June 1812</td><td>War of 1812 begins</td><td>American resentment at British interference with shipping leads the United States to invade Canada.</td></tr>
+              <tr><td>1813</td><td>Laura Secord / Battle of Beaver Dams</td><td>Pioneer Laura Secord makes a dangerous journey on foot to warn of a planned American attack, contributing to the victory at Beaver Dams.</td></tr>
+              <tr><td>1814</td><td>War of 1812 ends in Canada</td><td>The U.S. invasion fails, helping ensure that Canada remains independent of the United States.</td></tr>
+              <tr><td>1833</td><td>Slavery abolished in the Empire</td><td>Britain abolishes slavery throughout the British Empire.</td></tr>
+              <tr><td>1847–48</td><td>Responsible government in Nova Scotia</td><td>Nova Scotia is the first British North American colony to attain responsible government: ministers must keep the support of the elected majority or resign.</td></tr>
+              <tr><td>1849</td><td>La Fontaine's responsible government</td><td>Sir Louis-Hippolyte La Fontaine becomes the first leader of a responsible government in the Canadas, championing democracy and French-language rights.</td></tr>
+              <tr><td>1857</td><td>Ottawa chosen as capital</td><td>Queen Victoria chooses Ottawa, on the Ottawa River, as the capital of Canada.</td></tr>
+
+              <tr class="tl-era" id="tl-confederation"><td colspan="3">Confederation &amp; nation-building</td></tr>
+              <tr><td>1864–1867</td><td>Fathers of Confederation</td><td>The Fathers of Confederation work together, with British support, to establish a new country.</td></tr>
+              <tr><td>July 1, 1867</td><td>Confederation / Canada Day</td><td>The British North America Act comes into effect. The Dominion of Canada is born from Ontario, Quebec, Nova Scotia, and New Brunswick. Sir John A. Macdonald becomes the first Prime Minister. July 1 is now celebrated as Canada Day.</td></tr>
+              <tr><td>1869–70</td><td>Red River uprising</td><td>Louis Riel leads an armed Métis uprising and seizes Fort Garry. He is regarded by many as a defender of Métis rights and the father of Manitoba.</td></tr>
+              <tr><td>1873</td><td>North West Mounted Police</td><td>Prime Minister Macdonald establishes the NWMP to pacify the West. It later becomes the Royal Canadian Mounted Police (RCMP).</td></tr>
+              <tr><td>1880</td><td>“O Canada” first sung</td><td>The song that will become the national anthem is first sung in Québec City.</td></tr>
+              <tr><td>1885</td><td>Northwest Rebellion</td><td>Louis Riel leads a second Métis rebellion; he is tried and executed for high treason, but many regard him as a hero.</td></tr>
+              <tr><td>November 7, 1885</td><td>Last spike of the CPR</td><td>Donald Smith (Lord Strathcona) drives the last spike of the Canadian Pacific Railway, a symbol of national unity from sea to sea. Chinese labourers helped build the railway and were later charged a race-based Head Tax.</td></tr>
+              <tr><td>1891</td><td>Basketball invented</td><td>Canadian James Naismith invents basketball.</td></tr>
+
+              <tr class="tl-era" id="tl-wars"><td colspan="3">World wars, rights &amp; remembrance</td></tr>
+              <tr><td>1914–1918</td><td>First World War</td><td>More than 600,000 Canadians serve in the Canadian Expeditionary Force; about 60,000 are killed. General Sir Arthur Currie commands the Canadian Corps in the Last Hundred Days.</td></tr>
+              <tr><td>1915</td><td>“In Flanders Fields”</td><td>Canadian medical officer Lieutenant-Colonel John McCrae composes the poem closely associated with Remembrance Day and the red poppy.</td></tr>
+              <tr><td>1916</td><td>Women vote in Manitoba</td><td>Manitoba becomes the first province to grant women the right to vote.</td></tr>
+              <tr><td>1916–1918</td><td>Federal women's suffrage</td><td>The Women's Suffrage Movement wins the federal vote for women in stages.</td></tr>
+              <tr><td>April 9, 1917</td><td>Battle of Vimy Ridge</td><td>The Canadian Corps captures Vimy Ridge together for the first time (about 10,000 killed or wounded), securing a reputation as elite shock troops — often called the “birth of a nation.” April 9 is celebrated as Vimy Day.</td></tr>
+              <tr><td>1921</td><td>First woman MP</td><td>Agnes Macphail becomes the first woman Member of Parliament. The same year, most Canadian women aged 21 and over gain the federal vote.</td></tr>
+              <tr><td>Second World War</td><td>Japanese Canadian internment</td><td>The federal government forcibly relocates Canadians of Japanese origin in British Columbia and sells their property without compensation, even though the military said they posed little danger.</td></tr>
+              <tr><td>June 6, 1944</td><td>D-Day — Juno Beach</td><td>15,000 Canadian troops storm and capture Juno Beach in the Allied invasion of Nazi-occupied Europe.</td></tr>
+              <tr><td>1948</td><td>Quebec flag adopted</td><td>Quebec's flag, based on the Cross and the fleur-de-lys, is adopted.</td></tr>
+              <tr><td>1949</td><td>Newfoundland joins Canada</td><td>Newfoundland and Labrador is the last province to join Confederation.</td></tr>
+              <tr><td>1950–53</td><td>Korean War</td><td>Canada participates in the UN operation defending South Korea: 500 dead and 1,000 wounded.</td></tr>
+
+              <tr class="tl-era" id="tl-modern"><td colspan="3">Modern Canada</td></tr>
+              <tr><td>1960s</td><td>Quiet Revolution</td><td>Quebec experiences rapid social and political change; many Quebecers seek greater autonomy or separation.</td></tr>
+              <tr><td>1965</td><td>Maple leaf flag raised</td><td>Canada's current red-white-red maple leaf flag is raised for the first time.</td></tr>
+              <tr><td>1967</td><td>Order of Canada</td><td>Canada starts its own honours system, the Order of Canada, in the centennial year of Confederation.</td></tr>
+              <tr><td>1969</td><td>Official Languages Act</td><td>Federal law guarantees French and English services throughout the federal government.</td></tr>
+              <tr><td>1970</td><td>La Francophonie founded</td><td>Canada helps found La Francophonie, an international association of French-speaking countries.</td></tr>
+              <tr><td>1970s</td><td>Immigration shift</td><td>Most immigrants to Canada begin to come from Asian countries.</td></tr>
+              <tr><td>1980</td><td>Marathon of Hope</td><td>Terry Fox, 18, begins his cross-country run to raise money for cancer research and becomes a national hero.</td></tr>
+              <tr><td>1980</td><td>Quebec sovereignty referendum</td><td>Quebec's movement for sovereignty is defeated in a referendum.</td></tr>
+              <tr><td>1980</td><td>“O Canada” becomes the anthem</td><td>O Canada is proclaimed Canada's national anthem (first sung in 1880).</td></tr>
+              <tr><td>1982</td><td>Charter of Rights and Freedoms</td><td>The Constitution is amended to entrench the Canadian Charter of Rights and Freedoms. Dominion Day is renamed Canada Day.</td></tr>
+              <tr><td>1988</td><td>Japanese internment apology</td><td>Canada apologizes for the forced relocation of Japanese Canadians during the Second World War.</td></tr>
+              <tr><td>1988</td><td>Canada–U.S. free trade</td><td>Free trade between Canada and the United States begins.</td></tr>
+              <tr><td>1989</td><td>Canadarm in space</td><td>The Canadian-designed and built Canadarm has been used in space exploration from this year onward.</td></tr>
+              <tr><td>1994</td><td>NAFTA</td><td>The North American Free Trade Agreement takes effect among Canada, the United States, and Mexico.</td></tr>
+              <tr><td>1995</td><td>Second Quebec referendum</td><td>Quebec's sovereignty referendum is defeated again.</td></tr>
+              <tr><td>April 1, 1999</td><td>Nunavut established</td><td>Nunavut (“our land” in Inuktitut) is created from the eastern part of the Northwest Territories.</td></tr>
+              <tr><td>2006</td><td>Head Tax apology</td><td>The Government of Canada apologizes for the race-based Head Tax charged to Chinese immigrants after the CPR was built.</td></tr>
+              <tr><td>2008</td><td>Residential schools apology</td><td>Ottawa formally apologizes to former students of the residential school system (operated from the 1800s until the 1980s).</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="guide-card" id="tl-annual" style="scroll-margin-top:18px;">
+        <h2 class="guide-h2">🗓️ Annual Dates to Remember</h2>
+        <div class="table-scroll">
+          <table class="guide-table timeline">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Observance</th>
+                <th>What it marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>January 11</td><td>Sir John A. Macdonald Day</td><td>Honours Canada's first Prime Minister.</td></tr>
+              <tr><td>April 9</td><td>Vimy Day</td><td>Marks the 1917 capture of Vimy Ridge by the Canadian Corps.</td></tr>
+              <tr><td>July 1</td><td>Canada Day</td><td>Anniversary of Confederation (1867), the birth of the Dominion of Canada.</td></tr>
+              <tr><td>3rd Monday in October</td><td>Federal election date (fixed)</td><td>By law, federal elections must be held on the third Monday in October every four years after the last general election (the Prime Minister may call one earlier).</td></tr>
+              <tr><td>November 11</td><td>Remembrance Day</td><td>Canadians wear a red poppy and observe a moment of silence at the 11th hour to honour those who served or died in war.</td></tr>
+              <tr><td>November 20</td><td>Sir Wilfrid Laurier Day</td><td>Honours Canada's first French-Canadian Prime Minister since Confederation.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="guide-note" style="margin-top:14px;">These dates come from the practice-quiz explanations in Discover Canada. Other inventions mentioned without a year in the quiz (insulin, standard time zones, the BlackBerry) are left off this list on purpose.</p>
       </div>
     </div>
   </div>
@@ -1836,42 +1970,50 @@ document.getElementById('resetSectionFromKeyBtn').addEventListener('click', ()=>
   startQuiz(state.sectionKey);
 });
 
-/* ======================= HOME TABS (Quizzes / Governance Guide) ======================= */
+/* ======================= HOME TABS (Quizzes / Guide / Timeline) ======================= */
 const tabQuizzes = document.getElementById('tabQuizzes');
 const tabGuide = document.getElementById('tabGuide');
+const tabTimeline = document.getElementById('tabTimeline');
 const quizHome = document.getElementById('quizHome');
 const guidePanel = document.getElementById('guidePanel');
+const timelinePanel = document.getElementById('timelinePanel');
 
-function showQuizzesView(){
-  tabQuizzes.classList.add('active');
-  tabGuide.classList.remove('active');
-  tabQuizzes.setAttribute('aria-selected', 'true');
-  tabGuide.setAttribute('aria-selected', 'false');
-  quizHome.classList.remove('hidden');
-  guidePanel.classList.add('hidden');
+function setHomeView(view){
+  const isQuizzes = view === 'quizzes';
+  const isGuide = view === 'guide';
+  const isTimeline = view === 'timeline';
+  tabQuizzes.classList.toggle('active', isQuizzes);
+  tabGuide.classList.toggle('active', isGuide);
+  tabTimeline.classList.toggle('active', isTimeline);
+  tabQuizzes.setAttribute('aria-selected', isQuizzes ? 'true' : 'false');
+  tabGuide.setAttribute('aria-selected', isGuide ? 'true' : 'false');
+  tabTimeline.setAttribute('aria-selected', isTimeline ? 'true' : 'false');
+  quizHome.classList.toggle('hidden', !isQuizzes);
+  guidePanel.classList.toggle('hidden', !isGuide);
+  timelinePanel.classList.toggle('hidden', !isTimeline);
+  if(!isQuizzes) sectionNavWrap.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function showGuideView(){
-  tabGuide.classList.add('active');
-  tabQuizzes.classList.remove('active');
-  tabGuide.setAttribute('aria-selected', 'true');
-  tabQuizzes.setAttribute('aria-selected', 'false');
-  quizHome.classList.add('hidden');
-  guidePanel.classList.remove('hidden');
-  sectionNavWrap.scrollIntoView({behavior:'smooth', block:'start'});
-}
+function showQuizzesView(){ setHomeView('quizzes'); }
+function showGuideView(){ setHomeView('guide'); }
+function showTimelineView(){ setHomeView('timeline'); }
 
 tabQuizzes.addEventListener('click', showQuizzesView);
 tabGuide.addEventListener('click', showGuideView);
+tabTimeline.addEventListener('click', showTimelineView);
 
-guidePanel.addEventListener('click', (e)=>{
-  const link = e.target.closest('a[href^="#guide-"]');
-  if(!link) return;
-  const target = document.getElementById(link.getAttribute('href').slice(1));
-  if(!target) return;
-  e.preventDefault();
-  target.scrollIntoView({behavior:'smooth', block:'start'});
-});
+function bindInPageJump(panel, prefix){
+  panel.addEventListener('click', (e)=>{
+    const link = e.target.closest(`a[href^="${prefix}"]`);
+    if(!link) return;
+    const target = document.getElementById(link.getAttribute('href').slice(1));
+    if(!target) return;
+    e.preventDefault();
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
+bindInPageJump(guidePanel, '#guide-');
+bindInPageJump(timelinePanel, '#tl-');
 
 /* ======================= INIT ======================= */
 renderSectionNav();
