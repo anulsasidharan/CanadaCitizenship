@@ -349,6 +349,31 @@ footer.note a{color:var(--maroon);}
   white-space:pre;
 }
 .guide-note{font-size:14.5px; color:#3a3529; line-height:1.65; margin:0;}
+.levels-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px;
+}
+.level-card{
+  background:#fff; border:1px solid var(--line); border-radius:12px;
+  padding:16px 16px 14px; border-top:5px solid var(--navy);
+}
+.level-card.federal{border-top-color:#0066cc;}
+.level-card.provincial{border-top-color:var(--gold);}
+.level-card.municipal{border-top-color:var(--maroon);}
+.level-card h3{
+  font-family:'Fraunces',serif; color:var(--navy); font-size:15.5px; margin:0 0 8px; line-height:1.35;
+}
+.level-card p{margin:0 0 8px; font-size:13.5px; line-height:1.55; color:#3a3529;}
+.level-card p:last-child{margin-bottom:0;}
+.level-card .level-now{
+  margin-top:10px; padding:8px 10px; background:var(--cream); border-radius:8px;
+  font-size:13px; color:var(--navy); font-weight:700;
+}
+.level-card .level-callout{
+  margin-top:8px; font-size:13px; color:var(--maroon); font-weight:700; line-height:1.45;
+}
+@media (max-width:800px){
+  .levels-grid{grid-template-columns:1fr;}
+}
 .guide-toc{display:flex; flex-wrap:wrap; gap:8px;}
 .guide-toc a{
   text-decoration:none; font-size:12.5px; font-weight:600;
@@ -520,6 +545,26 @@ footer.note a{color:var(--maroon);}
          ↓
 🗳️  Provincial/Territorial Legislatures &amp; Assemblies</pre>
         <p class="guide-note"><strong>Remember:</strong> This hierarchy flows from the Crown at the top down through all levels of government!</p>
+        <h3 class="guide-h3">Three Independent Levels</h3>
+        <div class="levels-grid">
+          <div class="level-card federal">
+            <h3>🏛️ Federal (Prime Minister)</h3>
+            <p>Governs entire Canada 🍁</p>
+            <p>Handles national defense, international relations, federal taxes, and immigration.</p>
+            <p class="level-now">Currently: <span class="name-premier">Prime Minister Mark Carney</span></p>
+          </div>
+          <div class="level-card provincial">
+            <h3>🏘️ Provincial / Territorial (Premiers)</h3>
+            <p>Govern their own province or territory.</p>
+            <p>Handle healthcare, education, provincial roads, and provincial taxes.</p>
+            <p class="level-callout">Not controlled by the PM — they're independent!</p>
+          </div>
+          <div class="level-card municipal">
+            <h3>🏙️ Municipal (Mayors)</h3>
+            <p>Govern cities and towns.</p>
+            <p>Handle local roads, parks, and garbage collection.</p>
+          </div>
+        </div>
       </div>
 
       <div class="guide-card">
