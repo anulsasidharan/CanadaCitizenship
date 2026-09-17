@@ -349,6 +349,10 @@ footer.note a{color:var(--maroon);}
   white-space:pre;
 }
 .guide-note{font-size:14.5px; color:#3a3529; line-height:1.65; margin:0;}
+.guide-senator-note{
+  margin-top:16px; padding:12px 14px; background:var(--cream);
+  border-left:4px solid var(--gold); border-radius:8px; font-size:14.5px; line-height:1.6;
+}
 .levels-grid{
   display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px;
 }
@@ -468,6 +472,70 @@ footer.note a{color:var(--maroon);}
   .guide-table td:first-child{width:46%;}
   .guide-hierarchy{font-size:12px; padding:16px 14px;}
 }
+
+/* ---------- Political Hierarchy Flow ---------- */
+.wrap.hierarchy-wide{max-width:1400px;}
+.hierarchy-panel{margin-top:4px;}
+.hierarchy-note{
+  background:var(--cream);
+  border-left:4px solid var(--gold);
+  border-radius:8px;
+  padding:16px 18px;
+  font-size:14.5px;
+  line-height:1.65;
+  color:var(--ink);
+  margin:0 0 14px;
+}
+.hierarchy-note.purple{border-left-color:#7c3aed;}
+.hierarchy-note.green{border-left-color:var(--good);}
+.hierarchy-note p{margin:8px 0 0;}
+.hierarchy-note ul{margin:10px 0 0; padding-left:20px;}
+.hierarchy-note li{margin:5px 0;}
+.hierarchy-scroll{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  margin:4px 0 8px;
+}
+.hierarchy-scroll svg{
+  min-width:1080px;
+  width:100%;
+  height:auto;
+  display:block;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+.hflow-box{fill:#ffffff; stroke:#1b2a44; stroke-width:2;}
+.hflow-box-accent{fill:#f6f1e4; stroke:#c69a3e; stroke-width:3;}
+.hflow-title{font-size:18px; font-weight:bold; fill:#1b2a44;}
+.hflow-subtitle{font-size:14px; fill:#6b6558;}
+.hflow-arrow{stroke:#1b2a44; stroke-width:2; fill:none;}
+.hflow-emoji{font-size:32px;}
+.hflow-label{font-size:12px; font-weight:bold; fill:#6b6558; text-transform:uppercase; letter-spacing:1px;}
+.hierarchy-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px 22px;
+  margin:0;
+  padding:16px 18px;
+  background:var(--cream);
+  border-radius:12px;
+  justify-content:center;
+}
+.hierarchy-legend-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13.5px;
+  color:var(--navy);
+  font-weight:600;
+}
+.hierarchy-legend-color{
+  width:16px;
+  height:16px;
+  border-radius:3px;
+  flex-shrink:0;
+}
 </style>
 </head>
 <body>
@@ -527,6 +595,7 @@ footer.note a{color:var(--maroon);}
   <div id="sectionNavWrap">
     <div class="view-tabs" role="tablist" aria-label="Study views">
       <button class="view-tab active" id="tabQuizzes" role="tab" aria-selected="true" aria-controls="quizHome">Practice Quizzes</button>
+      <button class="view-tab" id="tabHierarchy" role="tab" aria-selected="false" aria-controls="hierarchyPanel">Canada's Political Hierarchy Flow</button>
       <button class="view-tab" id="tabGuide" role="tab" aria-selected="false" aria-controls="guidePanel">Canadian Provincial &amp; Territorial Governance Guide</button>
       <button class="view-tab" id="tabTimeline" role="tab" aria-selected="false" aria-controls="timelinePanel">Important Events and Timelines</button>
     </div>
@@ -542,6 +611,311 @@ footer.note a{color:var(--maroon);}
       </div>
     </div>
 
+    <div class="hierarchy-panel hidden" id="hierarchyPanel" role="tabpanel" aria-labelledby="tabHierarchy">
+      <div class="guide-card">
+        <h1 class="guide-title">🍁 Canada's Political Hierarchy Flow</h1>
+        <p class="guide-kicker">Visual chain of command: from the Crown to provincial and territorial governments.</p>
+      </div>
+
+      <div class="guide-card">
+        <div class="hierarchy-note">
+          <strong>How to read this diagram:</strong> Follow the arrows downward to see how power flows through Canada's constitutional structure. The diagram shows the appointed vice-regal representatives and how they relate to the independent levels of government. Each box represents a level of government, with connecting lines showing the hierarchical relationships.
+        </div>
+
+        <div class="hierarchy-scroll">
+          <svg viewBox="0 0 1600 1480" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-labelledby="hflowTitle">
+            <title id="hflowTitle">Canada's political hierarchy from the monarch through provincial and territorial governments</title>
+            <defs>
+              <marker id="hflow-arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#1b2a44" />
+              </marker>
+            </defs>
+
+            <!-- LEVEL 1: MONARCH -->
+            <g id="hflow-monarch">
+              <rect class="hflow-box-accent" x="550" y="20" width="500" height="80" rx="8" />
+              <text x="800" y="50" text-anchor="middle" class="hflow-emoji">👑</text>
+              <text x="800" y="75" text-anchor="middle" class="hflow-title">Canadian Monarch - King Charles III</text>
+            </g>
+
+            <line class="hflow-arrow" x1="800" y1="100" x2="800" y2="140" marker-end="url(#hflow-arrowhead)" />
+            <text class="hflow-label" x="810" y="125">Head of State</text>
+
+            <!-- LEVEL 2: GOVERNOR GENERAL -->
+            <g id="hflow-gg">
+              <rect class="hflow-box" x="550" y="140" width="500" height="80" rx="8" />
+              <text x="800" y="170" text-anchor="middle" class="hflow-emoji">🏛️</text>
+              <text x="800" y="195" text-anchor="middle" class="hflow-title">Governor General of Canada - Mary Simon</text>
+            </g>
+
+            <line class="hflow-arrow" x1="800" y1="220" x2="800" y2="260" marker-end="url(#hflow-arrowhead)" />
+            <text class="hflow-label" x="810" y="245">Vice-Regal</text>
+
+            <!-- LEVEL 3: SPLIT TO LT-GOVERNORS AND COMMISSIONERS -->
+            <g id="hflow-split">
+              <line class="hflow-arrow" x1="800" y1="260" x2="400" y2="300" marker-end="url(#hflow-arrowhead)" />
+              <line class="hflow-arrow" x1="800" y1="260" x2="1200" y2="300" marker-end="url(#hflow-arrowhead)" />
+            </g>
+
+            <!-- LT-GOVERNORS (10 Provinces) -->
+            <g id="hflow-lt-govs">
+              <rect class="hflow-box" x="150" y="300" width="500" height="100" rx="8" />
+              <text x="400" y="325" text-anchor="middle" class="hflow-emoji">⚜️</text>
+              <text x="400" y="350" text-anchor="middle" class="hflow-title">Lieutenant-Governors</text>
+              <text x="400" y="375" text-anchor="middle" class="hflow-subtitle">(10 Provinces)</text>
+            </g>
+
+            <!-- COMMISSIONERS (3 Territories) -->
+            <g id="hflow-commissioners">
+              <rect class="hflow-box" x="950" y="300" width="500" height="100" rx="8" />
+              <text x="1200" y="325" text-anchor="middle" class="hflow-emoji">⚜️</text>
+              <text x="1200" y="350" text-anchor="middle" class="hflow-title">Commissioners</text>
+              <text x="1200" y="375" text-anchor="middle" class="hflow-subtitle">(3 Territories)</text>
+            </g>
+
+            <line class="hflow-arrow" x1="400" y1="400" x2="400" y2="440" marker-end="url(#hflow-arrowhead)" />
+            <text class="hflow-label" x="410" y="425">Appoint Premiers</text>
+
+            <line class="hflow-arrow" x1="1200" y1="400" x2="1200" y2="440" marker-end="url(#hflow-arrowhead)" />
+            <text class="hflow-label" x="1210" y="425">Appoint Leaders</text>
+
+            <!-- LEVEL 4: PREMIERS & TERRITORIAL LEADERS -->
+            <g id="hflow-premiers-left">
+              <rect class="hflow-box" x="100" y="440" width="600" height="120" rx="8" />
+              <text x="400" y="465" text-anchor="middle" class="hflow-emoji">🏘️</text>
+              <text x="400" y="490" text-anchor="middle" class="hflow-title">Provincial Premiers</text>
+              <text x="400" y="515" text-anchor="middle" class="hflow-subtitle">Govern 10 Provinces Independently</text>
+              <text x="400" y="540" text-anchor="middle" class="hflow-subtitle" font-size="12">Healthcare, Education, Provincial Taxes</text>
+            </g>
+
+            <g id="hflow-premiers-right">
+              <rect class="hflow-box" x="900" y="440" width="600" height="120" rx="8" />
+              <text x="1200" y="465" text-anchor="middle" class="hflow-emoji">🏘️</text>
+              <text x="1200" y="490" text-anchor="middle" class="hflow-title">Territorial Leaders</text>
+              <text x="1200" y="515" text-anchor="middle" class="hflow-subtitle">Govern 3 Territories</text>
+              <text x="1200" y="540" text-anchor="middle" class="hflow-subtitle" font-size="12">Consensus Government Model</text>
+            </g>
+
+            <line x1="100" y1="600" x2="1500" y2="600" stroke="#1b2a44" stroke-width="2" stroke-dasharray="5,5" />
+            <text x="800" y="640" text-anchor="middle" class="hflow-label" font-size="16" fill="#1b2a44">PROVINCIAL &amp; TERRITORIAL GOVERNMENTS (13 Regions)</text>
+
+            <!-- Alberta -->
+            <g>
+              <rect class="hflow-box" x="50" y="680" width="180" height="140" rx="6" />
+              <text x="140" y="700" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Alberta</text>
+              <text x="140" y="717" text-anchor="middle" class="hflow-subtitle" font-size="11">Edmonton</text>
+              <text x="140" y="732" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Salma Lakhani</text>
+              <text x="140" y="746" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Danielle Smith</text>
+              <rect x="60" y="753" width="160" height="18" fill="#0066cc" rx="3" />
+              <text x="140" y="765" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">UCP</text>
+            </g>
+
+            <!-- British Columbia -->
+            <g>
+              <rect class="hflow-box" x="260" y="680" width="180" height="140" rx="6" />
+              <text x="350" y="700" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">B.C.</text>
+              <text x="350" y="717" text-anchor="middle" class="hflow-subtitle" font-size="11">Victoria</text>
+              <text x="350" y="732" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Wendy Cocchia</text>
+              <text x="350" y="746" text-anchor="middle" font-size="10" fill="#6b6558">Premier: David Eby</text>
+              <rect x="270" y="753" width="160" height="18" fill="#f1641e" rx="3" />
+              <text x="350" y="765" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">NDP</text>
+            </g>
+
+            <!-- Manitoba -->
+            <g>
+              <rect class="hflow-box" x="470" y="680" width="180" height="140" rx="6" />
+              <text x="560" y="700" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Manitoba</text>
+              <text x="560" y="717" text-anchor="middle" class="hflow-subtitle" font-size="11">Winnipeg</text>
+              <text x="560" y="732" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Anita Neville</text>
+              <text x="560" y="746" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Wab Kinew</text>
+              <rect x="480" y="753" width="160" height="18" fill="#f1641e" rx="3" />
+              <text x="560" y="765" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">NDP</text>
+            </g>
+
+            <!-- New Brunswick -->
+            <g>
+              <rect class="hflow-box" x="680" y="680" width="180" height="140" rx="6" />
+              <text x="770" y="700" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">New Brunswick</text>
+              <text x="770" y="717" text-anchor="middle" class="hflow-subtitle" font-size="11">Fredericton</text>
+              <text x="770" y="732" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Louise Imbeault</text>
+              <text x="770" y="746" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Susan Holt</text>
+              <rect x="690" y="753" width="160" height="18" fill="#d81e5b" rx="3" />
+              <text x="770" y="765" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">Liberal</text>
+            </g>
+
+            <!-- Newfoundland -->
+            <g>
+              <rect class="hflow-box" x="890" y="680" width="180" height="140" rx="6" />
+              <text x="980" y="700" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Nfld &amp; Lab</text>
+              <text x="980" y="717" text-anchor="middle" class="hflow-subtitle" font-size="11">St. John's</text>
+              <text x="980" y="732" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Joan M. Aylward</text>
+              <text x="980" y="746" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Tony Wakeham</text>
+              <rect x="900" y="753" width="160" height="18" fill="#0066cc" rx="3" />
+              <text x="980" y="765" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">PC</text>
+            </g>
+
+            <!-- Nova Scotia -->
+            <g>
+              <rect class="hflow-box" x="1100" y="680" width="180" height="140" rx="6" />
+              <text x="1190" y="700" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Nova Scotia</text>
+              <text x="1190" y="717" text-anchor="middle" class="hflow-subtitle" font-size="11">Halifax</text>
+              <text x="1190" y="732" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Mike Savage</text>
+              <text x="1190" y="746" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Tim Houston</text>
+              <rect x="1110" y="753" width="160" height="18" fill="#0066cc" rx="3" />
+              <text x="1190" y="765" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">PC</text>
+            </g>
+
+            <!-- Ontario -->
+            <g>
+              <rect class="hflow-box" x="1310" y="680" width="180" height="140" rx="6" />
+              <text x="1400" y="700" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Ontario</text>
+              <text x="1400" y="717" text-anchor="middle" class="hflow-subtitle" font-size="11">Toronto</text>
+              <text x="1400" y="732" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Edith Dumont</text>
+              <text x="1400" y="746" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Doug Ford</text>
+              <rect x="1320" y="753" width="160" height="18" fill="#0066cc" rx="3" />
+              <text x="1400" y="765" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">PC</text>
+            </g>
+
+            <!-- PEI -->
+            <g>
+              <rect class="hflow-box" x="50" y="850" width="180" height="140" rx="6" />
+              <text x="140" y="870" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">PEI</text>
+              <text x="140" y="887" text-anchor="middle" class="hflow-subtitle" font-size="11">Charlottetown</text>
+              <text x="140" y="902" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Wassim Salamoun</text>
+              <text x="140" y="916" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Rob Lantz</text>
+              <rect x="60" y="923" width="160" height="18" fill="#0066cc" rx="3" />
+              <text x="140" y="935" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">PC</text>
+            </g>
+
+            <!-- Quebec -->
+            <g>
+              <rect class="hflow-box" x="260" y="850" width="180" height="140" rx="6" />
+              <text x="350" y="870" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Quebec</text>
+              <text x="350" y="887" text-anchor="middle" class="hflow-subtitle" font-size="11">Quebec City</text>
+              <text x="350" y="902" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Manon Jeannotte</text>
+              <text x="350" y="916" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Christine Fréchette</text>
+              <rect x="270" y="923" width="160" height="18" fill="#4285f4" rx="3" />
+              <text x="350" y="935" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">CAQ</text>
+            </g>
+
+            <!-- Saskatchewan -->
+            <g>
+              <rect class="hflow-box" x="470" y="850" width="180" height="140" rx="6" />
+              <text x="560" y="870" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Saskatchewan</text>
+              <text x="560" y="887" text-anchor="middle" class="hflow-subtitle" font-size="11">Regina</text>
+              <text x="560" y="902" text-anchor="middle" font-size="10" fill="#6b6558">Lt-Gov: Bernadette McIntyre</text>
+              <text x="560" y="916" text-anchor="middle" font-size="10" fill="#6b6558">Premier: Scott Moe</text>
+              <rect x="480" y="923" width="160" height="18" fill="#2d5016" rx="3" />
+              <text x="560" y="935" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">Sask Party</text>
+            </g>
+
+            <!-- Northwest Territories -->
+            <g>
+              <rect class="hflow-box" x="680" y="850" width="180" height="140" rx="6" />
+              <text x="770" y="870" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">NWT</text>
+              <text x="770" y="887" text-anchor="middle" class="hflow-subtitle" font-size="11">Yellowknife</text>
+              <text x="770" y="902" text-anchor="middle" font-size="10" fill="#6b6558">Commissioner: Gerry Kisoun</text>
+              <text x="770" y="916" text-anchor="middle" font-size="10" fill="#6b6558">Leader: R.J. Simpson</text>
+              <rect x="690" y="923" width="160" height="18" fill="#7c3aed" rx="3" />
+              <text x="770" y="935" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">Consensus</text>
+            </g>
+
+            <!-- Nunavut -->
+            <g>
+              <rect class="hflow-box" x="890" y="850" width="180" height="140" rx="6" />
+              <text x="980" y="870" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Nunavut</text>
+              <text x="980" y="887" text-anchor="middle" class="hflow-subtitle" font-size="11">Iqaluit</text>
+              <text x="980" y="902" text-anchor="middle" font-size="10" fill="#6b6558">Commissioner: Eva Aariak</text>
+              <text x="980" y="916" text-anchor="middle" font-size="10" fill="#6b6558">Leader: John Main</text>
+              <rect x="900" y="923" width="160" height="18" fill="#7c3aed" rx="3" />
+              <text x="980" y="935" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">Consensus</text>
+            </g>
+
+            <!-- Yukon -->
+            <g>
+              <rect class="hflow-box" x="1100" y="850" width="180" height="140" rx="6" />
+              <text x="1190" y="870" text-anchor="middle" class="hflow-subtitle" font-weight="bold" font-size="13">Yukon</text>
+              <text x="1190" y="887" text-anchor="middle" class="hflow-subtitle" font-size="11">Whitehorse</text>
+              <text x="1190" y="902" text-anchor="middle" font-size="10" fill="#6b6558">Commissioner: Adeline Webber</text>
+              <text x="1190" y="916" text-anchor="middle" font-size="10" fill="#6b6558">Leader: Currie Dixon</text>
+              <rect x="1110" y="923" width="160" height="18" fill="#00205b" rx="3" />
+              <text x="1190" y="935" text-anchor="middle" class="hflow-subtitle" fill="white" font-weight="bold" font-size="10">Yukon Party</text>
+            </g>
+
+            <line x1="100" y1="1020" x2="1500" y2="1020" stroke="#8f1f2b" stroke-width="3" stroke-dasharray="5,5" />
+            <text x="800" y="1050" text-anchor="middle" class="hflow-label" fill="#8f1f2b" font-size="14">⚡ INDEPENDENT LEVELS OF GOVERNMENT ⚡</text>
+
+            <!-- FEDERAL -->
+            <g id="hflow-federal">
+              <rect class="hflow-box" x="50" y="1070" width="450" height="200" rx="8" />
+              <text x="275" y="1100" text-anchor="middle" class="hflow-emoji">🏛️</text>
+              <text x="275" y="1130" text-anchor="middle" class="hflow-title">Federal Level</text>
+              <text x="275" y="1150" text-anchor="middle" class="hflow-subtitle" font-weight="bold">Prime Minister</text>
+              <text x="275" y="1168" text-anchor="middle" class="hflow-subtitle" font-size="11">Mark Carney</text>
+              <text x="70" y="1195" class="hflow-subtitle" font-size="11">• Governs entire Canada</text>
+              <text x="70" y="1215" class="hflow-subtitle" font-size="11">• National defense &amp; relations</text>
+            </g>
+
+            <!-- PROVINCIAL/TERRITORIAL -->
+            <g id="hflow-provincial">
+              <rect class="hflow-box" x="575" y="1070" width="450" height="200" rx="8" />
+              <text x="800" y="1100" text-anchor="middle" class="hflow-emoji">🏘️</text>
+              <text x="800" y="1130" text-anchor="middle" class="hflow-title">Provincial/Territorial</text>
+              <text x="800" y="1150" text-anchor="middle" class="hflow-subtitle" font-weight="bold">Premiers &amp; Leaders</text>
+              <text x="800" y="1168" text-anchor="middle" class="hflow-subtitle" font-size="11">13 Independent Governments</text>
+              <text x="595" y="1195" class="hflow-subtitle" font-size="11">• Healthcare &amp; education</text>
+              <text x="595" y="1215" class="hflow-subtitle" font-size="11">• Provincial taxes &amp; services</text>
+            </g>
+
+            <!-- MUNICIPAL -->
+            <g id="hflow-municipal">
+              <rect class="hflow-box" x="1100" y="1070" width="450" height="200" rx="8" />
+              <text x="1325" y="1100" text-anchor="middle" class="hflow-emoji">🏙️</text>
+              <text x="1325" y="1130" text-anchor="middle" class="hflow-title">Municipal Level</text>
+              <text x="1325" y="1150" text-anchor="middle" class="hflow-subtitle" font-weight="bold">Mayors &amp; Councils</text>
+              <text x="1325" y="1168" text-anchor="middle" class="hflow-subtitle" font-size="11">Cities &amp; Towns</text>
+              <text x="1120" y="1195" class="hflow-subtitle" font-size="11">• Local roads &amp; parks</text>
+              <text x="1120" y="1215" class="hflow-subtitle" font-size="11">• Local services &amp; taxes</text>
+            </g>
+
+            <g>
+              <rect class="hflow-box-accent" x="100" y="1320" width="1400" height="120" rx="8" />
+              <text x="800" y="1355" text-anchor="middle" class="hflow-title" fill="#1b2a44">Key Insight: Provincial Premiers Are Elected &amp; Independent</text>
+              <text x="800" y="1380" text-anchor="middle" class="hflow-subtitle">While Lt-Governors and Commissioners are appointed by the Governor General,</text>
+              <text x="800" y="1405" text-anchor="middle" class="hflow-subtitle">Premiers are ELECTED by their provincial/territorial legislatures and govern independently.</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <div class="hierarchy-note purple">
+          <strong>Appointment vs. Election Structure:</strong>
+          <p>⚜️ <strong>Lieutenant-Governors &amp; Commissioners:</strong> APPOINTED by Governor General</p>
+          <p>🏘️ <strong>Premiers &amp; Territorial Leaders:</strong> ELECTED by their respective legislatures (Independent)</p>
+        </div>
+        <div class="hierarchy-note green">
+          <strong>Political Party Distribution Across Provinces &amp; Territories (2026):</strong>
+          <ul>
+            <li>Progressive Conservative (PC): 6 regions (AB, NL, NS, ON, PEI) + Alberta (UCP)</li>
+            <li>NDP: 3 regions (BC, MB)</li>
+            <li>Liberal: 1 region (NB)</li>
+            <li>CAQ (Quebec): 1 region</li>
+            <li>Saskatchewan Party: 1 region</li>
+            <li>Consensus (Territories): 2 regions (NWT, Nunavut)</li>
+          </ul>
+        </div>
+        <div class="hierarchy-legend">
+          <div class="hierarchy-legend-item"><span class="hierarchy-legend-color" style="background:#0066cc;"></span>Progressive Conservative / PC</div>
+          <div class="hierarchy-legend-item"><span class="hierarchy-legend-color" style="background:#f1641e;"></span>New Democratic Party (NDP)</div>
+          <div class="hierarchy-legend-item"><span class="hierarchy-legend-color" style="background:#d81e5b;"></span>Liberal</div>
+          <div class="hierarchy-legend-item"><span class="hierarchy-legend-color" style="background:#4285f4;"></span>Coalition Avenir Québec (CAQ)</div>
+          <div class="hierarchy-legend-item"><span class="hierarchy-legend-color" style="background:#2d5016;"></span>Saskatchewan Party</div>
+          <div class="hierarchy-legend-item"><span class="hierarchy-legend-color" style="background:#7c3aed;"></span>Consensus Government</div>
+        </div>
+      </div>
+    </div>
+
     <div class="guide-panel hidden" id="guidePanel" role="tabpanel">
       <div class="guide-card">
         <h1 class="guide-title">🍁 Canadian Provincial &amp; Territorial Governance Guide 🍁</h1>
@@ -554,32 +928,47 @@ footer.note a{color:var(--maroon);}
          ↓
 🏛️  Governor General of Canada
          ↓
+    🏛️ FEDERAL PARLIAMENT
+        ├─ Senate (appointed, upper chamber)  ← SENATORS sit here
+        ├─ House of Commons (elected, lower chamber)
+        └─ Prime Minister (leads government in Commons)
+         ↓
 ⚜️  Lieutenant-Governors (Provinces) / Commissioners (Territories)
          ↓
 🏘️  Premiers (Provincial/Territorial Heads of Government)
          ↓
-🗳️  Provincial/Territorial Legislatures &amp; Assemblies</pre>
+🗳️  Provincial/Territorial Legislatures</pre>
         <p class="guide-note"><strong>Remember:</strong> This hierarchy flows from the Crown at the top down through all levels of government!</p>
-        <h3 class="guide-h3">Three Independent Levels</h3>
+        <h3 class="guide-h3">Key Points About Senators</h3>
+        <ul class="guide-points">
+          <li>Appointed, not elected (by Governor General on PM's advice)</li>
+          <li>Federal level only — they do <strong>not</strong> sit in provincial legislatures</li>
+          <li>Part of the legislative branch alongside the House of Commons</li>
+          <li>Represent regions of Canada (not electoral districts)</li>
+          <li>Must approve all federal laws alongside the Commons</li>
+          <li>Upper chamber — technically has equal legislative power to the Commons for most bills</li>
+        </ul>
+        <h3 class="guide-h3">The Three Independent Levels (Updated)</h3>
         <div class="levels-grid">
           <div class="level-card federal">
-            <h3>🏛️ Federal (Prime Minister)</h3>
+            <h3>🏛️ Federal (PM + Parliament: Senate + Commons)</h3>
             <p>Governs entire Canada 🍁</p>
             <p>Handles national defense, international relations, federal taxes, and immigration.</p>
             <p class="level-now">Currently: <span class="name-premier">Prime Minister Mark Carney</span></p>
           </div>
           <div class="level-card provincial">
-            <h3>🏘️ Provincial / Territorial (Premiers)</h3>
+            <h3>🏘️ Provincial/Territorial (Premiers + Legislatures/Assemblies — no Senate equivalent)</h3>
             <p>Govern their own province or territory.</p>
             <p>Handle healthcare, education, provincial roads, and provincial taxes.</p>
             <p class="level-callout">Not controlled by the PM — they're independent!</p>
           </div>
           <div class="level-card municipal">
-            <h3>🏙️ Municipal (Mayors)</h3>
+            <h3>🏙️ Municipal (Mayors + City Councils)</h3>
             <p>Govern cities and towns.</p>
             <p>Handle local roads, parks, and garbage collection.</p>
           </div>
         </div>
+        <p class="guide-senator-note"><strong>So senators are exclusively federal players</strong> — they have no counterpart at provincial or municipal levels.</p>
       </div>
 
       <div class="guide-card">
@@ -1700,35 +2089,45 @@ document.getElementById('resetSectionFromKeyBtn').addEventListener('click', ()=>
   startQuiz(state.sectionKey);
 });
 
-/* ======================= HOME TABS (Quizzes / Guide / Timeline) ======================= */
+/* ======================= HOME TABS (Quizzes / Hierarchy / Guide / Timeline) ======================= */
 const tabQuizzes = document.getElementById('tabQuizzes');
+const tabHierarchy = document.getElementById('tabHierarchy');
 const tabGuide = document.getElementById('tabGuide');
 const tabTimeline = document.getElementById('tabTimeline');
 const quizHome = document.getElementById('quizHome');
+const hierarchyPanel = document.getElementById('hierarchyPanel');
 const guidePanel = document.getElementById('guidePanel');
 const timelinePanel = document.getElementById('timelinePanel');
+const wrapEl = document.querySelector('.wrap');
 
 function setHomeView(view){
   const isQuizzes = view === 'quizzes';
+  const isHierarchy = view === 'hierarchy';
   const isGuide = view === 'guide';
   const isTimeline = view === 'timeline';
   tabQuizzes.classList.toggle('active', isQuizzes);
+  tabHierarchy.classList.toggle('active', isHierarchy);
   tabGuide.classList.toggle('active', isGuide);
   tabTimeline.classList.toggle('active', isTimeline);
   tabQuizzes.setAttribute('aria-selected', isQuizzes ? 'true' : 'false');
+  tabHierarchy.setAttribute('aria-selected', isHierarchy ? 'true' : 'false');
   tabGuide.setAttribute('aria-selected', isGuide ? 'true' : 'false');
   tabTimeline.setAttribute('aria-selected', isTimeline ? 'true' : 'false');
   quizHome.classList.toggle('hidden', !isQuizzes);
+  hierarchyPanel.classList.toggle('hidden', !isHierarchy);
   guidePanel.classList.toggle('hidden', !isGuide);
   timelinePanel.classList.toggle('hidden', !isTimeline);
+  wrapEl.classList.toggle('hierarchy-wide', isHierarchy);
   if(!isQuizzes) sectionNavWrap.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function showQuizzesView(){ setHomeView('quizzes'); }
+function showHierarchyView(){ setHomeView('hierarchy'); }
 function showGuideView(){ setHomeView('guide'); }
 function showTimelineView(){ setHomeView('timeline'); }
 
 tabQuizzes.addEventListener('click', showQuizzesView);
+tabHierarchy.addEventListener('click', showHierarchyView);
 tabGuide.addEventListener('click', showGuideView);
 tabTimeline.addEventListener('click', showTimelineView);
 
